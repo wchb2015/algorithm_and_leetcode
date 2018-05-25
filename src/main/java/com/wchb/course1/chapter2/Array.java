@@ -1,16 +1,23 @@
 package com.wchb.course1.chapter2;
 
+import com.wchb.annotations.Testable;
+
 import java.util.Arrays;
 
 public class Array<E> {
 
     private E[] data;
 
+    //第一个没有元素的位置
     private int size;
 
     public Array(int capacity) {
         data = (E[]) new Object[capacity];
         size = 0;
+    }
+
+    public Array() {
+        this(10);
     }
 
     public Array(E[] arr) {
@@ -21,32 +28,9 @@ public class Array<E> {
         size = arr.length;
     }
 
-    public Array() {
-        this(10);
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public int getCapacity() {
-        return data.length;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public void addFirst(E e) {
-        add(e, 0);
-    }
-
-    public void addLast(E e) {
-        add(e, size);
-    }
-
-
+    //Create
     // 第targetIndex个位置插入一个新元素e
+    @Testable
     public void add(E e, int targetIndex) {
 
         if (targetIndex > size || targetIndex < 0) {
@@ -66,6 +50,8 @@ public class Array<E> {
         size++;
     }
 
+    //Read
+    @Testable
     public E get(int index) {
         if (index >= size || index < 0) {
             throw new IllegalArgumentException();
@@ -73,7 +59,9 @@ public class Array<E> {
         return data[index];
     }
 
+    //Update
     //修改index位置的元素为e
+    @Testable
     public void set(int index, E e) {
         if (index >= size || index < 0) {
             throw new IllegalArgumentException();
@@ -100,7 +88,10 @@ public class Array<E> {
         return -1;
     }
 
+
+    //Delete
     //删除指定位置的元素,且返回给用户
+    @Testable
     public E remove(int index) {
         if (index >= size || index < 0) {
             throw new IllegalArgumentException();
@@ -153,6 +144,26 @@ public class Array<E> {
         data[i] = data[j];
         data[j] = temp;
 
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getCapacity() {
+        return data.length;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public void addFirst(E e) {
+        add(e, 0);
+    }
+
+    public void addLast(E e) {
+        add(e, size);
     }
 
     private void resize(int newCapacity) {

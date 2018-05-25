@@ -36,13 +36,18 @@ public class LinkedListQueue<E> implements IQueue<E> {
         size = 0;
     }
 
+
+    //链表入队, 从尾部进行.
     @Override
     public void enqueue(E e) {
 
+        // tail 为null,也说明 head 为null.
+        // 只要有元素, tail指向尾节点的位置
         if (tail == null) {
             tail = new Node(e);
             head = tail;
         } else {
+            //这样入队不需要考虑头结点
             tail.next = new Node(e);
             tail = tail.next;
         }
@@ -62,8 +67,8 @@ public class LinkedListQueue<E> implements IQueue<E> {
         size--;
 
         if (head == null) {
-            //queue size =1 , tail,head both point to the first element.
-            tail = null;
+            //queue size =1 ,dequeue以后list为空, tail,head both point to the first element.
+            tail = null;//如果不执行这行代码 tail依然指向retNode.
         }
         return retNode.e;
     }

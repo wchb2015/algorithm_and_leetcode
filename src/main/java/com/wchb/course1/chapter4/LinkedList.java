@@ -34,21 +34,12 @@ public class LinkedList<E> {
         }
     }
 
-    public Integer getSize() {
-        return size;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
     // 在链表的index(0-based)位置添加新的元素e
     // 在链表中不是一个常用的操作,练习用
     public void add(int index, E e) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed, Illegal index");
         }
-
         Node prev = dummyHead;
         for (int i = 0; i < index; i++) {
             prev = prev.next;
@@ -57,18 +48,10 @@ public class LinkedList<E> {
         size++;
     }
 
-    public void addFirst(E e) {
-        add(0, e);
-    }
-
-    public void addLast(E e) {
-        add(size, e);
-    }
-
     public E get(Integer index) {
 
         if (index < 0 || index > size) {
-            throw new IllegalArgumentException("Add failed, Illegal index");
+            throw new IllegalArgumentException("Get failed, Illegal index");
         }
 
         Node currentNode = dummyHead.next;
@@ -79,17 +62,9 @@ public class LinkedList<E> {
         return currentNode.e;
     }
 
-    public E getFirst() {
-        return get(0);
-    }
-
-    public E getLast() {
-        return get(size - 1);
-    }
-
     public void set(int index, E e) {
         if (index < 0 || index > size) {
-            throw new IllegalArgumentException("Add failed, Illegal index");
+            throw new IllegalArgumentException("Set failed, Illegal index");
         }
 
         Node currentNode = dummyHead.next;
@@ -100,44 +75,10 @@ public class LinkedList<E> {
         currentNode.e = e;
     }
 
-    public boolean contains(E e) {
-        Node current = dummyHead.next;
-        while (current != null) {
-            if (current.e.equals(e)) {
-                return true;
-            }
-            current = current.next;
-        }
-        return false;
-    }
-
-    @Override
-    public String toString() {
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(" LinkedList:{ ");
-
-        Node current = dummyHead.next;
-        while (current != null) {
-            sb.append(current.e).append("->");
-            current = current.next;
-        }
-
-/*        for(Node cur = dummyHead.next;cur!=null;cur = cur.next){
-            sb.append(current.e).append("->");
-        }*/
-
-        sb.append("NULL} ,size: ").append(getSize());
-
-        return sb.toString();
-    }
-
-
     public E remove(int index) {
 
         if (index < 0 || index > size) {
-            throw new IllegalArgumentException("Add failed, Illegal index");
+            throw new IllegalArgumentException("Remove failed, Illegal index");
         }
 
         Node prev = dummyHead;
@@ -173,6 +114,38 @@ public class LinkedList<E> {
         }
     }
 
+    public boolean contains(E e) {
+        Node current = dummyHead.next;
+        while (current != null) {
+            if (current.e.equals(e)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(" LinkedList:{ ");
+
+        Node current = dummyHead.next;
+        while (current != null) {
+            sb.append(current.e).append("->");
+            current = current.next;
+        }
+
+/*        for(Node cur = dummyHead.next;cur!=null;cur = cur.next){
+            sb.append(current.e).append("->");
+        }*/
+
+        sb.append("NULL} ,size: ").append(getSize());
+
+        return sb.toString();
+    }
 
     public E removeFirst() {
         return remove(0);
@@ -180,5 +153,29 @@ public class LinkedList<E> {
 
     public E removeLast() {
         return remove(getSize() - 1);
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public void addFirst(E e) {
+        add(0, e);
+    }
+
+    public void addLast(E e) {
+        add(size, e);
+    }
+
+    public E getFirst() {
+        return get(0);
+    }
+
+    public E getLast() {
+        return get(size - 1);
     }
 }

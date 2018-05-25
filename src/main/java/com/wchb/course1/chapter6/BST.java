@@ -27,25 +27,8 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
-    public int size() {
-        return size;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
     public void add(E e) {
         root = add(root, e);
-
-        /*
-        for V1
-        if (Objects.isNull(root)) {
-            root = new Node(e);
-            size++;
-        } else {
-            add(root, e);
-        }*/
     }
 
     private Node add(Node node, E e) {
@@ -165,7 +148,6 @@ public class BST<E extends Comparable<E>> {
             throw new RuntimeException("bst is empty");
         }
         return maximum(root).e;
-
     }
 
     //返回以node为根的二分搜索树的最大值所在的节点
@@ -208,7 +190,7 @@ public class BST<E extends Comparable<E>> {
     }
 
     //删除掉以node为根的二分搜索树中的最大节点
-    //返回删除节点后新的二分搜索树的跟
+    //返回删除节点后新的二分搜索树的根
     private Node removeMax(Node node) {
 
         if (node.right == null) {
@@ -363,5 +345,13 @@ public class BST<E extends Comparable<E>> {
             sb.append("--");
         }
         return sb.toString();
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 }

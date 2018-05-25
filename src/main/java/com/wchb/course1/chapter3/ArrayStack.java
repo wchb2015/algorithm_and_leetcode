@@ -14,20 +14,6 @@ public class ArrayStack<E> implements IStack<E> {
         array = new Array<>();
     }
 
-    public int getCapacity() {
-        return array.getCapacity();
-    }
-
-    @Override
-    public int getSize() {
-        return array.getSize();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return array.isEmpty();
-    }
-
     @Override
     public void push(E e) {
         array.addLast(e);
@@ -57,4 +43,19 @@ public class ArrayStack<E> implements IStack<E> {
 
         return sb.toString();
     }
+
+    @Override
+    public int getSize() {
+        return array.getSize();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return array.isEmpty();
+    }
+
+    public int getCapacity() {
+        return array.getCapacity();
+    }
+
 }

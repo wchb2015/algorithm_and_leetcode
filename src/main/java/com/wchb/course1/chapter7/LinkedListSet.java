@@ -1,4 +1,4 @@
-package com.wchb.course1.chapter5;
+package com.wchb.course1.chapter7;
 
 import com.wchb.course1.chapter4.LinkedList;
 import com.wchb.course1.chapter7.ISet;

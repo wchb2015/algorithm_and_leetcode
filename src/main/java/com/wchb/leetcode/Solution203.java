@@ -12,6 +12,28 @@ import java.util.Objects;
  */
 public class Solution203 {
 
+    public static ListNode removeElementsV5(ListNode head, int val) {
+        while (head != null && head.val == val) {
+            head = head.next;
+        }
+
+        if (Objects.isNull(head)) {
+            return null;
+        }
+
+        ListNode prev = head;
+
+        while (prev.next != null) {
+            if (prev.next.val == val) {
+                prev.next = prev.next.next;
+            } else {
+                prev = prev.next;
+            }
+        }
+
+        return head;
+    }
+
 
     // 递归解法
     public static ListNode removeElementsV4(ListNode head, int val) {

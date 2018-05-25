@@ -11,7 +11,6 @@ public class LinkedListStack<E> implements IStack<E> {
         linkedList = new LinkedList<>();
     }
 
-
     @Override
     public int getSize() {
         return linkedList.getSize();
@@ -24,7 +23,6 @@ public class LinkedListStack<E> implements IStack<E> {
 
     @Override
     public void push(E e) {
-
         linkedList.addFirst(e);
     }
 

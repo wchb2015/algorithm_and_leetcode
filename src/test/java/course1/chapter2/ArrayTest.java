@@ -17,13 +17,13 @@ public class ArrayTest {
 
         array.addLast(1);
         array.addLast(2);
+        array.addLast(3);
         array.addLast(4);
         array.addLast(5);
-        array.addLast(6);
         logger.info("array:{}", array);
 
 
-        array.add(3, 2);
+        array.add(3333, 2);
         logger.info("array:{}", array);
 
 
@@ -33,11 +33,15 @@ public class ArrayTest {
         logger.info("array:{}", array);
 
 
-        logger.info("remove:{}", array.remove(1));
+        logger.info("remove:{}", array.remove(0));
 
         array.removeFirst();
         array.removeLast();
         logger.info("array:{}", array);
+
+        array.removeElement(3333);
+        logger.info("array:{}", array);
+
     }
 
     @Test
@@ -56,5 +60,19 @@ public class ArrayTest {
         array.removeLast();
         logger.info("array:{}", array);
 
+    }
+
+    @Test
+    public void test03() {
+        System.out.println(sum(new int[]{1, 2, 3}, 0));
+    }
+
+
+    // 计算 arr[l....n)这个区间内所有数字的和
+    public int sum(int[] arr, int l) {
+        if (l == arr.length) {
+            return 0;
+        }
+        return arr[l] + sum(arr, l + 1);
     }
 }

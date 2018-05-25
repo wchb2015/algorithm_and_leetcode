@@ -1,6 +1,12 @@
 package com.wchb.course1.chapter3;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LoopQueue<E> implements IQueue<E> {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoopQueue.class);
+
 
     private E[] data;
 
@@ -9,7 +15,6 @@ public class LoopQueue<E> implements IQueue<E> {
 
     public LoopQueue(int capacity) {
         data = (E[]) new Object[capacity + 1];
-
         size = 0;
         front = 0;
         tail = 0;
@@ -76,20 +81,21 @@ public class LoopQueue<E> implements IQueue<E> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Loop Queue: ").append("front [");
+        sb.append("Loop Queue: ").append("FRONT[");
         for (int i = front; i != tail; i = (i + 1) % data.length) {
             sb.append(data[i]);
             if ((i + 1) % data.length != tail) {
                 sb.append(", ");
             }
-
         }
-        sb.append("] tail, size: ").append(size).append(", capacity: ").append(getCapacity());
-
+        sb.append("]TAIL, size: ").append(size).append(", capacity: ").append(getCapacity());
         return sb.toString();
     }
 
     private void resize(int newCapacity) {
+
+//        logger.info(" resize, queue:{}, tail: {},front:{}", this.toString(), tail, front);
+
         E[] newData = (E[]) new Object[newCapacity + 1];
 
         for (int i = 0; i < size; i++) {
@@ -98,5 +104,13 @@ public class LoopQueue<E> implements IQueue<E> {
         this.data = newData;
         front = 0;
         tail = size;
+    }
+
+    public int getTail() {
+        return tail;
+    }
+
+    public int _getFront() {
+        return front;
     }
 }
