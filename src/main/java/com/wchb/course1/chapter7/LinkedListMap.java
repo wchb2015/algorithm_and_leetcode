@@ -5,9 +5,34 @@ import java.util.Objects;
 
 public class LinkedListMap<K, V> implements IMap<K, V> {
 
-
     private Node dummyHead;
     private Integer size;
+
+    private class Node {
+        public K key;
+        public V value;
+
+        public Node next;
+
+        public Node(K key, V value, Node next) {
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+
+        public Node(K key) {
+            this(key, null, null);
+        }
+
+        public Node() {
+            this(null, null, null);
+        }
+
+        @Override
+        public String toString() {
+            return key.toString() + " : " + value.toString();
+        }
+    }
 
     public LinkedListMap() {
         dummyHead = new Node();
@@ -75,32 +100,6 @@ public class LinkedListMap<K, V> implements IMap<K, V> {
     @Override
     public boolean isEmpty() {
         return size == 0;
-    }
-
-    private class Node {
-        public K key;
-        public V value;
-
-        public Node next;
-
-        public Node(K key, V value, Node next) {
-            this.key = key;
-            this.value = value;
-            this.next = next;
-        }
-
-        public Node(K key) {
-            this(key, null, null);
-        }
-
-        public Node() {
-            this(null, null, null);
-        }
-
-        @Override
-        public String toString() {
-            return key.toString() + " : " + value.toString();
-        }
     }
 
     private Node getNode(K key) {

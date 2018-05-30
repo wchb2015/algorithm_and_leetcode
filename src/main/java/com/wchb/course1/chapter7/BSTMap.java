@@ -1,9 +1,22 @@
 package com.wchb.course1.chapter7;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
+
+    private class Node {
+        public K key;
+        public V value;
+
+        public Node left, right;
+
+        public Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+            left = null;
+            right = null;
+        }
+    }
 
     private Node root;
     private Integer size;
@@ -18,8 +31,7 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
         root = add(root, key, value);
     }
 
-
-    // 向以node为根的二分搜索树中插入元素(key, value) , 递归算法
+    // 向以node为根的二分搜索树中插入元素(key, value), 递归算法
     // 返回 插入新节点后二分搜索树的根
     private Node add(Node node, K key, V value) {
         if (Objects.isNull(node)) {
@@ -35,6 +47,21 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
             node.value = value;
         }
         return node;
+    }
+
+    //返回以node为根节点的二分搜索树中, key所在的节点
+    private Node getNode(Node node, K key) {
+        if (Objects.isNull(node)) {
+            return null;
+        }
+        if (node.key.equals(key)) {
+            return node;
+        } else if (node.key.compareTo(key) > 0) {
+            return getNode(node.left, key);
+        } else if (node.key.compareTo(key) < 0) {
+            return getNode(node.right, key);
+        }
+        return null;
     }
 
     @Override
@@ -92,6 +119,27 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
         return null;
     }
 
+    // 返回以node为根的二分搜索树的最小值所在的节点
+    private Node minimum(Node node) {
+        if (node.left == null)
+            return node;
+        return minimum(node.left);
+    }
+
+    // 删除掉以node为根的二分搜索树中的最小节点
+    // 返回删除节点后新的二分搜索树的根
+    private Node removeMin(Node node) {
+
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+        node.left = removeMin(node.left);
+        return node;
+    }
+
     @Override
     public boolean contains(K key) {
         return getNode(root, key) != null;
@@ -123,80 +171,4 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
         return size == 0;
     }
 
-
-    private class Node {
-        public K key;
-        public V value;
-
-        public Node left, right;
-
-        public Node(K key, V value) {
-            this.key = key;
-            this.value = value;
-            left = null;
-            right = null;
-        }
-    }
-
-    //返回以node为根节点的二分搜索树中, key所在的节点
-    private Node getNode(Node node, K key) {
-        if (Objects.isNull(node)) {
-            return null;
-        }
-        if (node.key.equals(key)) {
-            return node;
-        } else if (node.key.compareTo(key) > 0) {
-            return getNode(node.left, key);
-        } else if (node.key.compareTo(key) < 0) {
-            return getNode(node.right, key);
-        }
-        return null;
-    }
-
-
-    // 返回以node为根的二分搜索树的最小值所在的节点
-    private Node minimum(Node node) {
-        if (node.left == null)
-            return node;
-        return minimum(node.left);
-    }
-
-    // 删除掉以node为根的二分搜索树中的最小节点
-    // 返回删除节点后新的二分搜索树的根
-    private Node removeMin(Node node) {
-
-        if (node.left == null) {
-            Node rightNode = node.right;
-            node.right = null;
-            size--;
-            return rightNode;
-        }
-
-        node.left = removeMin(node.left);
-        return node;
-    }
-
-    public static void main(String[] args) {
-
-        System.out.println("Pride and Prejudice");
-
-        ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
-            System.out.println("Total words: " + words.size());
-
-            BSTMap<String, Integer> map = new BSTMap<>();
-            for (String word : words) {
-                if (map.contains(word))
-                    map.set(word, map.get(word) + 1);
-                else
-                    map.add(word, 1);
-            }
-
-            System.out.println("Total different words: " + map.getSize());
-            System.out.println("Frequency of PRIDE: " + map.get("pride"));
-            System.out.println("Frequency of PREJUDICE: " + map.get("prejudice"));
-        }
-
-        System.out.println();
-    }
 }

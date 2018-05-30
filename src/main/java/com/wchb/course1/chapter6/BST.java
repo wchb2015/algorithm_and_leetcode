@@ -7,15 +7,6 @@ import java.util.Stack;
 
 public class BST<E extends Comparable<E>> {
 
-    private Node root;
-    private Integer size;
-
-
-    public BST() {
-        root = null;
-        size = 0;
-    }
-
     private class Node {
         public E e;
         public Node left, right;
@@ -27,10 +18,21 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
+    private Node root;
+    private Integer size;
+
+
+    public BST() {
+        root = null;
+        size = 0;
+    }
+
     public void add(E e) {
         root = add(root, e);
     }
 
+    //向以node为根的BST中插入元素E, 递归算法
+    //返回插入新节点后的BST的跟
     private Node add(Node node, E e) {
         if (Objects.isNull(node)) {
             size++;
@@ -44,12 +46,12 @@ public class BST<E extends Comparable<E>> {
         return node;
     }
 
-
-    //递归
+    //看 BST 中是否包含元素e
     public boolean contains(E e) {
         return contains(root, e);
     }
 
+    // 看以node为根的BST中是否包含元素e, 递归算法
     private boolean contains(Node node, E e) {
         if (Objects.isNull(node)) {
             return false;
@@ -69,14 +71,21 @@ public class BST<E extends Comparable<E>> {
         preOrder(root);
     }
 
+    private void preOrder(Node node) {
+        if (Objects.isNull(node)) {
+            return;
+        }
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
     // 非递归 前序遍历
     public void preOrderNR() {
         Stack<Node> stack = new Stack<>();
-
         if (Objects.isNull(root)) {
             return;
         }
-
         stack.push(root);
         while (!stack.isEmpty()) {
             Node cur = stack.pop();
@@ -88,19 +97,35 @@ public class BST<E extends Comparable<E>> {
                 stack.push(cur.left);
             }
         }
-
     }
-
 
     //中序遍历
     public void inOrder() {
         inOrder(root);
     }
 
+    //中序遍历以node为根的二分搜索树, 递归算法
+    private void inOrder(Node node) {
+        if (Objects.isNull(node)) {
+            return;
+        }
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
 
     //后续遍历
     public void postOrder() {
         postOrder(root);
+    }
+
+    private void postOrder(Node node) {
+        if (Objects.isNull(node)) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
     }
 
     //层序遍历
@@ -122,16 +147,14 @@ public class BST<E extends Comparable<E>> {
                 q.add(front.right);
             }
         }
-
     }
 
     //寻找最小元素
     public E minimum() {
         if (size == 0) {
-            throw new RuntimeException("bst is empty");
+            throw new RuntimeException(" bst is empty");
         }
         return minimum(root).e;
-
     }
 
     //返回以node为根的二分搜索树的最小值所在的节点
@@ -142,7 +165,7 @@ public class BST<E extends Comparable<E>> {
         return minimum(node.left);
     }
 
-    //寻找最小元素
+    //寻找最大 元素
     public E maximum() {
         if (size == 0) {
             throw new RuntimeException("bst is empty");
@@ -155,10 +178,8 @@ public class BST<E extends Comparable<E>> {
         if (Objects.isNull(node.right)) {
             return node;
         }
-
         return maximum(node.right);
     }
-
 
     //从二分搜索树中删除最小值所在的节点,返回最小值
     public E removeMin() {
@@ -168,7 +189,7 @@ public class BST<E extends Comparable<E>> {
     }
 
     //删除掉以node为根的二分搜索树中的最小节点
-    //返回删除节点后新的二分搜索树的跟
+    //返回删除节点后新的二分搜索树的根
     private Node removeMin(Node node) {
 
         if (node.left == null) {
@@ -192,26 +213,23 @@ public class BST<E extends Comparable<E>> {
     //删除掉以node为根的二分搜索树中的最大节点
     //返回删除节点后新的二分搜索树的根
     private Node removeMax(Node node) {
-
         if (node.right == null) {
             Node leftNode = node.left;
             node.left = null;
             size--;
             return leftNode;
         }
-
         node.right = removeMax(node.right);
         return node;
     }
 
-
-    //从二分搜索树中删除元素为e的节点
+    //从BST中删除元素为e的节点
     public void remove(E e) {
         root = remove(root, e);
     }
 
-    //删除以node为根的二分搜索树中值为e的节点,递归算法
-    //返回删除节点后新的二分搜索树的跟
+    //删除以node为根的BST中值为e的节点,递归算法
+    //返回删除节点后新的BST的跟
     private Node remove(Node node, E e) {
         if (Objects.isNull(node)) {
             return null;
@@ -243,9 +261,6 @@ public class BST<E extends Comparable<E>> {
             //待删除节点左右均不为空
             //找到比待删除节点大的最小节点,即待删除节点右子树的最小节点
             //用这个节点替代待删除节点的位置
-          /* Wrong  Node newRoot = removeMin(node.right);
-            newRoot.left = node.left;
-            return newRoot;*/
 
             Node successor = minimum(node.right);
 
@@ -254,42 +269,11 @@ public class BST<E extends Comparable<E>> {
 
             successor.left = node.left;
 
-
             node.left = node.right = null;
             size--;
             return successor;
         }
         return null;
-    }
-
-    private void inOrder(Node node) {
-        if (Objects.isNull(node)) {
-            return;
-        }
-
-        inOrder(node.left);
-        System.out.println(node.e);
-        inOrder(node.right);
-    }
-
-    private void preOrder(Node node) {
-
-        if (Objects.isNull(node)) {
-            return;
-        }
-        System.out.println(node.e);
-        preOrder(node.left);
-        preOrder(node.right);
-    }
-
-    private void postOrder(Node node) {
-
-        if (Objects.isNull(node)) {
-            return;
-        }
-        postOrder(node.left);
-        postOrder(node.right);
-        System.out.println(node.e);
     }
 
     //向以node为根的二分搜索树中插入元素E,递归算法;
@@ -328,6 +312,7 @@ public class BST<E extends Comparable<E>> {
         return sb.toString();
     }
 
+    // 生成以node为根节点, 深度为depth的描述二叉树的字符串(递归函数 根节点深度为0)
     private void generateBSTString(Node node, int depth, StringBuilder sb) {
         if (Objects.isNull(node)) {
             sb.append(generateDepthString(depth) + "null\n");

@@ -48,6 +48,13 @@ public class LinkedList<E> {
         size++;
     }
 
+    public void addRecursively(int index, E e) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("addRecursively failed, Illegal index");
+        }
+        // TODO: 5/27/18
+    }
+
     public E get(Integer index) {
 
         if (index < 0 || index > size) {
