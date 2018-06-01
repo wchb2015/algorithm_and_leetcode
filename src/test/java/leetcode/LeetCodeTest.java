@@ -1,15 +1,31 @@
 package leetcode;
 
-import com.wchb.leetcode.Solution110;
-import com.wchb.leetcode.Solution20;
-import com.wchb.leetcode.Solution347V2;
+import com.wchb.leetcode.*;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+
 public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
+
+    @Test
+    public void test3() {
+
+        System.out.println(new Solution3().lengthOfLongestSubstring("au"));
+    }
+
+
+    @Test
+    public void test1() {
+        Solution1 solution1 = new Solution1();
+
+        System.out.println(Arrays.toString(
+                solution1.twoSum(new int[]{1, 2, 3, 4, 5}, 3)));
+
+    }
 
     @Test
     public void test110() {
