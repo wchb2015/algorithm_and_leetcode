@@ -11,6 +11,24 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test136() {
+        System.out.println(new S136().singleNumber(new int[]{4, 1, 2, 1, 2}));
+    }
+
+    @Test
+    public void test344() {
+        System.out.println(new Solution344().reverseString("1990"));
+    }
+
+    @Test
+    public void test13() {
+
+        System.out.println(new Solution13().romanToInt("MCMXCIV"));
+
+    }
+
     @Test
     public void test3() {
 

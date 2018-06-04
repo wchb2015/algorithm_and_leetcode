@@ -3,10 +3,8 @@ package com.wchb.course2.chapter4;
 /**
  * @date 5/31/18 1:02 PM
  */
-
-
 // 在堆的有关操作中,需要比较堆中元素的大小,所以T需要extends Comparable
-public class MaxHeap<T extends Comparable<T>> {
+public class MaxHeap<T extends Comparable> {
 
     private T[] data;
     private int count;
@@ -16,6 +14,24 @@ public class MaxHeap<T extends Comparable<T>> {
         data = (T[]) new Comparable[capacity + 1];
         count = 0;
         this.capacity = capacity;
+    }
+
+    // 通过一个给定的数组创建一个最大堆
+    // 该构造堆的过程,时间复杂度为O(n)
+    public MaxHeap(T arr[]) {
+        int n = arr.length;
+        data = (T[]) new Comparable[n + 1];
+        capacity = n;
+
+        for (int i = 0; i < n; i++) {
+            data[i + 1] = arr[i];
+        }
+
+        count = n;
+
+        for (int i = count / 2; i >= 1; i--) {
+            shiftDown(i);
+        }
     }
 
     // 返回堆中的元素个数
