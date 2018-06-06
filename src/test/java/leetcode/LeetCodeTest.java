@@ -11,6 +11,32 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test() {
+
+        Integer.parseInt(new StringBuilder().toString());
+    }
+
+    @Test
+    public void test7() {
+        System.out.println(new S7().reverse(-3211));
+    }
+
+    @Test
+    public void test771() {
+        System.out.println(new S771().numJewelsInStones("aA", "aAAbbbb"));
+        System.out.println(new S771().numJewelsInStones("z", "ZZ"));
+    }
+
+    @Test
+    public void test234() {
+        new S234().justRun();
+    }
+
+    @Test
+    public void test9() {
+        System.out.println(new S9().isPalindrome(1001));
+    }
 
     @Test
     public void test136() {
@@ -87,7 +113,8 @@ public class LeetCodeTest {
 
         Solution347V2 solution347 = new Solution347V2();
 
-        System.out.println(solution347.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2));
+        System.out.println(solution347.topKFrequent(new int[]{4, 1, -1, 2, -1, 2, 3}, 2));
     }
 
 }
+

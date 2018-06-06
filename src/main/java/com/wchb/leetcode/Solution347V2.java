@@ -1,7 +1,12 @@
 package com.wchb.leetcode;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 
+
+// 使用JDK的PriorityQueue(最小堆)解决这个问题.
 public class Solution347V2 {
 
     private class Freq implements Comparable<Freq> {
@@ -13,49 +18,42 @@ public class Solution347V2 {
         }
 
         @Override
-        //频次越低 优先级越高(JDK PriorityQueue 是最小堆)
         public int compareTo(Freq another) {
- /*           if (this.freq < another.freq) {
-                return 1;//当前元素比传进来元素大(优先级) 返回1
-            } else if (this.freq > another.freq) {
-                return -1;
-            } else {
-                return 0;
-            }*/
-
             return this.freq - another.freq;
         }
     }
 
     public List<Integer> topKFrequent(int[] nums, int k) {
 
-        PriorityQueue<Freq> pq = new PriorityQueue<>();
+        // key element. value: 频次
         Map<Integer, Integer> map = new HashMap<>();
 
-        for (int i : nums) {
-            if (map.containsKey(i)) {
-                map.put(i, map.get(i) + 1);
+        //先统计频率
+        for (Integer num : nums) {
+            if (map.containsKey(num)) {
+                map.put(num, map.get(num) + 1);
             } else {
-                map.put(i, 1);
+                map.put(num, 1);
             }
         }
+
+        PriorityQueue<Freq> priorityQueue = new PriorityQueue<>();
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (pq.size() < k) {
-                pq.add(new Freq(entry.getKey(), entry.getValue()));
-            } else if (map.get(entry.getKey()) > pq.peek().freq) {
-                pq.remove();
-                pq.add(new Freq(entry.getKey(), entry.getValue()));
+            if (priorityQueue.size() < k) {
+                priorityQueue.add(new Freq(entry.getKey(), entry.getValue()));
+            } else if (entry.getValue().compareTo(priorityQueue.peek().freq) > 0) {
+                priorityQueue.remove();
+                priorityQueue.add(new Freq(entry.getKey(), entry.getValue()));
             }
         }
 
-        List<Integer> res = new LinkedList<>();
-        while (!pq.isEmpty()) {
-            res.add(pq.remove().e);
+        List<Integer> res = new java.util.LinkedList<>();
+        while (!priorityQueue.isEmpty()) {
+            res.add(priorityQueue.remove().e);
         }
 
         return res;
     }
-
 
 }

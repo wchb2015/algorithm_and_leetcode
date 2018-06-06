@@ -17,9 +17,10 @@ public class MaxHeapSortTest {
 
     @Test
     public void test02() {
-        Integer[] arr = SortTestHelper.generateRandomArray(100000, 1, 100000000);
+        Integer[] arr = SortTestHelper.generateRandomArray(1000000, 1, Integer.MAX_VALUE);
 
         SortTestHelper.testSort("com.wchb.course2.chapter4.HeapSort1", arr);
         SortTestHelper.testSort("com.wchb.course2.chapter4.HeapSort2", arr);
+        SortTestHelper.testSort("com.wchb.course2.chapter4.HeapSort3", arr);
     }
 }
