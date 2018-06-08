@@ -13,8 +13,52 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-
         Integer.parseInt(new StringBuilder().toString());
+    }
+
+    @Test
+    public void test547() {
+        System.out.println(
+                new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}})
+        );
+        System.out.println(
+//                new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 1}, {0, 1, 1}})
+        );
+    }
+
+    @Test
+    public void testMapSum677() {
+        MapSum677 obj = new MapSum677();
+        obj.insert("apple", 3);
+        System.out.println(obj.sum("ap"));
+        obj.insert("app", 2);
+        System.out.println(obj.sum("ap"));
+    }
+
+    @Test
+    public void test211() {
+        WordDictionary211 wordDictionary = new WordDictionary211();
+
+        wordDictionary.addWord("bad");
+        wordDictionary.addWord("dad");
+        wordDictionary.addWord("mad");
+//        System.out.println(wordDictionary.search("pad"));
+//        System.out.println(wordDictionary.search("bad"));
+//        System.out.println(wordDictionary.search(".ad"));
+        System.out.println(wordDictionary.search("b.."));
+    }
+
+    @Test
+    public void test208() {
+        Trie208 obj = new Trie208();
+        obj.insert("good");
+        System.out.println(obj.search("good"));
+        System.out.println(obj.startsWith("go"));
+    }
+
+    @Test
+    public void test203() {
+        new S203().justRun();
     }
 
     @Test

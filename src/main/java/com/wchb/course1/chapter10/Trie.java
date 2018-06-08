@@ -1,0 +1,88 @@
+package com.wchb.course1.chapter10;
+
+import java.util.TreeMap;
+
+/**
+ * @date 6/6/18 2:23 PM
+ */
+public class Trie {
+
+    private class Node {
+
+        public boolean isWord;
+
+        public TreeMap<Character, Node> next;
+
+        public Node(boolean isWord) {
+            this.isWord = isWord;
+            next = new TreeMap<>();
+        }
+
+        public Node() {
+            this(false);
+        }
+
+    }
+
+    private Node root;
+
+    private int size;
+
+    public Trie() {
+        root = new Node();
+        size = 0;
+    }
+
+    //get the count of word that store in Trie
+    public int getSize() {
+        return size;
+    }
+
+    public void add(String word) {
+
+        Node cur = root;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (cur.next.get(c) == null) {
+                cur.next.put(c, new Node());
+            }
+            cur = cur.next.get(c);
+        }
+
+        // 避免添加的单词已经存在 更新size错误
+        if (!cur.isWord) {
+            cur.isWord = true;
+            size++;
+        }
+    }
+
+    // 查询单词word是否在Trie中
+    public boolean contains(String word) {
+
+        Node cur = root;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (cur.next.get(c) == null) {
+                return false;
+            } else {
+                cur = cur.next.get(c);
+            }
+        }
+        return cur.isWord;
+    }
+
+    //查询是否在Trie中有单词以prefix为前缀
+    public boolean isPrefix(String prefix) {
+        Node cur = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            char c = prefix.charAt(i);
+            if (cur.next.get(c) == null) {
+                return false;
+            } else {
+                cur = cur.next.get(c);
+            }
+        }
+        return true;
+    }
+
+}
