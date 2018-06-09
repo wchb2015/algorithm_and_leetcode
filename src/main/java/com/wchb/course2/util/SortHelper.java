@@ -6,10 +6,10 @@ import java.lang.reflect.Method;
 /**
  * @date 6/2/18 3:24 PM
  */
-public class SortTestHelper {
+public class SortHelper {
 
     // SortTestHelper不允许产生任何实例
-    private SortTestHelper() {
+    private SortHelper() {
     }
 
     // 生成有n个元素的随机数组,每个元素的随机范围为[rangeL, rangeR]
@@ -122,5 +122,11 @@ public class SortTestHelper {
         }
 
         return 0;
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
     }
 }

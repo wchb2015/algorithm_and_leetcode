@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-
 public class ArrayTest {
     private static final Logger logger = LoggerFactory.getLogger(ArrayTest.class);
 
@@ -84,7 +82,7 @@ public class ArrayTest {
         int[] a = new int[]{1, 1, 1, 0, 0};
 
 
-     }
+    }
 
 
 }

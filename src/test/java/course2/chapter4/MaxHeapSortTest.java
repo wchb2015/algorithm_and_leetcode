@@ -1,6 +1,6 @@
 package course2.chapter4;
 
-import com.wchb.course2.util.SortTestHelper;
+import com.wchb.course2.util.SortHelper;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -12,15 +12,15 @@ public class MaxHeapSortTest {
 
     @Test
     public void test01() {
-        System.out.println(Arrays.toString(SortTestHelper.generateRandomArray(100, 1, 10)));
+        System.out.println(Arrays.toString(SortHelper.generateRandomArray(100, 1, 10)));
     }
 
     @Test
     public void test02() {
-        Integer[] arr = SortTestHelper.generateRandomArray(1000000, 1, Integer.MAX_VALUE);
+        Integer[] arr = SortHelper.generateRandomArray(1000000, 1, Integer.MAX_VALUE);
 
-        SortTestHelper.testSort("com.wchb.course2.chapter4.HeapSort1", arr);
-        SortTestHelper.testSort("com.wchb.course2.chapter4.HeapSort2", arr);
-        SortTestHelper.testSort("com.wchb.course2.chapter4.HeapSort3", arr);
+        SortHelper.testSort("com.wchb.course2.chapter4.HeapSort1", arr);
+        SortHelper.testSort("com.wchb.course2.chapter4.HeapSort2", arr);
+        SortHelper.testSort("com.wchb.course2.chapter4.HeapSort3", arr);
     }
 }
