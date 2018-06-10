@@ -7,7 +7,6 @@ public class LoopQueue<E> implements IQueue<E> {
 
     private static final Logger logger = LoggerFactory.getLogger(LoopQueue.class);
 
-
     private E[] data;
 
     private int front, tail;

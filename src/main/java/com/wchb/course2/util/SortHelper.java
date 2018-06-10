@@ -1,12 +1,18 @@
 package com.wchb.course2.util;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * @date 6/2/18 3:24 PM
  */
 public class SortHelper {
+
+    private static final Logger logger = LoggerFactory.getLogger(SortHelper.class);
 
     // SortTestHelper不允许产生任何实例
     private SortHelper() {
@@ -128,5 +134,14 @@ public class SortHelper {
         int t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;
+    }
+
+    public static void swap(Comparable[] arr, int i, int j) {
+        logger.info("i:{},j:{}", i, j);
+        Comparable t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+
+        logger.info("Array after swap:{}", Arrays.toString(arr));
     }
 }

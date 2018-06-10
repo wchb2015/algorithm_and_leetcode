@@ -13,7 +13,6 @@ public class S547 {
 
     private static final Logger logger = LoggerFactory.getLogger(S547.class);
 
-
     public int findCircleNum(int[][] M) {
         int n = M.length;
         UnionFind6 uf = new UnionFind6(n);

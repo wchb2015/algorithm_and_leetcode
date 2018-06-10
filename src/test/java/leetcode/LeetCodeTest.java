@@ -17,6 +17,24 @@ public class LeetCodeTest {
     }
 
     @Test
+    public void test75() {
+        new S75V1().sortColors(new int[]{2, 0, 2, 1, 1, 0});
+        new S75V1().sortColors(new int[]{0, 0, 0, 0, 0, 0});
+        new S75V1().sortColors(new int[]{2, 2, 2, 2, 2, 2});
+        new S75V1().sortColors(new int[]{1, 1, 1, 1, 1, 1});
+        new S75V1().sortColors(new int[]{0});
+        new S75V1().sortColors(new int[]{1});
+        new S75V1().sortColors(new int[]{2});
+    }
+
+    @Test
+    public void test88() {
+//        new S88().merge(new int[]{1, 2, 3, 0, 0, 0, 0, 0}, 3, new int[]{2, 5, 6}, 3);
+        new S88().merge(new int[]{1}, 1, new int[]{0}, 0);
+        new S88().merge(new int[]{0}, 0, new int[]{1}, 1);
+    }
+
+    @Test
     public void test547() {
         System.out.println(
                 new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}})
