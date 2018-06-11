@@ -16,6 +16,16 @@ public class LeetCodeTest {
         Integer.parseInt(new StringBuilder().toString());
     }
 
+
+    @Test
+    public void test137() {
+        System.out.println(new S137().singleNumber(new int[]{2, 2, 3, 2}));
+        System.out.println(new S137().singleNumber(new int[]{43, 16, 45, 89, 45,
+                -2147483648, 45, 2147483646, -2147483647, -2147483648,
+                43, 2147483647, -2147483646, -2147483648, 89, -2147483646, 89,
+                -2147483646, -2147483647, 2147483646, -2147483647, 16, 16, 2147483646, 43}));
+    }
+
     @Test
     public void test75() {
         new S75V1().sortColors(new int[]{2, 0, 2, 1, 1, 0});
@@ -103,6 +113,7 @@ public class LeetCodeTest {
     @Test
     public void test136() {
         System.out.println(new S136().singleNumber(new int[]{4, 1, 2, 1, 2}));
+        System.out.println(new S136().singleNumber3(new int[]{}));
     }
 
     @Test

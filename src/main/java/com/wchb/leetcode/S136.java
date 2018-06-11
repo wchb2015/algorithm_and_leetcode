@@ -1,9 +1,12 @@
 package com.wchb.leetcode;
 
 import com.wchb.annotations.CreatedByMyself;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @date 6/4/18 10:43 AM
@@ -42,5 +45,19 @@ public class S136 {
             ans = ans ^ nums[i];
         }
         return ans;
+    }
+
+    public int singleNumber3(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+
+        for (int n : nums) {
+            if (set.contains(n)) {
+                set.remove(n);
+            } else {
+                set.add(n);
+            }
+        }
+
+        return (int) set.toArray()[0];
     }
 }
