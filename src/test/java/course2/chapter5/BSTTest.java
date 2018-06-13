@@ -11,6 +11,17 @@ import java.util.ArrayList;
  */
 public class BSTTest {
 
+    @Test
+    public void test02() {
+
+        BST<String, Integer> bst = new BST<>();
+
+
+        bst.insert("a", 1);
+        bst.insert("b", 1);
+        bst.insert("c", 1);
+    }
+
 
     @Test
     public void test() {
@@ -31,24 +42,23 @@ public class BSTTest {
             BST<String, Integer> bst = new BST<>();
             for (String word : words) {
                 Integer res = bst.search(word);
-                if (res == null)
+                if (res == null) {
                     bst.insert(word, new Integer(1));
-                else
+                } else {
                     bst.insert(word, res + 1);
+                }
             }
 
-            // 输出圣经中god一词出现的频率
-            if (bst.contain("prejudice"))
+            if (bst.contain("prejudice")) {
                 System.out.println("'prejudice' : " + bst.search("prejudice"));
-            else
+            } else {
                 System.out.println("No word 'prejudice' in " + filename);
+            }
 
             long endTime = System.currentTimeMillis();
             System.out.println("BST , time: " + (endTime - startTime) + "ms.");
 
             System.out.println();
-
-
         }
     }
 }

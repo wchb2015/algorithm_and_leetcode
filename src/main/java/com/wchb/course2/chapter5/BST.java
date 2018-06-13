@@ -1,8 +1,8 @@
 package com.wchb.course2.chapter5;
 
-import com.wchb.annotations.CreatedByMyself;
-
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 
 /**
  * @date 6/10/18 8:39 PM
@@ -45,53 +45,26 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     public void insert(Key key, Value value) {
-        insert(root, key, value);
+        root = insert(root, key, value);
     }
 
     // 向以node为根的二分搜索树中, 插入节点(key, value), 使用递归算法
     // 返回插入新节点后的二分搜索树的根
-    private Node insert(Node root, Key key, Value value) {
-        if (root == null) {
+    private Node insert(Node node, Key key, Value value) {
+        if (node == null) {
             count++;
             return new Node(key, value);
         }
 
-        if (key.compareTo(root.key) == 0) {
-            root.value = value;
-        } else if (key.compareTo(root.key) < 0) {
-            root.left = insert(root.left, key, value);
+        if (key.compareTo(node.key) == 0) {
+            node.value = value;
+        } else if (key.compareTo(node.key) < 0) {
+            node.left = insert(node.left, key, value);
         } else {
             // key > node->key
-            root.right = insert(root.right, key, value);
+            node.right = insert(node.right, key, value);
         }
-        return root;
-    }
-
-    @CreatedByMyself
-    private Node insert1(Node root, Key key, Value value) {
-        if (Objects.isNull(root) || Objects.isNull(key)) {
-            return root;
-        }
-
-        //递归到底的情况
-        if (root.key.compareTo(key) > 0 && Objects.isNull(root.left)) {
-            root.left = new Node(key, value);
-            return root;
-        } else if (root.key.compareTo(key) < 0 && Objects.isNull(root.right)) {
-            root.right = new Node(key, value);
-            return root;
-        } else if (root.key.compareTo(key) == 0) {
-            root.value = value;
-            return root;
-        }
-
-        //递归
-        if (root.key.compareTo(key) > 0) {
-            return insert(root.left, key, value);
-        } else if (root.key.compareTo(key) < 0) {
-            return insert(root.right, key, value);
-        }
-        return root;
+        return node;
     }
 
     // 查看二分搜索树中是否存在键key
@@ -99,18 +72,18 @@ public class BST<Key extends Comparable<Key>, Value> {
         return contain(root, key);
     }
 
-    private boolean contain(Node root, Key key) {
-        if (Objects.isNull(root)) {
+    private boolean contain(Node node, Key key) {
+        if (Objects.isNull(node)) {
             return false;
         }
 
-        if (root.key.compareTo(key) == 0) {
+        if (node.key.compareTo(key) == 0) {
             return true;
-        } else if (root.key.compareTo(key) > 0) {
-            return contain(root.left, key);
+        } else if (node.key.compareTo(key) > 0) {
+            return contain(node.left, key);
         } else {
             //root.key.compareTo(key) < 0
-            return contain(root.right, key);
+            return contain(node.right, key);
         }
 
     }
@@ -130,11 +103,28 @@ public class BST<Key extends Comparable<Key>, Value> {
 
         if (node.key.compareTo(key) == 0) {
             return node.value;
-        } else if (root.key.compareTo(key) > 0) {
-            return search(root.left, key);
+        } else if (node.key.compareTo(key) > 0) {
+            return search(node.left, key);
         } else {
             //root.key.compareTo(key) < 0
-            return search(root.right, key);
+            return search(node.right, key);
+        }
+    }
+
+    // 二分搜索树的层序遍历
+    public void levelOrder() {
+        // 我们使用LinkedList来作为我们的队列
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            Node node = q.remove();
+            System.out.println(node.key);
+            if (node.left != null) {
+                q.add(node.left);
+            }
+            if (node.right != null) {
+                q.add(node.right);
+            }
         }
     }
 

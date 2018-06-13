@@ -1,11 +1,13 @@
 package leetcode;
 
-import com.wchb.course1.chapter3.LoopQueue;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @date 6/7/18 9:05 PM
@@ -16,24 +18,47 @@ public class Playground {
 
 
     @Test
-    public void test05() {
-        //-2147483646
-        int[] nums = new int[]{43, 16, 45, 89, 45, -2147483648, 45,
-                2147483646, -2147483647, -2147483648, 43,
-                2147483647, -7, -2147483648, 89,
-                -7, 89, -7, -2147483647,
-                2147483646, -2147483647, 16, 16, 2147483646, 43};
-        Set<Integer> set = new HashSet<>();
-        Map<Integer, Boolean> map = new HashMap<>();
-        for (int n : nums) {
-            map.put(n, set.contains(n));
-            set.add(n);
-        }
-        for (Map.Entry entry : map.entrySet()) {
-            if (entry.getValue().equals(Boolean.FALSE)) {
-                System.out.println(entry.getKey());
+    public void test06() {
+        System.out.println(splitString("the sun is shining"));
+        System.out.println(splitString("the \"sun is\" shining"));
+        System.out.println(splitString("ab"));
+        System.out.println(splitString("a"));
+        System.out.println(splitString("a b"));
+        System.out.println(splitString("\"a b\" c"));
+        System.out.println(splitString("the \"sun is\" shining the \"sun is\" shining and \"good bad\""));
+    }
+
+
+    private List<String> splitString(String string) {
+        List<String> ret = new ArrayList<>();
+
+        String[] arr = string.split("\"");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim();
+            if (arr[i].equals("")) {
+                continue;
+            }
+            if (i % 2 == 1) {
+                ret.add(arr[i]);
+            } else {
+                ret.addAll(Arrays.asList(arr[i].split(" ")));
             }
         }
+
+        return ret;
+    }
+
+    @Test
+    public void test05() {
+        System.out.println((int) Math.pow(2, 10));
+
+        List list = new LinkedList();
+
+        list.add(null);
+        list.add(null);
+        list.add(null);
+
+        System.out.println(list);
 
     }
 
