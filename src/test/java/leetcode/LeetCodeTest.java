@@ -16,6 +16,15 @@ public class LeetCodeTest {
         Integer.parseInt(new StringBuilder().toString());
     }
 
+    @Test
+    public void test283() {
+        new S283().moveZeroes(new int[]{0, 1, 0, 3, 12});
+    }
+
+    @Test
+    public void test323() {
+        new S323().countComponents(5, new int[][]{{0, 1}, {1, 2}, {3, 4}});
+    }
 
     @Test
     public void test137() {

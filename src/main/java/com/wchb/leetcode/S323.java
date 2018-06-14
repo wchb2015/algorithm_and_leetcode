@@ -1,5 +1,6 @@
 package com.wchb.leetcode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,31 +8,57 @@ import java.util.List;
  */
 public class S323 {
 
-    private int n;  // 节点数
-    private List<Integer>[] g; // 图的具体数据
-    private boolean directed = false;
+    private List<Integer>[] g;
+    private boolean[] visited;  // 记录dfs的过程中节点是否被访问
+    private int count;
+
 
     public int countComponents(int n, int[][] edges) {
-        this.n = n;
 
+        //init
+        g = new List[n];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                addEdge(i, j);
+            g[i] = new ArrayList<>();
+        }
+        visited = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            visited[i] = false;
+        }
+        count = 0;
+
+        // add edges 2 adjacency lists
+        for (int i = 0; i < edges.length; i++) {
+            for (int j = 0; j + 1 < edges[i].length; j++) {
+                addEdge(edges[i][j], edges[i][j + 1]);
             }
         }
 
-        return 1;
+        // dfs
+        for (int i = 0; i < g.length; i++) {
+            if (!visited[i]) {
+                dfs(i);
+                count++;
+            }
+        }
+
+        return count;
 
     }
 
-    public void addEdge(int v, int w) {
-        if (v >= 0 && v < n && w >= 0 && w < n) {
-            g[v].add(w);
-            if (v != w && !directed) {
-                g[w].add(v);
+    private void dfs(int v) {
+        visited[v] = true;
+        for (int i : g[v]) {
+            if (!visited[i]) {
+                dfs(i);
             }
         }
     }
 
+    private void addEdge(int v, int w) {
+        g[v].add(w);
+        if (v != w) {
+            g[w].add(v);
+        }
+    }
 
 }

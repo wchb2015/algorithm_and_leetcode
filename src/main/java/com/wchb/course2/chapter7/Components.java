@@ -1,6 +1,4 @@
-package course2.chapter7;
-
-import com.wchb.course2.chapter7.IGraph;
+package com.wchb.course2.chapter7;
 
 /**
  * @date 6/13/18 4:16 PM
