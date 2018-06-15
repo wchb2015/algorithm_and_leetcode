@@ -30,7 +30,6 @@ public class DenseWeightedGraph<Weight extends Number & Comparable> implements I
         // false 为 boolean类型变量的默认值
         g = new Edge[n][n];
 
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 g[i][j] = null;

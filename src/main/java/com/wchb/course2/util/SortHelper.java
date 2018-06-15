@@ -137,11 +137,8 @@ public class SortHelper {
     }
 
     public static void swap(Comparable[] arr, int i, int j) {
-        logger.info("i:{},j:{}", i, j);
         Comparable t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;
-
-        logger.info("Array after swap:{}", Arrays.toString(arr));
     }
 }
