@@ -12,13 +12,23 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
-    public void test() {
-        Integer.parseInt(new StringBuilder().toString());
+    public void test215() {
+        new S215().findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 2);
+    }
+
+    @Test
+    public void test3() {
+        new S3().lengthOfLongestSubstring("abcabcbb");
+    }
+
+    @Test
+    public void test209() {
+        System.out.println(new S209().minSubArrayLenV4(7, new int[]{2, 3, 1, 2, 4, 3}));
     }
 
     @Test
     public void test283() {
-        new S283().moveZeroes(new int[]{0, 1, 0, 3, 12});
+        new S283().moveZeroesV1(new int[]{0, 1, 0, 3, 12});
     }
 
     @Test
@@ -37,13 +47,7 @@ public class LeetCodeTest {
 
     @Test
     public void test75() {
-        new S75V1().sortColors(new int[]{2, 0, 2, 1, 1, 0});
-        new S75V1().sortColors(new int[]{0, 0, 0, 0, 0, 0});
-        new S75V1().sortColors(new int[]{2, 2, 2, 2, 2, 2});
-        new S75V1().sortColors(new int[]{1, 1, 1, 1, 1, 1});
-        new S75V1().sortColors(new int[]{0});
-        new S75V1().sortColors(new int[]{1});
-        new S75V1().sortColors(new int[]{2});
+        new S75().sortColorsV1(new int[]{2, 0, 2, 1, 1, 0});
     }
 
     @Test
@@ -136,13 +140,6 @@ public class LeetCodeTest {
         System.out.println(new Solution13().romanToInt("MCMXCIV"));
 
     }
-
-    @Test
-    public void test3() {
-
-        System.out.println(new Solution3().lengthOfLongestSubstring("au"));
-    }
-
 
     @Test
     public void test1() {
