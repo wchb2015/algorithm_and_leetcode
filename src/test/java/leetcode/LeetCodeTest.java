@@ -12,6 +12,48 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test65() {
+        System.out.println(new S65().isNumber("0"));
+        System.out.println(new S65().isNumber("0.1"));
+        System.out.println(new S65().isNumber("abc"));
+        System.out.println(new S65().isNumber("1 a"));
+        System.out.println(new S65().isNumber("2e10"));
+        System.out.println(new S65().isNumber(".1"));
+        System.out.println(new S65().isNumber("."));
+        System.out.println(new S65().isNumber("3."));
+        System.out.println(new S65().isNumber("2e0"));//true
+        System.out.println(new S65().isNumber(".1."));//false
+    }
+
+    @Test
+    public void testS447() {
+        new S447().numberOfBoomerangs(new int[][]{{0, 0}, {1, 0}, {2, 0}});
+    }
+
+    @Test
+    public void test242() {
+        System.out.println(new S242().isAnagram("anagram", "nagaram"));
+    }
+
+    @Test
+    public void test345() {
+        System.out.println(new S345().reverseVowels("hello"));
+        System.out.println(new S345().reverseVowels("leetcode"));
+        System.out.println(new S345().reverseVowels("aA"));
+    }
+
+    @Test
+    public void test125() {
+        System.out.println(new S125().isPalindrome("A man, a plan, a canal: Panama"));
+        System.out.println("---------");
+        System.out.println(new S125().isPalindrome("race a car"));
+        System.out.println("---------");
+        System.out.println(new S125().isPalindrome(".,"));
+        System.out.println("---------");
+        System.out.println(new S125().isPalindrome("0P"));
+    }
+
+    @Test
     public void test215() {
         new S215().findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 2);
     }
@@ -143,7 +185,7 @@ public class LeetCodeTest {
 
     @Test
     public void test1() {
-        Solution1 solution1 = new Solution1();
+        S1 solution1 = new S1();
 
         System.out.println(Arrays.toString(
                 solution1.twoSum(new int[]{1, 2, 3, 4, 5}, 3)));

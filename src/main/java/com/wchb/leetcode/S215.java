@@ -1,5 +1,7 @@
 package com.wchb.leetcode;
 
+import java.util.PriorityQueue;
+
 /**
  * @date 6/16/18 8:22 PM
  */
@@ -9,40 +11,47 @@ public class S215 {
     // Time Complexity:  O(n)
     // Space Complexity: O(1)
     public int findKthLargest(int[] nums, int k) {
-        return findKthLargest(nums, 0, nums.length - 1, k - 1);
-    }
 
-    private int findKthLargest(int[] nums, int l, int r, int k) {
-        if (l == r) {
-            return nums[l];
+        if (k < 1 || nums == null || nums.length < k) {
+            throw new IllegalArgumentException();
         }
 
-        int p = partition(nums, l, r);
+        int left = 0;
+        int right = nums.length - 1;
+        k = k - 1;
 
-        if (p == k) {
-            return nums[p];
-        } else if (k < p) {
-            return findKthLargest(nums, l, p - 1, k);
-        } else {
-            //k>p
-            return findKthLargest(nums, p + 1, r, k);
+        if (left == right) {
+            return nums[left];
         }
 
-    }
+        int p = partition(nums, left, right);
 
-    // 对arr[l...r]部分进行partition操作
-    // 返回p, 使得arr[l...p-1] > arr[p] ; arr[p+1...r] < arr[p]
-    private int partition(int[] nums, int l, int r) {
-        int v = nums[l];
-        int j = l; // arr[l+1...j] < v ; arr[j+1...i) > v
-        for (int i = l + 1; i <= r; i++) {
-            if (nums[i] > v) {
-                j++;
-                swap(nums, j, i);
+        while (p != k) {
+            if (p > k) {
+                p = partition(nums, left, p - 1);
+            } else {
+                p = partition(nums, p + 1, right);
             }
         }
-        swap(nums, l, j);
-        return j;
+
+        return nums[p];
+    }
+
+    // return index wall
+    // [left....wall] >=  pivot; [wall+1...i-1] < pivot
+    private int partition(int[] nums, int left, int right) {
+        int pivot = nums[left];
+        int wall = left;
+
+        //[left....wall] >= v ; [wall+1...i-1] < v
+        for (int i = left + 1; i <= right; i++) {
+            if (nums[i] > pivot) {
+                wall++;
+                swap(nums, i, wall);
+            }
+        }
+        swap(nums, left, wall);
+        return wall;
     }
 
     private void swap(int[] nums, int i, int j) {
@@ -50,4 +59,20 @@ public class S215 {
         nums[i] = nums[j];
         nums[j] = temp;
     }
+
+    public int findKthLargestV2(int[] nums, int k) {
+
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+
+        for (int num : nums) {
+            priorityQueue.add(num);
+            if (priorityQueue.size() > k) {
+                priorityQueue.remove();
+            }
+        }
+
+        return priorityQueue.remove();
+    }
+
+
 }
