@@ -1,6 +1,7 @@
 package com.wchb.leetcode;
 
 import com.wchb.annotations.CreatedByMyself;
+import com.wchb.course3.chapter5.ListNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +26,6 @@ public class S234 {
         }
         return true;
     }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
 
     public void justRun() {
         ListNode n1 = new ListNode(-129);

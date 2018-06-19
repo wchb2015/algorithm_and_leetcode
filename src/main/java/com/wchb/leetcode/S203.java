@@ -1,5 +1,7 @@
 package com.wchb.leetcode;
 
+import com.wchb.course3.chapter5.ListNode;
+
 import java.util.Objects;
 
 /**
@@ -7,34 +9,29 @@ import java.util.Objects;
  */
 public class S203 {
 
-    public ListNode removeElements(ListNode head, int val) {
+
+    //标准的跟着刘玉波的解
+    public ListNode removeElementsV180618(ListNode head, int val) {
+
+        if (head == null) {
+            return head;
+        }
 
         ListNode dummyHead = new ListNode(-1);
         dummyHead.next = head;
 
-        ListNode prev = dummyHead;
-        while (prev.next != null) {
-            if (prev.next.val == val) {
-                ListNode delNode = prev.next;
-                prev.next = delNode.next;
+        ListNode cur = dummyHead;
+        while (cur.next != null) {
+            if (cur.next.val == val) {
+                ListNode delNode = cur.next;
+                cur.next = delNode.next;
                 delNode.next = null;
+            } else {
+                cur = cur.next;
             }
-            prev = prev.next;
-            if (prev == null) {
-                return dummyHead.next;
-            }
-        }
 
+        }
         return dummyHead.next;
-    }
-
-    private class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 
 
@@ -49,22 +46,7 @@ public class S203 {
         n2.next = n3;
         n3.next = n4;
 
-        new S203().removeElements(n3, 1);
+        System.out.println(ListNode.printList(new S203().removeElementsV180618(n3, 1)));
     }
 
 }
-
-// Node prev = dummyHead;
-//        while (prev.next != null) {
-//            if (prev.next.e.equals(e)) {
-//                break;
-//            }
-//            prev = prev.next;
-//        }
-//
-//        if (prev.next != null) {
-//            Node delNode = prev.next;
-//            prev.next = delNode.next;
-//            delNode.next = null;
-//            size--;
-//        }

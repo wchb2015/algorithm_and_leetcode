@@ -1,5 +1,6 @@
 package leetcode;
 
+import com.wchb.course3.chapter5.ListNode;
 import com.wchb.leetcode.*;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -10,6 +11,20 @@ import java.util.Arrays;
 public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
+
+    @Test
+    public void test92() {
+        int m = 2, n = 4;
+        int[] arr = new int[]{1, 2, 3, 4, 5};
+
+        ListNode head = new ListNode(arr);
+
+        System.out.println(ListNode.printList(head));
+
+        new S92().reverseBetween(head, m, n);
+
+        System.out.println(ListNode.printList(head));
+    }
 
     @Test
     public void test65() {
