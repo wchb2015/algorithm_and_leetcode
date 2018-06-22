@@ -1,8 +1,6 @@
 package com.wchb.leetcode;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @date 6/14/18 5:54 PM
@@ -31,4 +29,29 @@ public class S145 {
             val = x;
         }
     }
+
+    public List<Integer> postorderTraversalV2(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if (Objects.isNull(root)) {
+            return list;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.empty()) {
+            TreeNode curNode = stack.pop();
+            if (curNode.right != null) {
+                stack.push(curNode.right);
+            }
+            if (curNode.left != null) {
+                stack.push(curNode.left);
+            }
+
+            list.add(curNode.val);
+        }
+
+        return list;
+    }
+
 }

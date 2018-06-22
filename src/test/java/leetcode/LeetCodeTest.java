@@ -12,6 +12,23 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test46() {
+        new S46().permute(new int[]{1, 2, 3});
+    }
+
+    @Test
+    public void test17() {
+        new S17().letterCombinations("23");
+    }
+
+    @Test
+    public void test279() {
+        new S279().numSquares(12);
+
+    }
+
     @Test
     public void test92() {
         int m = 2, n = 4;
