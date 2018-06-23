@@ -51,9 +51,8 @@ public class S79 {
             for (int i = 0; i < 4; i++) {
                 int newX = startX + d[i][0];
                 int newY = startY + d[i][1];
-                if (inArea(newX, newY) && !visited[newX][newY] && searchWord(
-                        board, word, index + 1, newX, newY
-                )) {
+                if (inArea(newX, newY) && !visited[newX][newY] &&
+                        searchWord(board, word, index + 1, newX, newY)) {
                     return true;
                 }
             }
@@ -62,7 +61,6 @@ public class S79 {
 
         return false;
     }
-
 
     private boolean inArea(int x, int y) {
         return x >= 0 && x < m && y >= 0 && y < n;

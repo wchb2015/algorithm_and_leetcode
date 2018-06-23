@@ -12,6 +12,21 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test392() {
+        new S392().isSubsequence("abc", "ahbgdc");
+    }
+
+    @Test
+    public void test455() {
+        new S455().findContentChildren(new int[]{1, 2}, new int[]{1, 2, 3});
+    }
+
+    @Test
+    public void test70() {
+        System.out.println(new S70().climbStairsV1(3));
+        System.out.println(new S70().climbStairsV3(1));
+    }
 
     @Test
     public void test46() {
