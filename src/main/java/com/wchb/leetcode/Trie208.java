@@ -46,6 +46,7 @@ public class Trie208 {
     /**
      * Inserts a word into the trie.
      */
+    //Time complexity : O(m) , where m is the key length.
     public void insert(String word) {
 
         Node cur = root;

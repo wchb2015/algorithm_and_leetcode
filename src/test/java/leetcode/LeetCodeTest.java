@@ -13,6 +13,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test128() {
+        System.out.println(new S128().longestConsecutiveV2(new int[]{1, 2, 0, 1}));
+    }
+
+    @Test
     public void test392() {
         new S392().isSubsequence("abc", "ahbgdc");
     }
