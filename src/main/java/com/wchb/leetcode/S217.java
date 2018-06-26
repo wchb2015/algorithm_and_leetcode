@@ -8,8 +8,12 @@ import java.util.Set;
 /**
  * @date 6/18/18 2:33 PM
  */
+
+
 public class S217 {
 
+    //time complexity o(1)
+    //space complexity o(n)
     @CreatedByMyself
     public boolean containsDuplicate(int[] nums) {
 

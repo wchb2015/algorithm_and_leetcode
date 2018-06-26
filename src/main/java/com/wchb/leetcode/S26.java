@@ -2,8 +2,9 @@ package com.wchb.leetcode;
 
 import com.wchb.annotations.CreatedByMyself;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * @date 6/16/18 11:59 AM
@@ -17,7 +18,7 @@ public class S26 {
             return 0;
         }
 
-        Set<Integer> set = new TreeSet<>();
+        Set<Integer> set = new HashSet<>();
         int l = 0;// l=去重后数组的length
         for (int i = 0; i < nums.length; i++) {
             if (set.contains(nums[i])) {
@@ -31,6 +32,7 @@ public class S26 {
         return l;
     }
 
+    /************************************************************/
     public int removeDuplicatesV2(int[] nums) {
 
         if (nums.length == 0) {
@@ -44,6 +46,8 @@ public class S26 {
                 nums[++i] = nums[j];
             }
         }
+
+        System.out.println(Arrays.toString(nums));
         return i + 1;
     }
 

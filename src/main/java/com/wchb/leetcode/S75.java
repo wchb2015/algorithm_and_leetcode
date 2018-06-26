@@ -1,5 +1,7 @@
 package com.wchb.leetcode;
 
+import java.util.Arrays;
+
 /**
  * @date 6/9/18 2:07 PM
  */
@@ -37,7 +39,7 @@ public class S75 {
     }
 
     /************************************************************/
-    
+
     // 三路快速排序的思想
     // 对整个数组只遍历了一遍
     // 时间复杂度: O(n)
@@ -62,6 +64,9 @@ public class S75 {
                 i++;
             }
         }
+
+
+        System.out.println(Arrays.toString(nums));
     }
 
     private void swap(int[] nums, int i, int j) {

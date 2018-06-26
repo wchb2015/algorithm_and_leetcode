@@ -13,6 +13,16 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test690() {
+        new S690().justRun();
+    }
+
+    @Test
+    public void test26() {
+        new S26().removeDuplicatesV2(new int[]{1, 2, 3, 3, 4, 4, 4});
+    }
+
+    @Test
     public void test128() {
         System.out.println(new S128().longestConsecutiveV2(new int[]{1, 2, 0, 1}));
     }
@@ -142,6 +152,7 @@ public class LeetCodeTest {
     @Test
     public void test75() {
         new S75().sortColorsV1(new int[]{2, 0, 2, 1, 1, 0});
+        new S75().sortColorsV2(new int[]{2, 0, 2, 1, 1, 0});
     }
 
     @Test

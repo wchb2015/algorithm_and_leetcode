@@ -1,7 +1,5 @@
 package com.wchb.leetcode;
 
-import java.util.Arrays;
-
 /**
  * @date 6/9/18 10:34 AM
  */
@@ -12,49 +10,28 @@ public class S88 {
         if (n == 0) {
             return;
         }
-        int[] numbers = combinedWith(nums1, m, nums2, n);
-        if (m > 0 && numbers[m - 1] > numbers[m]) {
-            merge2(numbers, 0, m, m + n - 1);
-        }
-        System.out.println(Arrays.toString(numbers));
-    }
 
-
-    //nums1 has enough space (size that is greater or equal to m + n)
-    // to hold additional elements from nums2
-    private int[] combinedWith(int[] nums1, int m, int[] nums2, int n) {
-
-        if (m == 0 && n == 0) {
-            return nums1;
+        for (int i = m + n - 1; i >= n; i--) {
+            nums1[i] = nums1[i - n];
         }
 
-        for (int i = m; i < m + n; i++) {
-            nums1[i] = nums2[i - m];
-        }
+        int i = n;  // pointer for nums1 [n, n+m)
+        int j = 0;  // pointer for nums2 [0, n)
+        int k = 0;  // pointer merged nums1 [0, n+m)
 
-        return nums1;
-    }
+        while (k < m + n) {
 
-    private void merge2(int[] numbers, int l, int m, int r) {
-        int[] aux = Arrays.copyOfRange(numbers, 0, r + 1);
-
-        int i = l, j = m;
-
-        for (int k = l; k <= r; k++) {
-            if (i >= m) {
-                numbers[k] = aux[j];
-                j++;
-            } else if (j > r) {
-                numbers[k] = aux[i];
-                i++;
-            } else if (aux[j] > aux[i]) {
-                numbers[k] = aux[i];
-                i++;
-            } else {//(aux[j] <= aux[i])
-                numbers[k] = aux[j];
-                j++;
+            if (i >= m + n) {
+                nums1[k++] = nums2[j++];
+            } else if (j >= n) {
+                nums1[k++] = nums1[i++];
+            } else if (nums1[i] < nums2[j]) {
+                nums1[k++] = nums1[i++];
+            } else {
+                nums1[k++] = nums2[j++];
             }
         }
     }
+
 
 }

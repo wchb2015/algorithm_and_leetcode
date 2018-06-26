@@ -12,28 +12,6 @@ import java.util.Set;
  */
 public class S219 {
 
-    @CreatedByMyself
-    public boolean containsNearbyDuplicate(int[] nums, int k) {
-
-        // 题目给的参数,一般都是先校验再使用
-        if (nums.length < 2 || k <= 0) {
-            return false;
-        }
-
-        Map<Integer, Integer> map = new HashMap<>();
-        int ans = nums.length;
-
-
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(nums[i]) && map.get(nums[i]) != i) {
-                ans = Math.min(ans, Math.abs(map.get(nums[i]) - i));
-            }
-            map.put(nums[i], i);
-        }
-
-        return ans != nums.length && ans <= k;
-    }
-
     // Using Hash Set
     // Time Complexity: O(n)
     // Space Complexity: O(k)
@@ -57,4 +35,28 @@ public class S219 {
 
         return false;
     }
+
+    /************************************************************/
+    @CreatedByMyself
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+
+        // 题目给的参数,一般都是先校验再使用
+        if (nums.length < 2 || k <= 0) {
+            return false;
+        }
+
+        Map<Integer, Integer> map = new HashMap<>();
+        int ans = nums.length;
+
+
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i]) && map.get(nums[i]) != i) {
+                ans = Math.min(ans, Math.abs(map.get(nums[i]) - i));
+            }
+            map.put(nums[i], i);
+        }
+
+        return ans != nums.length && ans <= k;
+    }
+
 }
