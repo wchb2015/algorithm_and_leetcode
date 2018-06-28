@@ -36,6 +36,7 @@ public class S209 {
         return res;
     }
 
+    /************************************************************/
 
     // 优化暴力解
     // 时间复杂度: O(n^2)
@@ -70,20 +71,7 @@ public class S209 {
         return res;
     }
 
-    public int minSubArrayLenV3(int s, int[] nums) {
-        if (s <= 0 || nums == null) {
-            throw new IllegalArgumentException("Illigal Arguments");
-        }
-
-        int res = nums.length + 1;
-
-        if (res == nums.length + 1) {
-            return 0;
-        }
-
-        return res;
-    }
-
+    /************************************************************/
     // 滑动窗口的思路
     // 时间复杂度: O(n)
     // 空间复杂度: O(1)
@@ -109,11 +97,6 @@ public class S209 {
                 res = Math.min(res, r - l + 1);
             }
         }
-
-        if (res == nums.length + 1) {
-            return 0;
-        }
-
-        return res;
+        return res == nums.length + 1 ? 0 : res;
     }
 }
