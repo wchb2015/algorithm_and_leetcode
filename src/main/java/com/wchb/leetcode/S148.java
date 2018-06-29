@@ -6,59 +6,43 @@ package com.wchb.leetcode;
 public class S148 {
 
     //The basic idea of merge sort is this basic recursive idea
-// how most of us learned recursion to start with -
-//    merge_sort(list) {
-//        split list into two halfs, say first and second ;
-//        merge_sort(firstHalf);
-//        merge_sort(secondHalf);
-//        merge(firstHalf,secondHalf);
-//    }
+    // how most of us learned recursion to start with -
+    //    merge_sort(list) {
+    //        split list into two halfs, say first and second ;
+    //        merge_sort(firstHalf);
+    //        merge_sort(secondHalf);
+    //        merge(firstHalf,secondHalf);
+    //    }
     public ListNode sortList(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
+        if (head == null || head.next == null) return head;
+        ListNode p1 = head;
+        ListNode p2 = head.next;
+        // Find the midpoint
+        while (p2 != null && p2.next != null) {
+            p1 = p1.next;
+            p2 = p2.next.next;
         }
-
-        //get the middle of the list
-        ListNode middle = getMiddle(head);
-
-        //split the list into two halfs
-        ListNode halfList = middle.next;
-        middle.next = null;
-
-        // recurse on that
-        return merge(sortList(head), sortList(halfList));
+        p2 = sortList(p1.next);
+        p1.next = null;
+        p1 = sortList(head);
+        return merge(p1, p2);
     }
 
-    private ListNode merge(ListNode nodeA, ListNode nodeB) {
-        ListNode dummyHead, curr;
-        dummyHead = new ListNode(-1);
-        curr = dummyHead;
-        while (nodeA != null && nodeB != null) {
-            if (nodeA.val <= nodeB.val) {
-                curr.next = nodeA;
-                nodeA = nodeA.next;
+    private ListNode merge(ListNode h1, ListNode h2) {
+        ListNode fakeHead = new ListNode(Integer.MIN_VALUE);
+        ListNode p = fakeHead;
+        while (h1 != null && h2 != null) {
+            if (h1.val < h2.val) {
+                p.next = h1;
+                h1 = h1.next;
             } else {
-                curr.next = nodeB;
-                nodeB = nodeB.next;
+                p.next = h2;
+                h2 = h2.next;
             }
-            curr = curr.next;
+            p = p.next;
         }
-        curr.next = (nodeA == null) ? nodeB : nodeA;
-        return dummyHead.next;
-    }
-
-
-    public ListNode getMiddle(ListNode head) {
-        if (head == null) {
-            return head;
-        }
-        ListNode slow, fast;
-        slow = fast = head;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        return slow;
+        p.next = (h1 == null) ? h2 : h1;
+        return fakeHead.next;
     }
 
     private class ListNode {

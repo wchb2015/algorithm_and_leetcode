@@ -50,7 +50,9 @@ public class LeetCodeTest {
 
     @Test
     public void test17() {
-        new S17().letterCombinations("23");
+//        new S17().letterCombinations("23");
+        new S17V2().letterCombinations("234");
+        new S17V3().letterCombinations("234");
     }
 
     @Test

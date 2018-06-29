@@ -10,29 +10,31 @@ public class S7 {
 
     @CreatedByMyself
     public int reverse(int x) {
+
         StringBuilder sb = new StringBuilder();
-        boolean isNegative = false;
+        boolean isNegative = x < 0;
+        char[] arr = String.valueOf(x).toCharArray();
 
-        char[] chars = String.valueOf(x).toCharArray();
+        for (int i = arr.length - 1; i >= 0; i--) {
 
-        for (int i = chars.length - 1; i >= 0; i--) {
-            if (i == 0 && chars[i] == '-') {
-                isNegative = true;
+            if (arr[i] == '-') {
                 continue;
             }
-            if (sb.length() == 0 && chars[i] == '0') {
+
+            if (arr[i] == '0' && sb.length() == 0) {
                 continue;
             }
-            sb.append(chars[i]);
+
+            sb.append(arr[i]);
         }
-        if (sb.length() == 0) {
-            return 0;
-        }
+
         try {
             return isNegative ? -Integer.parseInt(sb.toString()) : Integer.parseInt(sb.toString());
-        } catch (NumberFormatException n) {
+        } catch (Exception e) {
             return 0;
         }
     }
+
+
 
 }
