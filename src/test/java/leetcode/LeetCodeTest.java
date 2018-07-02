@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class LeetCodeTest {
 
@@ -297,9 +298,23 @@ public class LeetCodeTest {
     @Test
     public void test347() {
 
-        Solution347V2 solution347 = new Solution347V2();
+        Solution347 s1 = new Solution347();
+        Solution347V2 s2 = new Solution347V2();
 
-        System.out.println(solution347.topKFrequent(new int[]{4, 1, -1, 2, -1, 2, 3}, 2));
+        System.out.println(s1.topKFrequent(new int[]{4, 1, -1, 2, -1, 2, 3}, 2));
+        System.out.println(s2.topKFrequent(new int[]{4, 1, -1, 2, -1, 2, 3}, 2));
+    }
+
+
+    @Test
+    public void test692() {
+        S692 s1 = new S692();
+
+
+        List<String> strings = s1.topKFrequentV2(new String[]{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is", "friday"},
+                4);
+
+        System.out.println(strings);
     }
 
 }

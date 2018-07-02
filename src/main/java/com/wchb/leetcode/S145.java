@@ -20,6 +20,49 @@ public class S145 {
         return list;
     }
 
+    /************************************************************/
+
+    public List<Integer> postorderTraversalV2(TreeNode root) {
+
+        ArrayList<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+
+
+        Stack<Command> stack = new Stack<>();
+        stack.push(new Command("go", root));
+        while (!stack.empty()) {
+            Command command = stack.pop();
+
+            if (command.s.equals("print")) {
+                res.add(command.node.val);
+            } else {
+                assert command.s.equals("go");
+                stack.push(new Command("print", command.node));
+                if (command.node.right != null) {
+                    stack.push(new Command("go", command.node.right));
+                }
+                if (command.node.left != null) {
+                    stack.push(new Command("go", command.node.left));
+                }
+            }
+        }
+        return res;
+    }
+
+
+    private class Command {
+        String s;   // go, print
+        TreeNode node;
+
+        Command(String s, TreeNode node) {
+            this.s = s;
+            this.node = node;
+        }
+    }
+
+
     private class TreeNode {
         int val;
         TreeNode left;
@@ -28,30 +71,6 @@ public class S145 {
         TreeNode(int x) {
             val = x;
         }
-    }
-
-    public List<Integer> postorderTraversalV2(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        if (Objects.isNull(root)) {
-            return list;
-        }
-
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-
-        while (!stack.empty()) {
-            TreeNode curNode = stack.pop();
-            if (curNode.right != null) {
-                stack.push(curNode.right);
-            }
-            if (curNode.left != null) {
-                stack.push(curNode.left);
-            }
-
-            list.add(curNode.val);
-        }
-
-        return list;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.wchb.leetcode;
 
+import lombok.val;
+
 /**
  * @date 6/9/18 1:07 PM
  */
@@ -14,35 +16,37 @@ public class S148 {
     //        merge(firstHalf,secondHalf);
     //    }
     public ListNode sortList(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode p1 = head;
-        ListNode p2 = head.next;
-        // Find the midpoint
-        while (p2 != null && p2.next != null) {
-            p1 = p1.next;
-            p2 = p2.next.next;
+        if (head == null || head.next == null) {
+            return head;
         }
-        p2 = sortList(p1.next);
-        p1.next = null;
-        p1 = sortList(head);
-        return merge(p1, p2);
+        ListNode slow = head;
+        ListNode fast = head;
+        // Find the midpoint
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        fast = sortList(slow.next);
+        slow.next = null;
+        slow = sortList(head);
+        return merge(slow, fast);
     }
 
-    private ListNode merge(ListNode h1, ListNode h2) {
-        ListNode fakeHead = new ListNode(Integer.MIN_VALUE);
-        ListNode p = fakeHead;
-        while (h1 != null && h2 != null) {
-            if (h1.val < h2.val) {
-                p.next = h1;
-                h1 = h1.next;
+    private ListNode merge(ListNode node1, ListNode node2) {
+        ListNode dummyHead = new ListNode(-1);
+        ListNode p = dummyHead;
+        while (node1 != null && node2 != null) {
+            if (node1.val < node2.val) {
+                p.next = node1;
+                node1 = node1.next;
             } else {
-                p.next = h2;
-                h2 = h2.next;
+                p.next = node2;
+                node2 = node2.next;
             }
             p = p.next;
         }
-        p.next = (h1 == null) ? h2 : h1;
-        return fakeHead.next;
+        p.next = (node1 == null) ? node2 : node1;
+        return dummyHead.next;
     }
 
     private class ListNode {

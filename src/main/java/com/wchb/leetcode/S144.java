@@ -7,6 +7,7 @@ import java.util.*;
  */
 public class S144 {
 
+
     public List<Integer> preorderTraversal(TreeNode root) {
         return preorderTraversal(new LinkedList<>(), root);
     }
@@ -21,29 +22,45 @@ public class S144 {
         return list;
     }
 
+    /************************************************************/
 
     //使用 stack 的 非递归实现
     public List<Integer> preorderTraversalV2(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        if (Objects.isNull(root)) {
-            return list;
+        ArrayList<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
         }
 
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-
+        Stack<Command> stack = new Stack<>();
+        stack.push(new Command("go", root));
         while (!stack.empty()) {
-            TreeNode curNode = stack.pop();
-            list.add(curNode.val);
-            if (curNode.right != null) {
-                stack.push(curNode.right);
-            }
-            if (curNode.left != null) {
-                stack.push(curNode.left);
+            Command command = stack.pop();
+
+            if (command.s.equals("print")) {
+                res.add(command.node.val);
+            } else {
+                assert command.s.equals("go");
+                if (command.node.right != null) {
+                    stack.push(new Command("go", command.node.right));
+                }
+                if (command.node.left != null) {
+                    stack.push(new Command("go", command.node.left));
+                }
+                stack.push(new Command("print", command.node));
             }
         }
+        return res;
+    }
 
-        return list;
+
+    private class Command {
+        String s;   // go, print
+        TreeNode node;
+
+        Command(String s, TreeNode node) {
+            this.s = s;
+            this.node = node;
+        }
     }
 
 

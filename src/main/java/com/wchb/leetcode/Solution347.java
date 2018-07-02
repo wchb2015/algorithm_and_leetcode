@@ -1,19 +1,13 @@
 package com.wchb.leetcode;
 
 
-import com.wchb.course1.chapter8.PriorityQueue;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Solution347 {
 
     public List<Integer> topKFrequent(int[] nums, int k) {
-
-        PriorityQueue<Freq> pq = new PriorityQueue<>();
         Map<Integer, Integer> map = new HashMap<>();
+
 
         for (int i : nums) {
             if (map.containsKey(i)) {
@@ -23,41 +17,48 @@ public class Solution347 {
             }
         }
 
+        PriorityQueue<Freq> priorityQueue = new PriorityQueue<>();
+
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (pq.getSize() < k) {
-                pq.enqueue(new Freq(entry.getKey(), entry.getValue()));
-            } else if (map.get(entry.getKey()) > pq.getFront().freq) {
-                pq.dequeue();
-                pq.enqueue(new Freq(entry.getKey(), entry.getValue()));
+            if (priorityQueue.size() < k) {
+                priorityQueue.add(new Freq(entry.getKey(), entry.getValue()));
+            } else if (priorityQueue.peek().freq < entry.getValue()) {
+                priorityQueue.remove();
+                priorityQueue.add(new Freq(entry.getKey(), entry.getValue()));
             }
         }
 
+
+        Iterator<Freq> iterator = priorityQueue.iterator();
         List<Integer> res = new LinkedList<>();
-        while (!pq.isEmpty()) {
-            res.add(pq.dequeue().e);
+        while (iterator.hasNext()) {
+            res.add(iterator.next().value);
         }
 
         return res;
     }
 
     private class Freq implements Comparable<Freq> {
-        Integer e, freq;
+        public Integer value;
+        public Integer freq;
 
-        public Freq(Integer e, Integer freq) {
-            this.e = e;
+
+        public Freq(Integer value, Integer freq) {
+            this.value = value;
             this.freq = freq;
         }
 
         @Override
-        //频次越低 优先级越高
         public int compareTo(Freq another) {
-            if (this.freq < another.freq) {
-                return 1;//当前元素比传进来元素大(优先级) 返回1
-            } else if (this.freq > another.freq) {
-                return -1;
-            } else {
-                return 0;
-            }
+            return this.freq - another.freq;
+        }
+
+        @Override
+        public String toString() {
+            return "Freq{" +
+                    "value=" + value +
+                    ", freq=" + freq +
+                    '}';
         }
     }
 
