@@ -7,7 +7,6 @@ public class SegmentTree<E> {
 
     private static final Logger logger = LoggerFactory.getLogger(SegmentTree.class);
 
-
     private E[] tree;
 
     private E[] data;
@@ -147,6 +146,5 @@ public class SegmentTree<E> {
         }
         res.append(']');
         return res.toString();
-
     }
 }
