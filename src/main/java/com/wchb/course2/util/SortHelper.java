@@ -86,7 +86,7 @@ public class SortHelper {
             Class sortClass = Class.forName(sortClassName);
             // 通过排序函数的Class对象获得排序方法
             Method sortMethod = sortClass.getMethod("sort", new Class[]{Comparable[].class});
-            // 排序参数只有一个，是可比较数组arr
+            // 排序参数只有一个, 是可比较数组arr
             Object[] params = new Object[]{arr};
 
             long startTime = System.currentTimeMillis();

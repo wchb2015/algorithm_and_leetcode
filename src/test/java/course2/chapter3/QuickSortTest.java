@@ -16,7 +16,7 @@ public class QuickSortTest {
 
     @Test
     public void test1() {
-        Integer[] arr = SortHelper.generateRandomArray(100000, 1, 10);
+        Integer[] arr = SortHelper.generateRandomArray(100, 1, 100);
         SortHelper.testSort("com.wchb.course2.chapter3.QuickSort", arr);
         SortHelper.testSort("com.wchb.course2.chapter3.QuickSort2", arr);
     }
