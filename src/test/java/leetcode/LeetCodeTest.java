@@ -155,7 +155,7 @@ public class LeetCodeTest {
     @Test
     public void test75() {
         new S75().sortColorsV1(new int[]{2, 0, 2, 1, 1, 0});
-        new S75().sortColorsV2(new int[]{2, 0, 2, 1, 1, 0});
+        new S75().sortColorsV2(new int[]{2, 0, 2, 1, 1, 0, 0, 0, 0});
     }
 
     @Test

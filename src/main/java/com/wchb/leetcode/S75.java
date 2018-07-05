@@ -60,6 +60,10 @@ public class S75 {
                 assert nums[i] == 0;
                 // zero后的数一定为1
                 zero++;
+                System.out.println("zero huan " + zero);
+                if (zero != i) {
+                    System.out.println("zero " + zero);
+                }
                 swap(nums, zero, i);
                 i++;
             }

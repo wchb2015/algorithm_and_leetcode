@@ -42,7 +42,7 @@ public class Array<E> {
         }
 
         for (int i = size; i > targetIndex; i--) {
-            data[i] = data[i - 1];
+            data[i] = data[i - 1];//元素后移
         }
 
         data[targetIndex] = e;
@@ -99,7 +99,7 @@ public class Array<E> {
 
         E result = data[index];
         for (int i = index; i + 1 < size; i++) {
-            data[i] = data[i + 1];
+            data[i] = data[i + 1];//前移
         }
         size--;
         data[size] = null;
@@ -176,8 +176,19 @@ public class Array<E> {
 
     @Override
     public String toString() {
+
+        String dataStr = "[";
+
+        for (int i = 0; i < size; i++) {
+            if (i != size - 1) {
+                dataStr += data[i] + ",";
+            } else {
+                dataStr += data[i] + "]";
+            }
+        }
+
         return "Array{" +
-                "data=" + Arrays.toString(data) +
+                "data=" + dataStr +
                 ", size=" + size +
                 ", capacity=" + data.length +
                 '}';
