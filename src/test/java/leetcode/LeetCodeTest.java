@@ -13,6 +13,18 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test143() {
+        S143 s143 = new S143();
+
+
+        com.wchb.leetcode.S143.ListNode listNode = s143.builder(new int[]{1, 2, 3, 4, 5});
+
+        s143.reorderList(listNode);
+
+    }
+
     @Test
     public void test690() {
         new S690().justRun();
@@ -58,8 +70,7 @@ public class LeetCodeTest {
 
     @Test
     public void test279() {
-        new S279().numSquares(12);
-
+        new S279().numSquares(4);
     }
 
     @Test

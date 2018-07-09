@@ -52,7 +52,6 @@ public class LinkedList<E> {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("addRecursively failed, Illegal index");
         }
-        // TODO: 5/27/18
     }
 
     public E get(Integer index) {

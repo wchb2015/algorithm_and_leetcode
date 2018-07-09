@@ -9,6 +9,36 @@ import java.util.LinkedList;
  */
 public class S279 {
 
+    //逻辑正常,性能不行,推入大量重复元素
+    public int numSquares(int n) {
+
+        assert n > 0;
+
+        LinkedList<Pair<Integer, Integer>> queue = new LinkedList<>();
+
+        queue.push(new Pair<>(n, 0));
+
+        while (!queue.isEmpty()) {
+            System.out.println(" Before: " + queue);
+            int num = queue.peek().getKey();
+            int step = queue.peek().getValue();
+            queue.removeFirst();
+
+            if (num == 0) {
+                return step;
+            }
+
+            for (int i = 1; num - i * i >= 0; i++) {
+                queue.addLast(new Pair<>(num - i * i, step + 1));
+            }
+            System.out.println(" After: " + queue);
+        }
+
+        throw new IllegalArgumentException("No solution");
+    }
+
+    /************************************************************/
+
     public int numSquaresV2(int n) {
 
         assert n > 0;
@@ -37,32 +67,6 @@ public class S279 {
                     queue.addLast(new Pair<>(num - i * i, step + 1));
                     visited[num - i * i] = true;
                 }
-            }
-        }
-
-        throw new IllegalArgumentException("No solution");
-    }
-
-    //逻辑正常,性能不行,推入大量重复元素
-    public int numSquares(int n) {
-
-        assert n > 0;
-
-        LinkedList<Pair<Integer, Integer>> queue = new LinkedList<>();
-
-        queue.push(new Pair<>(n, 0));
-
-        while (!queue.isEmpty()) {
-            int num = queue.peek().getKey();
-            int step = queue.peek().getValue();
-            queue.removeFirst();
-
-            if (num == 0) {
-                return step;
-            }
-
-            for (int i = 1; num - i * i >= 0; i++) {
-                queue.addLast(new Pair<>(num - i * i, step + 1));
             }
         }
 
