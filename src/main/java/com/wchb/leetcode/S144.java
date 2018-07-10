@@ -7,7 +7,6 @@ import java.util.*;
  */
 public class S144 {
 
-
     public List<Integer> preorderTraversal(TreeNode root) {
         return preorderTraversal(new LinkedList<>(), root);
     }
@@ -52,7 +51,6 @@ public class S144 {
         return res;
     }
 
-
     private class Command {
         String s;   // go, print
         TreeNode node;
@@ -62,7 +60,6 @@ public class S144 {
             this.node = node;
         }
     }
-
 
     private class TreeNode {
         int val;
