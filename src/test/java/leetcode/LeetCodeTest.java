@@ -15,6 +15,12 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test414() {
+        new S414().thirdMaxV2(new int[]{1, 2, 2, 5, 3, 5});
+    }
+
+
+    @Test
     public void test143() {
         S143 s143 = new S143();
 

@@ -5,7 +5,7 @@ package com.wchb.course1.chapter11;
  */
 public class UnionFind1 implements IUF {
 
-
+    //存每一个id对应的集合的编号
     private int[] id;
 
     public UnionFind1(int size) {
@@ -17,7 +17,7 @@ public class UnionFind1 implements IUF {
         }
     }
 
-    // 查找元素p所对应的集合编号
+    // 查找id为p的元素所对应的集合id
     private int find(int p) {
         if (p < 0 || p >= id.length) {
             throw new IllegalArgumentException("p is out of bound.");
@@ -31,7 +31,7 @@ public class UnionFind1 implements IUF {
     }
 
     @Override
-    //合并元素 p 和 元素 q 所属的集合
+    //合并id为p的元素和id为q元素所属的集合
     public void unionElements(int p, int q) {
 
         int pId = find(p);

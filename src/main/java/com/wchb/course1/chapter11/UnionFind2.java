@@ -5,8 +5,8 @@ package com.wchb.course1.chapter11;
  */
 public class UnionFind2 implements IUF {
 
-    //Union-Find,使用一个数组构建一棵指向父节点的树
-    // parent[i] 表示第一个元素所指向的父节点
+    // Union-Find,使用一个数组构建一棵指向父节点的树
+    // parent[i] 表示id为i的元素所指向的父节点的ID.
     private int[] parent;
 
     //构造函数

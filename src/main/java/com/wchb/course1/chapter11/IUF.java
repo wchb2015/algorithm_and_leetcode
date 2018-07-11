@@ -5,9 +5,9 @@ package com.wchb.course1.chapter11;
  */
 public interface IUF {
 
-
     int getSize();
 
+    //id=p,id=q
     void unionElements(int p, int q);
 
     //只关心id=p,id=q的元素
