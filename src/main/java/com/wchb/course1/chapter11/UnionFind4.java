@@ -3,8 +3,11 @@ package com.wchb.course1.chapter11;
 /**
  * @date 6/7/18 12:28 PM
  */
+
+//基于rank的优化
 //深度低的树向深度高的树合并
 //基于rank的优化,rank[i]表示根节点为i的树的高度
+
 public class UnionFind4 implements IUF {
 
     // rank[i]表示以i为根的集合所表示的树的层数
@@ -58,7 +61,7 @@ public class UnionFind4 implements IUF {
         }
 
         // 根据两个元素所在树的rank不同判断合并方向
-        // 讲rank低的集合合并到rank高的集合上
+        // 将rank低的集合合并到rank高的集合上
         if (rank[pRoot] < rank[qRoot]) {
             parent[pRoot] = qRoot;
         } else if (rank[pRoot] > rank[qRoot]) {

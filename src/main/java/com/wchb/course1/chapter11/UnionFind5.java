@@ -3,6 +3,8 @@ package com.wchb.course1.chapter11;
 /**
  * @date 6/7/18 1:13 PM
  */
+
+//路径压缩
 //深度低的树向深度高的树合并
 //基于rank的优化,rank[i]表示根节点为i的树的高度
 public class UnionFind5 implements IUF {

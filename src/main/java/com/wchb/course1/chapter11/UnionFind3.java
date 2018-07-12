@@ -3,6 +3,7 @@ package com.wchb.course1.chapter11;
 /**
  * @date 6/7/18 11:54 AM
  */
+//基于size的优化
 public class UnionFind3 implements IUF {
 
 

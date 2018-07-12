@@ -3,6 +3,8 @@ package com.wchb.course1.chapter11;
 /**
  * @date 6/6/18 11:18 PM
  */
+
+//Quick Find
 public class UnionFind1 implements IUF {
 
     //存每一个id对应的集合的编号

@@ -4,6 +4,7 @@ import com.wchb.course1.chapter11.UnionFind6;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Random;
 import java.util.TreeSet;
 
 /**
@@ -31,5 +32,30 @@ public class S547 {
         }
         return set.size();
     }
+
+    public int findCircleNumV3(int[][] M) {
+        int[] visited = new int[M.length];
+        int count = 0;
+        for (int i = 0; i < M.length; i++) {
+            if (visited[i] == 0) {
+                dfs(M, visited, i);
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void dfs(int[][] M, int[] visited, int i) {
+        int trackId = new Random().nextInt(1000) + 1000;
+        System.out.println(trackId + " dfs : " + i);
+        for (int j = 0; j < M.length; j++) {
+            if (M[i][j] == 1 && visited[j] == 0) {
+                visited[j] = 1;
+                System.out.println(trackId + " dfs : " + j);
+                dfs(M, visited, j);
+            }
+        }
+    }
+
 
 }

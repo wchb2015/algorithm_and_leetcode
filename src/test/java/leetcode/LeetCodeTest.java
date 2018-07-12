@@ -13,6 +13,14 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test200() {
+        new S200V2().numIslands(new char[][]{{'1', '1', '0', '0', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '1', '0', '0'},
+                {'0', '0', '0', '1', '1'}
+        });
+    }
 
     @Test
     public void test414() {
@@ -28,7 +36,6 @@ public class LeetCodeTest {
         com.wchb.leetcode.S143.ListNode listNode = s143.builder(new int[]{1, 2, 3, 4, 5});
 
         s143.reorderList(listNode);
-
     }
 
     @Test
@@ -184,8 +191,9 @@ public class LeetCodeTest {
 
     @Test
     public void test547() {
+        new S547().findCircleNumV3(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}});
         System.out.println(
-                new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}})
+                //  new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}})
         );
         System.out.println(
 //                new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 1}, {0, 1, 1}})

@@ -3,6 +3,8 @@ package com.wchb.course1.chapter11;
 /**
  * @date 6/7/18 10:57 AM
  */
+
+//Quick Union
 public class UnionFind2 implements IUF {
 
     // Union-Find,使用一个数组构建一棵指向父节点的树
