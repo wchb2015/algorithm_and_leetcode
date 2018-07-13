@@ -7,11 +7,42 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
+
+
+    @Test
+    public void test186() {
+        new S186().reverseWords(new char[]{'t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e'});
+
+    }
+
+    @Test
+    public void test151() {
+        System.out.println(new S151().reverseWords("the sky is blue"));
+    }
+
+    @Test
+    public void test146() {
+        LRUCache146 cache = new LRUCache146(5);
+        cache.put(1, 1);
+        cache.put(2, 2);
+        cache.put(3, 3);
+        cache.put(4, 4);
+        cache.put(5, 5);
+        System.out.println(cache);
+
+        cache.get(4);
+
+        cache.put(6, 6);
+
+        System.out.println(cache);
+
+    }
 
     @Test
     public void test200() {

@@ -229,7 +229,7 @@ public class BST<E extends Comparable<E>> {
     }
 
     //删除以node为根的BST中值为e的节点,递归算法
-    //返回删除节点后新的BST的跟
+    //返回删除节点后新的BST的根
     private Node remove(Node node, E e) {
         if (Objects.isNull(node)) {
             return null;
