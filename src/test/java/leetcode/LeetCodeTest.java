@@ -8,12 +8,51 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test271V2() {
+        List<String> list = new LinkedList<>();
+
+        list.add("#");
+        list.add("#");
+
+
+
+        String s = new S271().encode(list);
+        List<String> list2 = new S271().decode(s);
+
+        System.out.println(list + " ---- " + list2);
+    }
+
+
+    @Test
+    public void test271() {
+        List<String> list = new LinkedList<>();
+
+        list.add("63/Rc");
+        list.add("h");
+        list.add("BmI3FS~J9#vmk");
+        list.add("7uBZ?7*/");
+        list.add("24h+X");
+        list.add("O ");
+
+        String s = new S271().encode(list);
+        List<String> list2 = new S271().decode(s);
+
+        System.out.println(list + " ---- " + list2);
+    }
+
+    @Test
+    public void test78() {
+        new S78().subsets(new int[]{1, 2});
+    }
 
     @Test
     public void test186() {
