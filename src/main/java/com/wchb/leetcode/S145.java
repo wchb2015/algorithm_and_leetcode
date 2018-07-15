@@ -6,7 +6,33 @@ import java.util.*;
  * @date 6/14/18 5:54 PM
  */
 public class S145 {
-    public List<Integer> postorderTraversal(TreeNode root) {
+
+    /************************************************************/
+    //迭代解法
+    public List<Integer> postorderTraversalV3(TreeNode root) {
+
+        LinkedList<Integer> ret = new LinkedList<>();
+        if (root == null) {
+            return ret;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            ret.addFirst(node.val);
+            if (node.left != null) stack.push(node.left);
+            if (node.right != null) stack.push(node.right);
+        }
+
+        return ret;
+    }
+
+
+    /************************************************************/
+    //递归解法
+    public List<Integer> postorderTraversalV2(TreeNode root) {
         return postorderTraversal(new LinkedList<>(), root);
     }
 
@@ -21,8 +47,8 @@ public class S145 {
     }
 
     /************************************************************/
-
-    public List<Integer> postorderTraversalV2(TreeNode root) {
+    //Command解法
+    public List<Integer> postorderTraversalV1(TreeNode root) {
 
         ArrayList<Integer> res = new ArrayList<>();
         if (root == null) {

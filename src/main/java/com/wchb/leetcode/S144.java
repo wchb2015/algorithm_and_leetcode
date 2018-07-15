@@ -7,7 +7,32 @@ import java.util.*;
  */
 public class S144 {
 
-    public List<Integer> preorderTraversal(TreeNode root) {
+
+    /************************************************************/
+    //迭代
+    public List<Integer> preorderTraversalV3(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if (Objects.isNull(root)) {
+            return list;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.empty()) {
+            TreeNode curNode = stack.pop();
+            list.add(curNode.val);
+
+            if (curNode.right != null) stack.push(curNode.right);
+            if (curNode.left != null) stack.push(curNode.left);
+        }
+
+        return list;
+    }
+
+    /************************************************************/
+    //递归
+    public List<Integer> preorderTraversalV2(TreeNode root) {
         return preorderTraversal(new LinkedList<>(), root);
     }
 
@@ -22,9 +47,8 @@ public class S144 {
     }
 
     /************************************************************/
-
-    //使用 stack 的 非递归实现
-    public List<Integer> preorderTraversalV2(TreeNode root) {
+    //command
+    public List<Integer> preorderTraversalV1(TreeNode root) {
         ArrayList<Integer> res = new ArrayList<>();
         if (root == null) {
             return res;

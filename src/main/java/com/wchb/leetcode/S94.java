@@ -10,42 +10,11 @@ public class S94 {
 
     /************************************************************/
     public List<Integer> inorderTraversalV4(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        TreeNode cur = root;
-        TreeNode rightMost;
-
-        while (cur != null) {
-            if (cur.left == null) {
-                list.add(cur.val);
-                cur = cur.right;
-            } else {
-
-            }
-        }
-
-        return list;
+        return null;
     }
 
-//    while(cur)
-//    {
-//        if(cur->left)
-//        {
-//            rightmost = cur->left;
-//
-//            while(!rightmost->right&&rightmost->right！=cur)
-//
-//            {
-//                rightmost=rightmost->right;
-//            }
-//
-//            if(!rightmost->right)rightmost->right = cur;
-//            else {cout<<cur->val<<" ";cur = cur->right;rightmost->right=NULL;}
-//        }
-//
-//        else {cout<<cur->val<<" ";cur = cur->right;}
-//    }
-
     /************************************************************/
+    //迭代
     public List<Integer> inorderTraversalV3(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
@@ -65,7 +34,7 @@ public class S94 {
     }
 
     /************************************************************/
-
+    //递归
     public List<Integer> inorderTraversalV2(TreeNode root) {
         return inorderTraversal(new LinkedList<>(), root);
     }
@@ -81,6 +50,7 @@ public class S94 {
     }
 
     /************************************************************/
+    //Command
     public List<Integer> inorderTraversalV1(TreeNode root) {
 
         ArrayList<Integer> res = new ArrayList<Integer>();

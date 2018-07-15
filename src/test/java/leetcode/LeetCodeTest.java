@@ -17,12 +17,32 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test272() {
+        TreeNode node = new TreeNode(2);
+        node.left = new TreeNode(1);
+
+        System.out.println(Integer.MAX_VALUE);
+        //2147483647
+        //2147483647
+        System.out.println(new S272().closestKValues(node, 2147483647.0, 1));
+        System.out.println(2.147483646E9 > 2.147483645E9);
+        System.out.println(new Float(2.147483646E9).compareTo(new Float(2.147483645E9)));
+    }
+
+    @Test
+    public void test331() {
+        System.out.println(new S331().isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
+        System.out.println(new S331().isValidSerialization("1,#"));
+        System.out.println(new S331().isValidSerialization("9,#,#,1"));
+        System.out.println(new S331().isValidSerialization(""));
+    }
+
+    @Test
     public void test271V2() {
         List<String> list = new LinkedList<>();
 
         list.add("#");
         list.add("#");
-
 
 
         String s = new S271().encode(list);
