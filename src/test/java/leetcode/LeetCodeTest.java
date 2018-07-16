@@ -2,6 +2,7 @@ package leetcode;
 
 import com.wchb.course3.chapter5.ListNode;
 import com.wchb.leetcode.*;
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,10 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test299() {
+    }
 
     @Test
     public void test272() {
