@@ -6,6 +6,7 @@ import java.util.Objects;
  * @date 6/5/18 6:58 PM
  */
 public class NumArray307 {
+
     private SegmentTree<Integer> segmentTree;
 
     public NumArray307(int[] nums) {

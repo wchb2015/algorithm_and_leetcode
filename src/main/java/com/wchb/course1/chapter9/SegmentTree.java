@@ -27,6 +27,9 @@ public class SegmentTree<E> {
 
     //在treeIndex的位置创建表示区间[l...r]的线段树
     private void buildSegmentTree(int treeIndex, int l, int r) {
+
+        logger.info("EntryPoint: treeIndex:{}, l:{}, r:{}", treeIndex, l, r);
+
         //递归结束
         if (l == r) {
             logger.info("treeIndex:{}, l:{}, r:{}", treeIndex, l, r);

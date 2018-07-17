@@ -1,6 +1,7 @@
 package course1.chapter10;
 
 import com.wchb.course1.chapter10.Trie;
+import com.wchb.course1.chapter10.TrieR;
 import com.wchb.course1.chapter7.BSTSet;
 import com.wchb.course1.chapter7.FileOperation;
 import org.junit.Test;
@@ -47,6 +48,7 @@ public class TrieTest {
             System.out.println("BSTSet: " + time + " s");
 
             // ---
+            System.out.println("--------------");
 
             startTime = System.nanoTime();
 
@@ -67,6 +69,29 @@ public class TrieTest {
 
             System.out.println("Total different words: " + trie.getSize());
             System.out.println("Trie: " + time + " s");
+
+            // ---
+            System.out.println("--------------");
+
+            startTime = System.nanoTime();
+
+            TrieR trieR = new TrieR();
+            for (String word : words) {
+                trieR.add(word);
+            }
+
+            for (String word : words) {
+                if (!trieR.contains(word)) {
+                    throw new RuntimeException();
+                }
+            }
+
+            endTime = System.nanoTime();
+
+            time = (endTime - startTime) / 1000000000.0;
+
+            System.out.println("Total different words: " + trieR.getSize());
+            System.out.println("trieR: " + time + " s");
         }
     }
 }

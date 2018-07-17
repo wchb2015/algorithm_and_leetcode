@@ -36,7 +36,6 @@ public class TrieR {
 
     // 向Trie中添加一个新的单词word
     public void add(String word) {
-
         add(root, word, 0);
     }
 
@@ -52,8 +51,9 @@ public class TrieR {
         }
 
         char c = word.charAt(index);
-        if (node.next.get(c) == null)
+        if (node.next.get(c) == null) {
             node.next.put(c, new Node());
+        }
         add(node.next.get(c), word, index + 1);
     }
 
@@ -65,12 +65,10 @@ public class TrieR {
     // 在以node为根的Trie中查询单词word[index...end)是否存在, 递归算法
     private boolean contains(Node node, String word, int index) {
 
-        if (index == word.length())
-            return node.isWord;
+        if (index == word.length()) return node.isWord;
 
         char c = word.charAt(index);
-        if (node.next.get(c) == null)
-            return false;
+        if (node.next.get(c) == null) return false;
 
         return contains(node.next.get(c), word, index + 1);
     }
@@ -83,12 +81,10 @@ public class TrieR {
     // 查询在以Node为根的Trie中是否有单词以prefix[index...end)为前缀, 递归算法
     private boolean isPrefix(Node node, String prefix, int index) {
 
-        if (index == prefix.length())
-            return true;
+        if (index == prefix.length()) return true;
 
         char c = prefix.charAt(index);
-        if (node.next.get(c) == null)
-            return false;
+        if (node.next.get(c) == null) return false;
 
         return isPrefix(node.next.get(c), prefix, index + 1);
     }

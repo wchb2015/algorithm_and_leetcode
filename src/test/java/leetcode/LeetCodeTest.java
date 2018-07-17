@@ -18,6 +18,46 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test716() {
+        MaxStack maxStack = new MaxStack();
+
+        maxStack.push(5);
+        maxStack.push(1);
+        maxStack.push(5);
+
+        maxStack.top();
+        maxStack.popMax();
+        maxStack.top();
+        maxStack.peekMax();
+        maxStack.pop();
+        maxStack.top();
+    }
+
+
+    @Test
+    public void test48() {
+        new S48().rotate(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+    }
+
+    @Test
+    public void test819() {
+        new S819().mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit."
+                , new String[]{"hit"});
+    }
+
+    @Test
+    public void test307() {
+
+        int[] nums = new int[]{1, 2, 3, 4, 5};
+
+        S307 obj = new S307(nums);
+        int param_1 = obj.sumRange(0, 2);
+
+        System.out.println(param_1);
+    }
+
+
+    @Test
     public void test299() {
     }
 
