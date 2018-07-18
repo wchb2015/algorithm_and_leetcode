@@ -1,6 +1,7 @@
 package com.wchb.course2.chapter7;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -88,6 +89,7 @@ public class SparseGraph implements IGraph {
 
     // 返回图中一个顶点的所有邻边
     // 由于java使用引用机制，返回一个Vector不会带来额外开销,
+    // 临边迭代器
     @Override
     public Iterable<Integer> iterable(int v) {
         assert v >= 0 && v < n;

@@ -18,6 +18,18 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test207() {
+        int v1 = 3;
+        int[][] data1 = new int[][]{{0, 1}, {0, 2}, {1, 2}};
+        int v2 = 4;
+        int[][] data2 = new int[][]{{2, 0}, {1, 0}, {3, 1}, {3, 2}, {1, 3}};
+
+        System.out.println(new S207().canFinish(v1, data1));
+        System.out.println(new S207().canFinish(v2, data2));
+    }
+
+
+    @Test
     public void test716() {
         MaxStack maxStack = new MaxStack();
 

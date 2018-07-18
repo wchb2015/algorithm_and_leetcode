@@ -14,14 +14,14 @@ public class ShortestPath {
     private IGraph g;
     // 起始点
     private int s;
-    // 记录dfs的过程中节点是否被访问
+    // 记录bfs的过程中节点是否被访问
     private boolean[] visited;
     // 记录路径, from[i]表示查找的路径上i的上一个节点
     private int[] from;
     // 记录路径中节点的次序。order[i]表示i节点在路径中的次序。
     private int[] order;
 
-    //构造函数,寻路算法,寻找图g从点到其它点的路径
+    //构造函数,寻路算法,寻找图g从点s到其它点的路径
     public ShortestPath(IGraph g, int s) {
         this.g = g;
         this.s = s;

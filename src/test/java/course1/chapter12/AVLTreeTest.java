@@ -31,6 +31,19 @@ public class AVLTreeTest {
 
             System.out.println(" isBST :" + map.isBST());
             System.out.println(" isBalanced :" + map.isBalanced());
+
+
+            System.out.println("----------");
+
+            for (String word : words) {
+                map.remove(word);
+                if (!map.isBalanced() || !map.isBST()) {
+                    throw new RuntimeException(" is not balanced or is not bst");
+                }
+            }
+
+            System.out.println("DONE " + map.getSize());
+
         }
     }
 }

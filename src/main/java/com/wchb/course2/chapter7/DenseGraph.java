@@ -10,6 +10,7 @@ import java.util.List;
 
 // 稠密图 - 邻接矩阵
 public class DenseGraph implements IGraph {
+
     private int n;  // 节点数
     private int m;  // 边数
     private boolean directed;   // 是否为有向图
@@ -39,6 +40,7 @@ public class DenseGraph implements IGraph {
     }
 
     // 向图中添加一个边
+    // v,w代表顶点的index
     @Override
     public void addEdge(int v, int w) {
 
@@ -54,7 +56,7 @@ public class DenseGraph implements IGraph {
             g[w][v] = true;
         }
 
-        m++;
+        m++;//边数++;
     }
 
     // 验证图中是否有从v到w的边
@@ -77,6 +79,7 @@ public class DenseGraph implements IGraph {
 
     // 返回图中一个顶点的所有邻边
     // 由于java使用引用机制，返回一个List不会带来额外开销,
+    // 临边迭代器
     @Override
     public Iterable<Integer> iterable(int v) {
         assert v >= 0 && v < n;

@@ -9,36 +9,6 @@ import org.junit.Test;
 public class GraphTest {
 
     @Test
-    // 测试无权图最短路径算法
-    public void test03() {
-        SparseGraph g = new SparseGraph(7, false);
-        new ReadGraph(g, new int[][]{
-                {0, 1}, {0, 2}, {0, 5},
-                {0, 6}, {3, 5}, {3, 4},
-                {4, 6}, {4, 5}});
-        g.show();
-
-        ShortestPath bfs2 = new ShortestPath(g, 0);
-        System.out.println("BFS : ");
-        System.out.println("Has Path : " + bfs2.hasPath(2));
-        bfs2.showPath(3);
-    }
-
-    @Test
-    public void test02() {
-        SparseGraph g1 = new SparseGraph(13, false);
-        new ReadGraph(g1, new int[][]{{0, 5}, {4, 3}, {0, 1},
-                {9, 12}, {6, 4}, {5, 4},
-                {0, 2}, {11, 12}, {9, 10},
-                {0, 6}, {7, 8}, {9, 11},
-                {5, 3}});
-        System.out.println("test G2 in Sparse Graph:");
-        g1.show();
-        System.out.println(new Components(g1).count());
-        System.out.println(new Components(g1).isConnected(1, 8));
-    }
-
-    @Test
     public void test01() {
         // 使用两种图的存储方式读取testG1.txt文件
         SparseGraph g1 = new SparseGraph(13, false);
@@ -49,6 +19,7 @@ public class GraphTest {
                 {5, 3}});
         System.out.println("test G1 in Sparse Graph:");
         g1.show();
+        System.out.println(" 联通分量: " + new Components(g1).count());
         System.out.println("-------------------------------------");
 
         DenseGraph g2 = new DenseGraph(13, false);
@@ -70,6 +41,7 @@ public class GraphTest {
                 , {3, 4}, {3, 5}});
         System.out.println("test G2 in Sparse Graph:");
         g3.show();
+        System.out.println(" 联通分量: " + new Components(g3).count());
 
 
         System.out.println("-------------------------------------");
@@ -83,4 +55,35 @@ public class GraphTest {
         g4.show();
 
     }
+
+    @Test
+    // 测试无权图最短路径算法
+    public void test03() {
+        SparseGraph g = new SparseGraph(7, false);
+        new ReadGraph(g, new int[][]{{0, 1}, {0, 2}, {0, 5},
+                {0, 6}, {5, 3}, {5, 4}
+                , {3, 4}, {4, 6}});
+        g.show();
+
+        ShortestPath bfs2 = new ShortestPath(g, 5);
+        System.out.println("BFS : ");
+        System.out.println("Has Path : " + bfs2.hasPath(2));
+        bfs2.showPath(6);
+    }
+
+    @Test
+    public void test02() {
+        SparseGraph g1 = new SparseGraph(13, false);
+        new ReadGraph(g1, new int[][]{{0, 5}, {4, 3}, {0, 1},
+                {9, 12}, {6, 4}, {5, 4},
+                {0, 2}, {11, 12}, {9, 10},
+                {0, 6}, {7, 8}, {9, 11},
+                {5, 3}});
+        System.out.println("test G2 in Sparse Graph:");
+        g1.show();
+        System.out.println(new Components(g1).count());
+        System.out.println(new Components(g1).isConnected(1, 8));
+    }
+
+
 }
