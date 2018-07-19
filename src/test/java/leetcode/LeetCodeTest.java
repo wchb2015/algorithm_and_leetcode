@@ -2,13 +2,11 @@ package leetcode;
 
 import com.wchb.course3.chapter5.ListNode;
 import com.wchb.leetcode.*;
-import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,16 +14,37 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test261DFS() {
+        System.out.println(new S261DFS().validTree(4, new int[][]{{0, 1}, {1, 2}, {2, 3}}));//true
+        System.out.println(new S261DFS().validTree(4, new int[][]{{0, 1}, {2, 3}}));//false
+        System.out.println(new S261DFS().validTree(5, new int[][]{{0, 1}, {1, 2}, {2, 3}, {1, 3}, {1, 4}}));//false
+    }
+
+    @Test
+    public void test261() {
+        System.out.println(new S261().validTree(4, new int[][]{{0, 1}, {1, 2}, {2, 3}}));//true
+
+        System.out.println(new S261().validTree(4, new int[][]{{0, 1}, {2, 3}}));//false
+
+        System.out.println(new S261().validTree(5, new int[][]{{0, 1}, {1, 2}, {2, 3}, {1, 3}, {1, 4}}));//false
+
+    }
 
     @Test
     public void test207() {
         int v1 = 3;
         int[][] data1 = new int[][]{{0, 1}, {0, 2}, {1, 2}};
+        System.out.println(new S207().canFinish(v1, data1));
+        System.out.println("----------");
+
         int v2 = 4;
         int[][] data2 = new int[][]{{2, 0}, {1, 0}, {3, 1}, {3, 2}, {1, 3}};
-
-        System.out.println(new S207().canFinish(v1, data1));
         System.out.println(new S207().canFinish(v2, data2));
+
+        int v3 = 4;
+        int[][] data3 = new int[][]{{0, 1}, {0, 2}, {1, 2}, {2, 3}};
+        new S207().canFinish(v3, data3);
     }
 
 
@@ -223,9 +242,8 @@ public class LeetCodeTest {
 
     @Test
     public void test17() {
-//        new S17().letterCombinations("23");
-        new S17V2().letterCombinations("234");
-        new S17V3().letterCombinations("234");
+        System.out.println(new S17BFS().letterCombinations("23"));
+        System.out.println(new S17DFS().letterCombinations("23"));
     }
 
     @Test

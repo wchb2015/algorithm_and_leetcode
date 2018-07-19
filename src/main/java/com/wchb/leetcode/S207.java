@@ -16,13 +16,14 @@ public class S207 {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         init(numCourses, prerequisites);
         for (int i = 0; i < numCourses; i++) {
-            dfs(i);
+            if (visited[i] == 0) {
+                dfs(i);
+            }
         }
         return isDAG;
     }
 
     private void init(int v, int[][] edges) {
-
         graph = new SparseGraph(v, true);
         visited = new int[v];
 
@@ -31,11 +32,10 @@ public class S207 {
                 graph.addEdge(edges[i][j], edges[i][j + 1]);
             }
         }
-
     }
 
     private void dfs(int i) {
-        if (visited[i] == 1) return;
+        if (visited[i] != 0) return;
         visited[i] = 1;
         List<Integer> list = graph.getAllConnectedVertices(i);
         for (Integer k : list) {

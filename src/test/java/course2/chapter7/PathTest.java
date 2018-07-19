@@ -13,17 +13,15 @@ public class PathTest {
     @Test
     public void test01() {
 
-        SparseGraph g1 = new SparseGraph(7, false);
+        SparseGraph g1 = new SparseGraph(4, true);
         new ReadGraph(g1, new int[][]{
-                {0, 1}, {0, 2}, {0, 5},
-                {0, 6}, {5, 3}, {5, 4}
-                , {3, 4}, {4, 6}});
-        System.out.println("test G2 in Sparse Graph:");
+                {0, 1}, {0, 2}, {2, 3},
+                {1, 3}});
+        System.out.println("test g1 in Sparse Graph:");
         g1.show();
-
 
         Path path = new Path(g1, 0);
         System.out.println("Path from 0 to 6 : ");
-        path.showPath(6);
+        path.showPath(3);
     }
 }

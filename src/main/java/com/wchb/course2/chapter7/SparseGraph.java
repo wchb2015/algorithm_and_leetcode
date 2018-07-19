@@ -10,6 +10,7 @@ import java.util.List;
 
 // 稀疏图 - 邻接表
 public class SparseGraph implements IGraph {
+
     private int n;  // 节点数
     private int m;  // 边数
     private boolean directed;    // 是否为有向图
@@ -70,12 +71,6 @@ public class SparseGraph implements IGraph {
         return false;
     }
 
-    /*  list 0:	1	2	5
-        list 1:	0	2	3	4
-        list 2:	0	1
-        list 3:	1	4	5
-        list 4:	1	3
-        list 5:	0	3*/
     @Override
     public void show() {
         for (int i = 0; i < n; i++) {

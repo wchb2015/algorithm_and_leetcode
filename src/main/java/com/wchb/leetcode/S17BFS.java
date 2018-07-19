@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @date 6/28/18 5:43 PM
  */
-public class S17V3 {
+public class S17BFS {
     String[] mapping = new String[]{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     LinkedList<String> ans = new LinkedList<>();
 

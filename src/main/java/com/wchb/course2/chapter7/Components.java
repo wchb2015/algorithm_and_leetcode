@@ -10,7 +10,6 @@ public class Components {
     private int ccount;         // 记录联通分量个数
     private int[] id;           // 每个节点所对应的联通分量标记
 
-
     // 构造函数, 求出无权图的联通分量
     public Components(IGraph graph) {
 
