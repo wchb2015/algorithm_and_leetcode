@@ -15,6 +15,18 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test684() {
+        System.out.println(Arrays.toString(new S684().
+                findRedundantConnection(new int[][]{{0, 1}, {1, 2}, {2, 3}, {0, 3}, {0, 4}})));
+    }
+
+    @Test
+    public void test448() {
+        new S448().findDisappearedNumbers(new int[]{4, 3, 2, 7, 8, 2, 3, 1});
+    }
+
+
+    @Test
     public void test261DFS() {
         System.out.println(new S261DFS().validTree(4, new int[][]{{0, 1}, {1, 2}, {2, 3}}));//true
         System.out.println(new S261DFS().validTree(4, new int[][]{{0, 1}, {2, 3}}));//false
@@ -237,7 +249,7 @@ public class LeetCodeTest {
 
     @Test
     public void test46() {
-        new S46().permute(new int[]{1, 2, 3});
+        System.out.println(new S46().permute(new int[]{1, 2, 3}));
     }
 
     @Test
