@@ -16,10 +16,10 @@ public class S17DFS {
 
     public List<String> letterCombinations(String digits) {
 
-        if (digits == null || digits.trim().length() == 0) {
-            return ret;
-        }
+        if (digits == null || digits.trim().length() == 0) return ret;
+
         dfs(digits, 0, "");
+
         return ret;
     }
 
@@ -28,15 +28,8 @@ public class S17DFS {
             ret.add(cur);
             return;
         }
-        for (char c : mapping[Integer.parseInt(String.valueOf(digits.charAt(index)))].toCharArray()) {
-//            cur += c;
-//            System.out.println("before cur : " + cur);
-//            dfs(digits, index + 1, cur);
-//            cur = cur.substring(0, cur.length() - 1);
-//            System.out.println("after cur : " + cur);
-
+        for (char c : mapping[digits.charAt(index) - '0'].toCharArray()) {
             dfs(digits, index + 1, cur + c);
         }
     }
-
 }

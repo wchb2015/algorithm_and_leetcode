@@ -6,6 +6,8 @@ import java.util.Set;
 /**
  * @date 7/18/18 2:10 PM
  */
+
+//Union Find
 public class S261 {
 
     int[] parent;

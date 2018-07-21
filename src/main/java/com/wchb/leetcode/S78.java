@@ -18,8 +18,11 @@ public class S78 {
 
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        Arrays.sort(nums);
+        //Arrays.sort(nums);
         getSubsets(result, new ArrayList<>(), nums, 0);
+
+
+        System.out.println("result: " + result);
         return result;
     }
 

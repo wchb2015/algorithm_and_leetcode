@@ -14,10 +14,54 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test93() {
+        System.out.println(new S93().restoreIpAddresses("0123"));
+    }
+
+    @Test
+    public void test685() {
+        System.out.println(Arrays.toString(new S685().//4,1
+                findRedundantDirectedConnection(new int[][]{{1, 2}, {2, 3}, {3, 4}, {4, 1}, {1, 5}})));
+
+        System.out.println("-------");
+
+        System.out.println(Arrays.toString(new S685().//2,3
+                findRedundantDirectedConnection(new int[][]{{1, 2}, {1, 3}, {2, 3}})));
+    }
+
+    @Test
+    public void test684UF() {
+        System.out.println(Arrays.toString(new S684UnionFind().
+                findRedundantConnection(new int[][]{{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}})));
+
+        System.out.println("-------");
+
+        System.out.println(Arrays.toString(new S684UnionFind().
+                findRedundantConnection(new int[][]{{1, 2}, {1, 3}, {2, 3}})));
+
+        System.out.println("-------");
+
+        System.out.println(Arrays.toString(new S684UnionFind().
+                findRedundantConnection(new int[][]{{3, 4}, {1, 2}, {2, 4}, {3, 5}, {2, 5}})));
+    }
+
     @Test
     public void test684() {
         System.out.println(Arrays.toString(new S684().
-                findRedundantConnection(new int[][]{{0, 1}, {1, 2}, {2, 3}, {0, 3}, {0, 4}})));
+                findRedundantConnection(new int[][]{{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}})));
+
+        System.out.println("-------");
+
+        System.out.println(Arrays.toString(new S684().
+                findRedundantConnection(new int[][]{{1, 2}, {1, 3}, {2, 3}})));
+
+        System.out.println("-------");
+
+        System.out.println(Arrays.toString(new S684().
+                findRedundantConnection(new int[][]{{3, 4}, {1, 2}, {2, 4}, {3, 5}, {2, 5}})));
+
     }
 
     @Test
@@ -341,7 +385,8 @@ public class LeetCodeTest {
 
     @Test
     public void test323() {
-        new S323().countComponents(5, new int[][]{{0, 1}, {1, 2}, {3, 4}});
+        System.out.println(new S323().countComponents(5, new int[][]{{0, 1}, {1, 2}, {3, 4}}));
+
     }
 
     @Test
