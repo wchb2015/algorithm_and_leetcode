@@ -15,21 +15,20 @@ public class S17DFS {
     List<String> ret = new ArrayList<>();
 
     public List<String> letterCombinations(String digits) {
-
         if (digits == null || digits.trim().length() == 0) return ret;
-
-        dfs(digits, 0, "");
-
+        dfs(digits, "");
         return ret;
     }
 
-    private void dfs(String digits, int index, String cur) {
-        if (index == digits.length()) {
-            ret.add(cur);
-            return;
-        }
-        for (char c : mapping[digits.charAt(index) - '0'].toCharArray()) {
-            dfs(digits, index + 1, cur + c);
+    private void dfs(String digits, String path) {
+        if (digits.length() == 1) {
+            for (char c : mapping[digits.charAt(0) - '0'].toCharArray()) {
+                ret.add(path + c);
+            }
+        } else {
+            for (char c : mapping[digits.charAt(0) - '0'].toCharArray()) {
+                dfs(digits.substring(1), path + c);
+            }
         }
     }
 }

@@ -14,6 +14,10 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test131() {
+        System.out.println(new S131().partition("abccba"));
+    }
 
     @Test
     public void test93() {
@@ -203,7 +207,7 @@ public class LeetCodeTest {
 
     @Test
     public void test78() {
-        new S78().subsets(new int[]{1, 2});
+        new S78().subsets(new int[]{1, 2, 3});
     }
 
     @Test

@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -21,7 +20,6 @@ public class S78 {
         //Arrays.sort(nums);
         getSubsets(result, new ArrayList<>(), nums, 0);
 
-
         System.out.println("result: " + result);
         return result;
     }
@@ -30,7 +28,12 @@ public class S78 {
 
         int trackId = new Random().nextInt(10000);
 
-        logger.info("trackId:{} START result: {}, list: {}, index:{}", trackId, result, list, start);
+        if (start == nums.length) {
+            result.add(new ArrayList<>(list));
+            return;
+        }
+
+        logger.info("START  trackId:{}  index:{}  list: {}  result: {} ", trackId, start, list, result);
 
         result.add(new ArrayList<>(list));
         for (int i = start; i < nums.length; i++) {
@@ -39,7 +42,7 @@ public class S78 {
             list.remove(list.size() - 1);
         }
 
-        logger.info("trackId:{}  END result: {}, list: {}, index:{}", trackId, result, list, start);
+        logger.info("END    trackId:{}  index:{}  list: {}  result: {} ", trackId, start, list, result);
 
     }
 }
