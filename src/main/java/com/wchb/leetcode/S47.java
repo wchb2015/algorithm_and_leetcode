@@ -1,25 +1,28 @@
 package com.wchb.leetcode;
 
-
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
- * @date 6/21/18 2:34 PM
+ * @date 7/22/18 9:00 AM
  */
-public class S46 {
-
+public class S47 {
     List<List<Integer>> ret;
     boolean[] used;
+    Set<String> pathSet;
 
-    public List<List<Integer>> permute(int[] nums) {
+    public List<List<Integer>> permuteUnique(int[] nums) {
         ret = new LinkedList<>();
         used = new boolean[nums.length];
-        dfs(nums, new LinkedList<>());
+        pathSet = new HashSet<>();
+        dfs(nums, new LinkedList<>(), "");
         return ret;
     }
 
-    private void dfs(int[] nums, LinkedList<Integer> ans) {
+    private void dfs(int[] nums, LinkedList<Integer> ans, String path) {
+        if (pathSet.contains(path)) return;
         if (ans.size() == nums.length) {
             ret.add((List<Integer>) ans.clone());
             return;
@@ -27,9 +30,10 @@ public class S46 {
 
         for (int i = 0; i < nums.length; i++) {
             if (!used[i]) {
+                pathSet.add(path);
                 used[i] = true;
                 ans.add(nums[i]);
-                dfs(nums, ans);
+                dfs(nums, ans, path + nums[i]);
                 ans.removeLast();
                 used[i] = false;
             } else {

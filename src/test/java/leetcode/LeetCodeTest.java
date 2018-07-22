@@ -15,6 +15,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test47() {
+        System.out.println(new S47().permuteUnique(new int[]{1, 1, 3}));
+    }
+
+    @Test
     public void test131() {
         System.out.println(new S131().partition("abccba"));
     }
