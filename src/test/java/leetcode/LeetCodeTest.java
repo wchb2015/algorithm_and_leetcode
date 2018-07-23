@@ -14,6 +14,17 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test216() {
+        new S216().combinationSum3(2, 6);
+    }
+
+    @Test
+    public void test39() {
+        new S39().combinationSum(new int[]{2, 3, 6, 7}, 7);
+    }
+
     @Test
     public void test47() {
         System.out.println(new S47().permuteUnique(new int[]{1, 1, 3}));
