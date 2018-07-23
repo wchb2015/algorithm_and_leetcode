@@ -1,9 +1,5 @@
 package com.wchb.leetcode;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,79 +9,55 @@ import java.util.List;
  */
 public class S51 {
 
-    private static final Logger logger = LoggerFactory.getLogger(S51.class);
+    List<List<String>> ret;
+    boolean[] col;
+    boolean[] dia1;//x+y
+    boolean[] dia2;//x-y
 
-    private boolean[] col;
-    private boolean[] dia1;
-    private boolean[] dia2;
-    private ArrayList<List<String>> res;
 
     public List<List<String>> solveNQueens(int n) {
-
-        res = new ArrayList<>();
+        ret = new LinkedList<>();
         col = new boolean[n];
         dia1 = new boolean[2 * n - 1];
         dia2 = new boolean[2 * n - 1];
 
-        LinkedList<Integer> row = new LinkedList<>();
-        putQueen(n, 0, row);
+        put(n, 0, new LinkedList<>());
 
-        return res;
+        return ret;
     }
 
-    // 尝试在一个n皇后问题中, 摆放第index行的皇后位置
-    private void putQueen(int n, int index, LinkedList<Integer> row) {
+    // 尝试在一个n皇后问题中, 摆放第x行的皇后位置
+    private void put(int n, int x, LinkedList<Integer> path) {
 
-        if (index == n) {
-            res.add(generateBoard(n, row));
+        if (x == n) {
+            ret.add(generateBoard(n, path));
             return;
         }
 
-        for (int i = 0; i < n; i++) {
-            logger.info("i:{},d1:{},d2:{}", i, index + i, index - i + n - 1);
-            // 尝试将第index行的皇后摆放在第i列
-            if (!col[i] && !dia1[index + i] && !dia2[index - i + n - 1]) {
-                row.addLast(i);
-                col[i] = true;
-                dia1[index + i] = true;
-                dia2[index - i + n - 1] = true;
-                putQueen(n, index + 1, row);
-                col[i] = false;
-                dia1[index + i] = false;
-                dia2[index - i + n - 1] = false;
-                row.removeLast();
-            }
+        for (int y = 0; y < n; y++) {
+            if (col[y] || dia1[x + y] || dia2[x - y + (n - 1)]) continue;
+            path.add(y);
+            col[y] = true;
+            dia1[x + y] = true;
+            dia2[x - y + (n - 1)] = true;
+            put(n, x + 1, path);
+            col[y] = false;
+            dia1[x + y] = false;
+            dia2[x - y + (n - 1)] = false;
+            path.removeLast();
         }
 
-        return;
     }
 
-    private List<String> generateBoard(int n, LinkedList<Integer> row) {
-
-        assert row.size() == n;
-
-        ArrayList<String> board = new ArrayList<>();
+    private List<String> generateBoard(int n, LinkedList<Integer> path) {
+        List<String> ans = new LinkedList<>();
         for (int i = 0; i < n; i++) {
-            char[] charArray = new char[n];
-            Arrays.fill(charArray, '.');
-            charArray[row.get(i)] = 'Q';
-            board.add(new String(charArray));
+            char[] arr = new char[n];
+            Arrays.fill(arr, '.');
+            arr[path.get(i)] = 'Q';
+            ans.add(new String(arr));
         }
-        return board;
-    }
-
-    private static void printBoard(List<String> board) {
-        for (String s : board)
-            System.out.println(s);
-        System.out.println();
-    }
-
-    public static void main(String[] args) {
-
-        int n = 4;
-        List<List<String>> res = (new S51()).solveNQueens(n);
-        for (List<String> board : res)
-            printBoard(board);
+        return ans;
     }
 
 }

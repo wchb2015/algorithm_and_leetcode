@@ -14,6 +14,11 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test401() {
+        new S401().readBinaryWatch(3);
+    }
+
 
     @Test
     public void test216() {

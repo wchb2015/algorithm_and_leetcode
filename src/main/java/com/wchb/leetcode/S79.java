@@ -5,64 +5,40 @@ package com.wchb.leetcode;
  */
 public class S79 {
 
-    //向4个方向移动的位移 上右下左
-    private int d[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-    private int m, n;
+    private int[][] directions;
     private boolean[][] visited;
 
     public boolean exist(char[][] board, String word) {
 
-        if (board == null || word == null) {
-            throw new IllegalArgumentException("board or word can not be null!");
-        }
+        int rows = board.length;
+        int cols = board[0].length;
+        directions = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        visited = new boolean[rows][cols];
 
-        m = board.length;
-        if (m == 0) {
-            throw new IllegalArgumentException("board can not be empty.");
-        }
-        n = board[0].length;
-        if (n == 0) {
-            throw new IllegalArgumentException("board can not be empty.");
-        }
-
-        visited = new boolean[m][n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (searchWord(board, word, 0, i, j)) {
-                    return true;
-                }
+        for (int x = 0; x < rows; x++) {
+            for (int y = 0; y < cols; y++) {
+                if (dfs(x, y, 0, board, word)) return true;
             }
         }
-
         return false;
     }
 
-    // 从board[startX][startY]开始, 寻找word[index...word.size())
-    private boolean searchWord(char[][] board, String word, int index, int startX, int startY) {
+    private boolean dfs(int x, int y, int start, char[][] board, String word) {
 
-        //递归结束
-        if (index == word.length() - 1) {
-            return board[startX][startY] == word.charAt(index);
+        if (x < 0 || y < 0 || x >= board.length || y >= board[0].length || visited[x][y]) return false;
+
+        if (start == word.length() - 1) {
+            return board[x][y] == word.charAt(start);
         }
 
-        if (board[startX][startY] == word.charAt(index)) {
-            visited[startX][startY] = true;
-            //从 startX, startY出发,向四个方向寻找
-            for (int i = 0; i < 4; i++) {
-                int newX = startX + d[i][0];
-                int newY = startY + d[i][1];
-                if (inArea(newX, newY) && !visited[newX][newY] &&
-                        searchWord(board, word, index + 1, newX, newY)) {
-                    return true;
-                }
-            }
-            visited[startX][startY] = false;
+        if (board[x][y] != word.charAt(start)) return false;
+
+        for (int i = 0; i < directions.length; i++) {
+            visited[x][y] = true;
+            if (dfs(x + directions[i][0], y + directions[i][1], start + 1, board, word)) return true;
+            visited[x][y] = false;
         }
 
         return false;
-    }
-
-    private boolean inArea(int x, int y) {
-        return x >= 0 && x < m && y >= 0 && y < n;
     }
 }
