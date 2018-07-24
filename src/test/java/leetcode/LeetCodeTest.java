@@ -262,7 +262,7 @@ public class LeetCodeTest {
 
     @Test
     public void test200() {
-        new S200V2().numIslands(new char[][]{{'1', '1', '0', '0', '0'},
+        new S200().numIslands(new char[][]{{'1', '1', '0', '0', '0'},
                 {'1', '1', '0', '0', '0'},
                 {'0', '0', '1', '0', '0'},
                 {'0', '0', '0', '1', '1'}

@@ -7,52 +7,9 @@ import java.util.Arrays;
  */
 public class S70 {
 
-    //递归
-    //超时
-    public int climbStairsV1(int n) {
-
-        return calcWays(n);
-
-    }
-
-    private int calcWays(int n) {
-        if (n == 1) {
-            return 1;
-        }
-        if (n == 2) {
-            return 2;
-        }
-
-        return calcWays(n - 1) + calcWays(n - 2);
-    }
-
-    /************************************************************/
-    public int climbStairsV2(int n) {
-
-        int[] memo = new int[n + 1];
-        Arrays.fill(memo, -1);
-        return climbStairsV2(n, memo);
-    }
-
-    private int climbStairsV2(int n, int[] memo) {
-
-        if (n == 1) {
-            return 1;
-        }
-        if (n == 2) {
-            return 2;
-        }
-        if (memo[n] == -1) {
-            memo[n] = climbStairsV2(n - 1, memo) + climbStairsV2(n - 2, memo);
-        }
-        return memo[n];
-    }
-
-    /************************************************************/
 
     //自低向上 动态规划
-    public int climbStairsV3(int n) {
-
+    public int climbStairs(int n) {
         if (n == 0 || n == 1) {
             return 1;
         }
@@ -70,4 +27,24 @@ public class S70 {
 
         return memo[n];
     }
+
+
+    /************************************************************/
+    //递归 超时
+    public int climbStairsV1(int n) {
+        return calcWays(n);
+    }
+
+    private int calcWays(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+
+        return calcWays(n - 1) + calcWays(n - 2);
+    }
+
 }
+
