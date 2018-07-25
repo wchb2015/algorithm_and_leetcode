@@ -15,6 +15,12 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test91() {
+        new S91().numDecodings("12");
+        new S91().numDecodings3("12");
+    }
+
+    @Test
     public void test401() {
         new S401().readBinaryWatch(3);
     }
@@ -313,7 +319,6 @@ public class LeetCodeTest {
     @Test
     public void test70() {
         System.out.println(new S70().climbStairsV1(3));
-        System.out.println(new S70().climbStairsV3(1));
     }
 
     @Test
