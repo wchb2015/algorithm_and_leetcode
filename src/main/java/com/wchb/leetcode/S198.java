@@ -1,8 +1,6 @@
 package com.wchb.leetcode;
 
 
-import java.util.LinkedList;
-
 /**
  * @date 6/22/18 2:37 PM
  */
@@ -32,7 +30,6 @@ public class S198 {
 
         int a = nums[index] + tryRob(nums, index + 2);
         int b = 0 + tryRob(nums, index + 1);
-
 
         int ret = Math.max(a, b);
         cache[index] = ret;
@@ -82,5 +79,21 @@ public class S198 {
         return memo[0];
     }
 
+    /************************************************************/
+    //DP
+    public int rob4(int[] nums) {
+        int n = nums.length;
+        if (n == 0) return 0;
+        if (n == 1) return nums[0];
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
 
+
+        for (int i = 2; i < nums.length; i++) {
+            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+        }
+
+        return dp[n - 1];
+    }
 }
