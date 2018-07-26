@@ -5,7 +5,7 @@ package com.wchb.course3.chapter9;
  */
 
 // 背包问题
-// 动态规划
+// 思路: 动态规划
 // 时间复杂度: O(n * C) 其中n为物品个数; C为背包容积
 // 空间复杂度: O(n * C)
 public class Knapsack01V2 {
