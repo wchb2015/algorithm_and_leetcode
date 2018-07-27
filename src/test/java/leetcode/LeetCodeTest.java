@@ -16,6 +16,26 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test118() {
+        new S118().generate(5);
+    }
+
+
+    @Test
+    public void test678() {
+        System.out.println(new S678().checkValidStringV2("(**)"));//true
+        System.out.println(new S678().checkValidStringV2("(*)"));//true
+        System.out.println(new S678().checkValidStringV2("(((******))"));//true
+        System.out.println(new S678().checkValidStringV2("(())((())()()(*)(*()(())())())()()((()())((()))(*"));//false
+    }
+
+    @Test
+    public void test300() {
+        System.out.println(new S300().lengthOfLIS(new int[]{1, 3, 6, 7, 9, 4, 10, 5, 6}));
+        System.out.println(new S300().lengthOfLIS(new int[]{-2, -1}));
+    }
+
+    @Test
     public void test416() {
         new S416().canPartitionV2(new int[]{2, 2, 3, 5});
     }
@@ -30,7 +50,6 @@ public class LeetCodeTest {
     public void test401() {
         new S401().readBinaryWatch(3);
     }
-
 
     @Test
     public void test216() {

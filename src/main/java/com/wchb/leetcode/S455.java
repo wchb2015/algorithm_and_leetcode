@@ -7,6 +7,7 @@ import java.util.Arrays;
  */
 public class S455 {
 
+    //T: O(nlogn)+O(n) = O(nlogn)
     public int findContentChildren(int[] g, int[] s) {
 
         Arrays.sort(g);
@@ -16,6 +17,7 @@ public class S455 {
         int j = s.length - 1;
         int ret = 0;
 
+        //最大的饼干给最贪心的小朋友
         while (i >= 0 && j >= 0) {
             if (s[j] >= g[i]) {
                 ret++;
