@@ -14,6 +14,11 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test718() {
+        new S718().findLength(new int[]{0, 0, 0, 0, 1}, new int[]{1, 0, 0, 0, 0});
+        //new S718().findLength(new int[]{1, 2, 3, 4, 5}, new int[]{11, 22, 33, 44, 55});
+    }
 
     @Test
     public void test118() {

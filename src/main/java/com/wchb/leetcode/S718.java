@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class S718 {
 
     private int[][] memo;
+    private int max = 0;
 
     public int findLength(int[] A, int[] B) {
 
@@ -17,28 +18,21 @@ public class S718 {
         if (m == 0 || n == 0) return 0;
         if (m == n && n == 1) return A[0] == B[0] ? 1 : 0;
 
-        memo = new int[m][n];
-        for (int i = 0; i < m; i++) Arrays.fill(memo[i], -1);
-        //LCS(m,n) S1[0...m] And S2[0..n]的最长公共子序列的长度.
-        //if(S1[m]==S2[n]) LCS(m,n) = 1 + LCS(m-1,n-1);
-        //else LCS(m,n)= Math.max(LCS(m-1,n),LCS(m,n-1));
-        return lcs(A, B, m - 1, n - 1);
+        memo = new int[m + 1][n + 1];
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                System.out.println(A[i - 1] + "----" + B[j - 1]);
+                if (A[i - 1] == B[j - 1]) {
+                    memo[i][j] = memo[i - 1][j - 1] + 1;
+                    max = Math.max(memo[i][j], max);
+                }
+
+            }
+            System.out.println(Arrays.toString(memo[i - 1]));
+        }
+
+        return max;
     }
 
-
-    // 求s1[0...m]和s2[0...n]的最长公共子序列的长度值
-    private int lcs(int[] A, int[] B, int m, int n) {
-        if (m < 0 || n < 0) return 0;
-        if (memo[m][n] != -1) return memo[m][n];
-
-        int res;
-        if (A[m] == B[n])
-            res = 1 + lcs(A, B, m - 1, n - 1);
-        else
-            res = Math.max(lcs(A, B, m - 1, n),
-                    lcs(A, B, m, n - 1));
-
-        memo[m][n] = res;
-        return res;
-    }
 }
