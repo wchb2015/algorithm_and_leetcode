@@ -15,6 +15,20 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test535() {
+        System.out.println(new S535().encode("http:www.baidu.com"));
+        System.out.println(new S535().decode(new S535().encode("http:www.baidu.com")));
+
+    }
+
+    @Test
+    public void test322() {
+        //System.out.println(new S322().coinChange(new int[]{1, 2, 5}, 11));
+        System.out.println(new S322().coinChange(new int[]{1, 2, 5}, 11));
+
+    }
+
+    @Test
     public void test718() {
         new S718().findLength(new int[]{0, 0, 0, 0, 1}, new int[]{1, 0, 0, 0, 0});
         //new S718().findLength(new int[]{1, 2, 3, 4, 5}, new int[]{11, 22, 33, 44, 55});
@@ -28,8 +42,8 @@ public class LeetCodeTest {
 
     @Test
     public void test678() {
-        System.out.println(new S678().checkValidStringV2("(**)"));//true
         System.out.println(new S678().checkValidStringV2("(*)"));//true
+        System.out.println(new S678().checkValidStringV2("(**)"));//true
         System.out.println(new S678().checkValidStringV2("(((******))"));//true
         System.out.println(new S678().checkValidStringV2("(())((())()()(*)(*()(())())())()()((()())((()))(*"));//false
     }
