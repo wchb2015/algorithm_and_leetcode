@@ -15,6 +15,22 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test541() {
+        System.out.println(new S541().reverseStr("abcdefg", 2));
+        System.out.println(new S541().reverseStr("abcdefg", 39));
+    }
+
+    @Test
+    public void test8() {
+        System.out.println(new S8().myAtoi("2147483648"));
+        System.out.println(new S8().myAtoi("+-2"));
+        System.out.println(new S8().myAtoi("42"));
+        System.out.println(new S8().myAtoi("   -42"));
+        System.out.println(new S8().myAtoi("-91283472332"));
+        System.out.println(new S8().myAtoi("9223372036854775808"));
+    }
+
+    @Test
     public void test535() {
         System.out.println(new S535().encode("http:www.baidu.com"));
         System.out.println(new S535().decode(new S535().encode("http:www.baidu.com")));
