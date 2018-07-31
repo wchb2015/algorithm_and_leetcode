@@ -42,7 +42,7 @@ public class Fibonacci2 {
     public static void main(String[] args) {
 
         //int n = 42;
-        int n = 40; // 注意: 我们使用n = 1000只是为了测试性能, 实际上会溢出
+        int n = 42; // 注意: 我们使用n = 1000只是为了测试性能, 实际上会溢出
         // 斐波那契额数列是以指数速度上涨的
 
         Fibonacci2 solution = new Fibonacci2();

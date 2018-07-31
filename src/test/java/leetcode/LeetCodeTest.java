@@ -15,6 +15,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test132() {
+        System.out.println(new S132().minCut("aab"));
+    }
+
+    @Test
     public void test541() {
         System.out.println(new S541().reverseStr("abcdefg", 2));
         System.out.println(new S541().reverseStr("abcdefg", 39));
@@ -103,7 +108,7 @@ public class LeetCodeTest {
 
     @Test
     public void test131() {
-        System.out.println(new S131().partition("abccba"));
+        System.out.println(new S131().partition("aab"));
     }
 
     @Test
@@ -388,8 +393,8 @@ public class LeetCodeTest {
 
     @Test
     public void test17() {
-        System.out.println(new S17BFS().letterCombinations("23"));
         System.out.println(new S17DFS().letterCombinations("23"));
+        System.out.println(new S17BFS().letterCombinations("23"));
     }
 
     @Test

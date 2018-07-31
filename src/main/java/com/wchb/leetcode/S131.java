@@ -8,49 +8,39 @@ import java.util.List;
  */
 public class S131 {
 
-    List<List<String>> ret;
+    List<List<String>> ret = new LinkedList<>();
 
     public List<List<String>> partition(String s) {
-
-        ret = new LinkedList<>();
-        if (s == null || s.trim().length() == 0) return ret;
-
-        dfs(s, 0, 1, new LinkedList<>());
+        if (s == null || s.length() <= 0) return ret;
+        dfs(s, 0, new LinkedList<>());
         return ret;
     }
 
-    private void dfs(String s, int index, int offset, LinkedList<String> ans) {
+
+    private void dfs(String s, int index, LinkedList<String> path) {
 
         if (index == s.length()) {
-            ret.add((List<String>) ans.clone());
+            ret.add((List<String>) path.clone());
             return;
         }
 
-        for (; index + offset <= s.length(); offset++) {
-            if (isPalindrome(s.substring(index, index + offset))) {
-                ans.addLast(s.substring(index, index + offset));
-                dfs(s, index + offset, 1, ans);
-                ans.removeLast();
-            } else {
-                continue;
+        for (int offset = 1; index + offset <= s.length(); offset++) {
+            String temp = s.substring(index, index + offset);
+            if (isPalindrome(temp)) {
+                path.add(temp);
+                dfs(s, index + offset, path);
+                path.removeLast();
             }
         }
-
     }
 
     private boolean isPalindrome(String s) {
-        if (s == null || s.length() <= 1) return true;
+        if (s.length() <= 1) return true;
 
-        int r = 0, l = s.length() - 1;
-
-        while (r < l) {
-            if (s.charAt(r) != s.charAt(l)) {
-                return false;
-            }
-            r++;
-            l--;
+        int len = s.length();
+        for (int i = 0; i < len / 2; i++) {
+            if (s.charAt(i) != s.charAt(len - i - 1)) return false;
         }
-
 
         return true;
     }
