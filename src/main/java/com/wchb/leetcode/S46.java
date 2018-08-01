@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class S46 {
 
+
+    //T:O(n^n)
+    //S:o(n)
     List<List<Integer>> ret;
     boolean[] used;
 

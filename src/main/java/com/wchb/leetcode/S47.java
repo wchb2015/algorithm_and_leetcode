@@ -1,13 +1,12 @@
 package com.wchb.leetcode;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @date 7/22/18 9:00 AM
  */
+
+
 public class S47 {
     List<List<Integer>> ret;
     boolean[] used;
@@ -41,4 +40,35 @@ public class S47 {
             }
         }
     }
+
+    /************************************************************/
+    // Time Complexity: O(n^n)
+    // Space Complexity: O(n)
+    public List<List<Integer>> permuteUniqueV2(int[] nums) {
+        ret = new LinkedList<>();
+        used = new boolean[nums.length];
+        Arrays.sort(nums);
+
+        dfsV2(nums, new LinkedList<>());
+        return ret;
+    }
+
+    private void dfsV2(int[] nums, LinkedList<Integer> ans) {
+        if (ans.size() == nums.length) {
+            ret.add((List<Integer>) ans.clone());
+            return;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i]) continue;
+            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) continue;
+
+            used[i] = true;
+            ans.add(nums[i]);
+            dfsV2(nums, ans);
+            ans.removeLast();
+            used[i] = false;
+        }
+    }
+
 }

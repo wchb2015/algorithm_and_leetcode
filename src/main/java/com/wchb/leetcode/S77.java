@@ -1,6 +1,5 @@
 package com.wchb.leetcode;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,49 +8,25 @@ import java.util.List;
  */
 public class S77 {
 
-    private ArrayList<List<Integer>> res;
+    List<List<Integer>> ret;
 
     public List<List<Integer>> combine(int n, int k) {
-
-        res = new ArrayList<>();
-        if (n <= 0 || k <= 0 || k > n) {
-            return res;
-        }
-
-        LinkedList<Integer> c = new LinkedList<>();
-        generateCombinations(n, k, 1, c);
-
-        return res;
+        ret = new LinkedList<>();
+        dfs(n, k, 1, new LinkedList<>());
+        return ret;
     }
 
-    // 求解C(n,k), 当前已经找到的组合存储在c中, 需要从start开始搜索新的元素
-    private void generateCombinations(int n, int k, int start, LinkedList<Integer> c) {
-
-        if (c.size() == k) {
-            res.add((List<Integer>) c.clone());
+    private void dfs(int n, int k, int index, LinkedList<Integer> path) {
+        if (k == path.size()) {
+            ret.add((List<Integer>) path.clone());
             return;
         }
 
-        for (int i = start; i <= n; i++) {
-            c.addLast(i);
-            generateCombinations(n, k, i + 1, c);
-            c.removeLast();
+        for (int i = index; i <= n; i++) {
+            path.add(i);
+            dfs(n, k, i + 1, path);
+            path.removeLast();
         }
-
-        return;
-    }
-
-    private static void printList(List<Integer> list) {
-        for (Integer e : list)
-            System.out.print(e + " ");
-        System.out.println();
-    }
-
-    public static void main(String[] args) {
-
-        List<List<Integer>> res = (new S77()).combine(4, 2);
-        for (List<Integer> list : res)
-            printList(list);
     }
 }
 

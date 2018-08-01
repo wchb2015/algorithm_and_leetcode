@@ -103,7 +103,8 @@ public class LeetCodeTest {
 
     @Test
     public void test47() {
-        System.out.println(new S47().permuteUnique(new int[]{1, 1, 3}));
+        System.out.println(new S47().permuteUnique(new int[]{1, 1, 2}));
+        System.out.println(new S47().permuteUniqueV2(new int[]{1, 1, 2}));
     }
 
     @Test
