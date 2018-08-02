@@ -14,6 +14,15 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test161() {
+        System.out.println(new S161().isOneEditDistance("ab", "acd"));
+        System.out.println(new S161().isOneEditDistance("ab", "acb"));
+        System.out.println(new S161().isOneEditDistance("a", "ac"));
+        System.out.println(new S161().isOneEditDistance("a", ""));
+    }
+
     @Test
     public void test132() {
         System.out.println(new S132().minCut("aab"));
