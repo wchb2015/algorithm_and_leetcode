@@ -16,6 +16,16 @@ public class LeetCodeTest {
 
 
     @Test
+    public void testS22() {
+        System.out.println(new S22().generateParenthesis(3));
+    }
+
+    @Test
+    public void test73() {
+        new S73().setZeroes(new int[][]{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}});
+    }
+
+    @Test
     public void test161() {
         System.out.println(new S161().isOneEditDistance("ab", "acd"));
         System.out.println(new S161().isOneEditDistance("ab", "acb"));

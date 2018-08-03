@@ -31,4 +31,49 @@ public class S48 {
         matrix[x][y] = matrix[x1][y1];
         matrix[x1][y1] = temp;
     }
+
+    /************************************************************/
+
+    public void rotateV2(int[][] matrix) {
+
+        if (matrix.length == 0 || matrix.length != matrix[0].length) return;
+        int n = matrix.length;
+
+        for (int layer = 0; layer < n / 2; layer++) {
+            int first = layer;
+            int last = n - 1 - layer;
+            for (int i = first; i < last; i++) {
+                int offset = i - first;
+
+
+                //top   :matrix[first][i]
+                //bottom:matrix[last][last - offset]
+
+                //left  :matrix[last - offset][first]
+                //right :matrix[i][last]
+
+                int top = matrix[first][i];//save top
+                //left->top
+                matrix[first][i] = matrix[last - offset][first];
+                //bottom->left
+                matrix[last - offset][first] = matrix[last][last - offset];
+                //right->bottom
+                matrix[last][last - offset] = matrix[i][last];
+                //top->right
+                matrix[i][last] = top;
+            }
+        }
+
+//        //原地坐标转换
+//        for (int i = 0; i < height / 2; i++) {
+//            for (int j = i; j < height - 1 - i; j++) {
+//                temp = matrix[i][j];
+//                matrix[i][j] = matrix[height - j - 1][i];
+//                matrix[height - j - 1][i] = matrix[height - i - 1][height - j - 1];
+//                matrix[height - i - 1][height - j - 1] = matrix[j][height - i - 1];
+//                matrix[j][height - i - 1] = temp;
+//            }
+//        }
+    }
+
 }
