@@ -16,7 +16,24 @@ public class LeetCodeTest {
 
 
     @Test
-    public void testS22() {
+    public void test18() {
+        new S18().fourSum(new int[]{-1, -5, -5, -3, 2, 5, 0, 4}, -7);
+    }
+
+    @Test
+    public void test16() {
+        new S16().threeSumClosestV2(new int[]{1, 2, 3, 4, 5, 1, 2, 3, 5, 6, 6, 2, 3, 4, 5, 6, 7, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 100);
+    }
+
+    @Test
+    public void test15() {
+        new S15().threeSum(new int[]{-1, 0, 1, 2, -1, -4});
+        new S15().threeSum(new int[]{0, 0, 0});
+    }
+
+
+    @Test
+    public void test22() {
         System.out.println(new S22().generateParenthesis(3));
     }
 
