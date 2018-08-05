@@ -14,6 +14,11 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test245() {
+        new S245().shortestWordDistance(new String[]{"a", "a", "c", "b"}, "a", "b");
+    }
+
 
     @Test
     public void test18() {

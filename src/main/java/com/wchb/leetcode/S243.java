@@ -29,4 +29,36 @@ public class S243 {
 
         return min;
     }
+
+    /************************************************************/
+    // For each a, we need to get the recent position of b.
+    // For each b, we need to get the recent position of a.
+    public int shortestDistanceV2(String[] words, String word1, String word2) {
+
+        int res = Integer.MAX_VALUE;
+
+        int index1 = -1, index2 = -1;
+
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (word.equals(word1)) {
+                if (index2 != -1) {
+                    res = Math.min(res, i - index2);
+                }
+                index1 = i;
+            } else if (word.equals(word2)) {
+                if (index1 != -1) {
+                    res = Math.min(res, i - index1);
+                }
+                index2 = i;
+            }
+        }
+        return res;
+    }
+
+    /************************************************************/
+    //binary search
+    public int shortestDistanceV3(String[] words, String word1, String word2) {
+        return 1;
+    }
 }
