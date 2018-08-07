@@ -5,7 +5,6 @@ import com.wchb.leetcode.*;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.misc.LRUCache;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -14,6 +13,17 @@ import java.util.List;
 public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
+
+    @Test
+    public void test76() {
+        new S76().minWindowV2("ADOBECODEBANC", "ABC");
+    }
+
+    @Test
+    public void test503() {
+        new S503().nextGreaterElements(new int[]{1, 5, 3, 6, 8});
+        new S503().nextGreaterElements(new int[]{1, 2, 1});
+    }
 
     @Test
     public void test245() {

@@ -1,5 +1,8 @@
 package com.wchb.leetcode;
 
+import java.util.HashMap;
+import java.util.Stack;
+
 /**
  * @date 8/5/18 10:25 PM
  */
@@ -37,14 +40,24 @@ public class S496 {
     }
 
     /************************************************************/
-
     public int[] nextGreaterElementV2(int[] nums1, int[] nums2) {
 
-        int[] ret = new int[nums1.length];
+        Stack<Integer> stack = new Stack<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int[] res = new int[nums1.length];
         for (int i = 0; i < nums2.length; i++) {
+            while (!stack.empty() && nums2[i] > stack.peek()) {
+                map.put(stack.pop(), nums2[i]);
+            }
+            stack.push(nums2[i]);
         }
-
-        return ret;
+        while (!stack.empty()) {
+            map.put(stack.pop(), -1);
+        }
+        for (int i = 0; i < nums1.length; i++) {
+            res[i] = map.get(nums1[i]);
+        }
+        return res;
     }
 
 }
