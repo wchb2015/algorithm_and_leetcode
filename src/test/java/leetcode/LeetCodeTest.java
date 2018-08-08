@@ -15,6 +15,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test127() {
+        new S127().ladderLength("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
+    }
+
+    @Test
     public void test76() {
         new S76().minWindowV2("ADOBECODEBANC", "ABC");
     }
