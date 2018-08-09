@@ -16,7 +16,7 @@ public class ShortestPath {
     private int s;
     // 记录bfs的过程中节点是否被访问
     private boolean[] visited;
-    // 记录路径, from[i]表示查找的路径上i的上一个节点
+    // 记录路径,  from[i]表示查找的路径上i的上一个节点
     private int[] from;
     // 记录路径中节点的次序。order[i]表示i节点在路径中的次序。
     private int[] order;

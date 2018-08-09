@@ -2,6 +2,7 @@ package leetcode;
 
 import com.wchb.course3.chapter5.ListNode;
 import com.wchb.leetcode.*;
+import com.wchb.model.Point;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,56 @@ import java.util.List;
 public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
+
+    @Test
+    public void test149() {
+
+        Point[] arr = new Point[3];
+        arr[0] = new Point(1, 1);
+        arr[1] = new Point(2, 2);
+        arr[2] = new Point(3, 3);
+
+        //new S149().maxPoints(arr);
+
+        Point[] arr2 = new Point[6];
+        arr2[0] = new Point(1, 1);
+        arr2[1] = new Point(3, 2);
+        arr2[2] = new Point(5, 3);
+        arr2[3] = new Point(4, 1);
+        arr2[4] = new Point(2, 3);
+        arr2[5] = new Point(1, 4);
+
+        Point[] arr3 = new Point[1];
+        arr3[0] = new Point(0, 0);
+
+        Point[] arr4 = new Point[2];
+        arr4[0] = new Point(0, 0);
+        arr4[1] = new Point(0, 0);
+
+        Point[] arr5 = new Point[15];
+        arr5[0] = new Point(0, -12);
+        arr5[1] = new Point(5, 2);
+        arr5[2] = new Point(2, 5);
+        arr5[3] = new Point(0, -5);
+        arr5[4] = new Point(1, 5);
+        arr5[5] = new Point(2, -2);
+        arr5[6] = new Point(5, -4);
+        arr5[7] = new Point(3, 4);
+        arr5[8] = new Point(-2, 4);
+        arr5[9] = new Point(-1, 4);
+        arr5[10] = new Point(0, -5);
+        arr5[11] = new Point(0, -8);
+        arr5[12] = new Point(-2, -1);
+        arr5[13] = new Point(0, -11);
+        arr5[14] = new Point(0, -9);
+
+        new S149().maxPoints(arr5);
+    }
+
+    @Test
+    public void test77() {
+        new S77().combine(3, 2);
+    }
 
     @Test
     public void test127() {
