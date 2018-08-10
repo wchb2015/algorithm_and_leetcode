@@ -1,7 +1,5 @@
 package com.wchb.leetcode;
 
-import sun.jvm.hotspot.utilities.Interval;
-
 import java.util.Arrays;
 
 /**

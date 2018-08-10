@@ -16,6 +16,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test516() {
+        new S516().longestPalindromeSubseq("abcde");
+    }
+
+    @Test
     public void test149() {
 
         Point[] arr = new Point[3];
