@@ -16,6 +16,16 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test238() {
+        new S238().productExceptSelf(new int[]{1, 2, 3, 4});
+    }
+
+    @Test
+    public void test739() {
+        new S739().dailyTemperaturesV2(new int[]{73, 74, 75, 71, 69, 72, 76, 73});
+    }
+
+    @Test
     public void test516() {
         new S516().longestPalindromeSubseq("abcde");
     }
