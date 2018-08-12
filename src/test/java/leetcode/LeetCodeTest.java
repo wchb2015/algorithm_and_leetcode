@@ -16,6 +16,19 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test165() {
+        System.out.println(new S165().compareVersion("1.0", "1"));
+        System.out.println(new S165().compareVersion("1.1", "1"));
+        System.out.println(new S165().compareVersion("1", "1.1"));
+        System.out.println(new S165().compareVersion("0.1", "1.1"));
+    }
+
+    @Test
+    public void test763() {
+        new S763().partitionLabels("abcdaefegh");
+    }
+
+    @Test
     public void test238() {
         new S238().productExceptSelf(new int[]{1, 2, 3, 4});
     }
