@@ -25,7 +25,7 @@ public class RandomizedSet381 {
      */
     public boolean insert(int val) {
         boolean ret = !map.containsKey(val);
- 
+
         return ret;
     }
 
@@ -33,15 +33,7 @@ public class RandomizedSet381 {
      * Removes a value from the collection. Returns true if the collection contained the specified element.
      */
     public boolean remove(int val) {
-        if (!map.containsKey(val)) return false;
-        int index = map.get(val);
-        if (index < list.size() - 1) {
-            int lastOne = list.get(list.size() - 1);
-            list.set(index, lastOne);
-            map.put(lastOne, index);
-        }
-        map.remove(val);
-        list.remove(list.size() - 1);
+
         return true;
     }
 
