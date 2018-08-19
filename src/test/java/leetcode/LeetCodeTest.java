@@ -16,6 +16,17 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test658() {
+        new S658().findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 8}, 3, 5);
+    }
+
+    @Test
+    public void test394() {
+        new S394().decodeStringV2("3[a2[c]]");
+        new S394().decodeStringV2("3[a]2[bc]");
+    }
+
+    @Test
     public void test165() {
         System.out.println(new S165().compareVersion("1.0", "1"));
         System.out.println(new S165().compareVersion("1.1", "1"));

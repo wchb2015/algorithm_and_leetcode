@@ -113,7 +113,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     // 二分搜索树的层序遍历
     public void levelOrder() {
-        // 我们使用LinkedList来作为我们的队列
+        // 使用LinkedList来作为我们的队列
         Queue<Node> q = new LinkedList<>();
         q.add(root);
         while (!q.isEmpty()) {
@@ -127,6 +127,5 @@ public class BST<Key extends Comparable<Key>, Value> {
             }
         }
     }
-
 
 }
