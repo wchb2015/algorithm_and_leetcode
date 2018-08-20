@@ -799,10 +799,8 @@ public class LeetCodeTest {
     public void test692() {
         S692 s1 = new S692();
 
-
         List<String> strings = s1.topKFrequentV2(new String[]{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is", "friday"},
                 4);
-
         System.out.println(strings);
     }
 
