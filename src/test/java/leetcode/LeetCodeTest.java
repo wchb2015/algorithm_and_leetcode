@@ -16,6 +16,17 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test269() {
+        //System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
+        System.out.println(new S269().alienOrder(new String[]{"z", "z"}));
+    }
+
+    @Test
+    public void test32() {
+        new S32().longestValidParentheses("())((())");
+    }
+
+    @Test
     public void test658() {
         new S658().findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 8}, 3, 5);
     }
