@@ -16,6 +16,17 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test675() {
+
+        LinkedList<List<Integer>> forest = new LinkedList<>();
+
+        forest.add(Arrays.asList(1, 2, 3));
+        forest.add(Arrays.asList(0, 0, 4));
+        forest.add(Arrays.asList(7, 6, 5));
+        System.out.println(new S675().cutOffTree(forest));
+    }
+
+    @Test
     public void test269() {
         //System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
         System.out.println(new S269().alienOrder(new String[]{"z", "z"}));
