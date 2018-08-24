@@ -15,6 +15,52 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test04() {
+        System.out.println(new S4().findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4}));
+        new S4().findMedianSortedArrays(new int[]{1, 3}, new int[]{2});
+    }
+
+    @Test
+    public void test295() {
+        MedianFinder295V2 m = new MedianFinder295V2();
+
+        m.addNum(1);
+        m.addNum(2);
+        m.addNum(3);
+        m.addNum(4);
+        m.addNum(5);
+        m.addNum(6);
+
+
+        System.out.println(m.findMedian());
+
+    }
+
+
+    @Test
+    public void test227() {
+        System.out.println(new S227().calculate("0-2147483647"));//-2147483647
+        System.out.println(new S227().calculate("1-1+1"));//1
+        System.out.println(new S227().calculate("3+5/2"));//5
+        System.out.println(new S227().calculate("100000000/1/2/3/4/5/6/7/8/9/10"));
+        System.out.println(new S227().calculate("3+2*2"));//7
+        System.out.println(new S227().calculate("3/2"));//1
+    }
+
+    @Test
+    public void test224() {
+        new S224().calculate("(1+(4+5+2)-3)+(6+8)");
+    }
+
+    @Test
+    public void test84() {
+        new S84().largestRectangleAreaV2(new int[]{2, 1, 2});
+        //new S84().largestRectangleAreaV2(new int[]{1, 2, 3, 4, 5});
+        //new S84().largestRectangleAreaV2(new int[]{2, 1, 5, 6, 2, 3});
+    }
+
     @Test
     public void test675() {
 
