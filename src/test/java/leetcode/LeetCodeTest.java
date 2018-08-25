@@ -17,6 +17,16 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test221() {
+        new S221().maximalSquare(new char[][]{
+                {'1', '0', '1', '0', '0'},
+                {'1', '0', '1', '1', '1'},
+                {'1', '1', '1', '1', '1'},
+                {'1', '0', '0', '1', '0'}});
+    }
+
+
+    @Test
     public void test04() {
         System.out.println(new S4().findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4}));
         new S4().findMedianSortedArrays(new int[]{1, 3}, new int[]{2});
