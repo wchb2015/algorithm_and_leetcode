@@ -15,6 +15,16 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test67() {
+        new S67().addBinary("111111111", "111111111");
+    }
+
+    @Test
+    public void test402() {
+        new S402().removeKdigits("1432219", 3);
+    }
+
 
     @Test
     public void test221() {
