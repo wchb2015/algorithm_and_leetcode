@@ -551,8 +551,30 @@ public class LeetCodeTest {
 
     @Test
     public void test146() {
-        LRUCacheV2146 cache = new LRUCacheV2146(2);
 
+
+        LRUCacheV2146 cache3 = new LRUCacheV2146(3);
+        cache3.put(1, 1);
+        cache3.put(2, 2);
+        cache3.put(3, 3); // 3 2 1
+        cache3.put(4, 4); // 4 3 2
+        System.out.println(cache3.get(4)); // 4 3 2
+        System.out.println(cache3.get(3));//  3 4 2
+        System.out.println(cache3.get(2)); // 2 3 4
+        System.out.println(cache3.get(1));
+        cache3.put(5, 5); // 5 2 3
+
+        System.out.println(cache3.get(1)); // -1
+        System.out.println(cache3.get(2)); // 2 5 3
+        System.out.println(cache3.get(3)); // 3 2 5
+        System.out.println(cache3.get(4)); // -1
+        System.out.println(cache3.get(5)); // 5 3 2
+
+
+        System.out.println("-------");
+
+
+        LRUCacheV2146 cache = new LRUCacheV2146(2);
 
         cache.put(1, 1);
         cache.put(2, 2);
@@ -563,6 +585,22 @@ public class LeetCodeTest {
         System.out.println(cache.get(1));   // returns -1 (not found)
         System.out.println(cache.get(3));       // returns 3
         System.out.println(cache.get(4));       // returns 4
+
+        System.out.println("-------");
+
+        LRUCacheV2146 cache2 = new LRUCacheV2146(2);
+        cache2.put(2, 1);
+        cache2.put(3, 2);
+        System.out.println(cache2.get(3));
+        System.out.println(cache2.get(2));
+        cache2.put(4, 3);
+
+        System.out.println(cache2.get(2));
+        System.out.println(cache2.get(3));
+        System.out.println(cache2.get(4));
+
+        System.out.println("-------");
+
 
     }
 
