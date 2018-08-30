@@ -42,8 +42,8 @@ public class S47 {
     }
 
     /************************************************************/
-    // Time Complexity: O(n^n)
-    // Space Complexity: O(n)
+    // Time complexity: O(n!)
+    // Space complexity: O(n + k)
     public List<List<Integer>> permuteUniqueV2(int[] nums) {
         ret = new LinkedList<>();
         used = new boolean[nums.length];
@@ -61,7 +61,8 @@ public class S47 {
 
         for (int i = 0; i < nums.length; i++) {
             if (used[i]) continue;
-            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) continue;
+            // Same number can be only used once at each depth.
+            if (i > 0 && nums[i] == nums[i - 1] && used[i - 1]) continue;
 
             used[i] = true;
             ans.add(nums[i]);

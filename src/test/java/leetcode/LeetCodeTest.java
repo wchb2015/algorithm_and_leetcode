@@ -15,6 +15,18 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test40() {
+        new S40().combinationSum2(new int[]{1, 1, 1}, 3);
+    }
+
+
+    @Test
+    public void test60() {
+        new S60().getPermutation(4, 3);
+    }
+
     @Test
     public void test67() {
         new S67().addBinary("111111111", "111111111");
