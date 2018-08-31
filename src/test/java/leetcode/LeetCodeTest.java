@@ -18,6 +18,7 @@ public class LeetCodeTest {
 
     @Test
     public void test40() {
+        // new S40().combinationSum2(new int[]{10, 1, 2, 7, 6, 1, 5}, 8);
         new S40().combinationSum2(new int[]{1, 1, 1}, 3);
     }
 
