@@ -17,6 +17,15 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test417() {
+        new S417V2().pacificAtlantic(new int[][]{{1, 2, 2, 3, 5},
+                {3, 2, 3, 4, 4},
+                {2, 4, 5, 3, 1},
+                {6, 7, 1, 4, 5},
+                {5, 1, 1, 2, 4}});
+    }
+
+    @Test
     public void test40() {
         // new S40().combinationSum2(new int[]{10, 1, 2, 7, 6, 1, 5}, 8);
         new S40().combinationSum2(new int[]{1, 1, 1}, 3);
