@@ -31,7 +31,6 @@ public class LeetCodeTest {
         new S40().combinationSum2(new int[]{1, 1, 1}, 3);
     }
 
-
     @Test
     public void test60() {
         new S60().getPermutation(4, 3);
@@ -302,7 +301,7 @@ public class LeetCodeTest {
     @Test
     public void test322() {
         //System.out.println(new S322().coinChange(new int[]{1, 2, 5}, 11));
-        System.out.println(new S322().coinChange(new int[]{1, 2, 5}, 11));
+        System.out.println(new S322().coinChangeV2(new int[]{1, 2, 5}, 11));
 
     }
 

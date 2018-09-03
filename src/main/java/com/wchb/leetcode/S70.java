@@ -8,6 +8,25 @@ import java.util.Arrays;
 public class S70 {
 
 
+    //递归 超时
+    public int climbStairsV1(int n) {
+        return calcWays(n);
+    }
+
+    private int calcWays(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+
+        return calcWays(n - 1) + calcWays(n - 2);
+    }
+
+    /************************************************************/
+
+
     //自低向上 动态规划
     public int climbStairs(int n) {
         if (n == 0 || n == 1) {
@@ -26,24 +45,6 @@ public class S70 {
         }
 
         return memo[n];
-    }
-
-
-    /************************************************************/
-    //递归 超时
-    public int climbStairsV1(int n) {
-        return calcWays(n);
-    }
-
-    private int calcWays(int n) {
-        if (n == 1) {
-            return 1;
-        }
-        if (n == 2) {
-            return 2;
-        }
-
-        return calcWays(n - 1) + calcWays(n - 2);
     }
 
 }
