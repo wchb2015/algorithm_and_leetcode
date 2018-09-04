@@ -4,31 +4,6 @@ package com.wchb.leetcode;
  * @date 7/24/18 7:17 AM
  */
 public class S343 {
-    // 自己写的
-    //    List<List<Integer>> ret;
-//
-//
-//    public int integerBreak(int n) {
-//
-//        dfs(n, new LinkedList<>());
-//
-//        return 1;
-//    }
-//
-//    private void dfs(int target, LinkedList<Integer> path) {
-//
-//        if (target <= 0) {
-//            System.out.println(path);
-//            return;
-//        }
-//
-//        for (int i = 1; i < target; i++) {
-//            path.add(i);
-//            dfs(target - i, path);
-//            path.removeLast();
-//        }
-//    }
-
 
     //递归+记忆化搜索自顶向下解决问题.
     /************************************************************/
@@ -41,7 +16,7 @@ public class S343 {
         return breakInteger(n);
     }
 
-    //将n分割为至少2部分,返回分割后的最大乘积.
+    //将n进行分割为至少2部分,返回分割后的最大乘积.
     private int breakInteger(int n) {
         if (cache[n] != 0) return cache[n];
         if (n == 1) return 1;

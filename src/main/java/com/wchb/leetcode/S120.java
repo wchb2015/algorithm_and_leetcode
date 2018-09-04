@@ -9,6 +9,10 @@ import java.util.Map;
  */
 public class S120 {
 
+
+//    cache[i][j]表明从最底层到i,j所用的最短距离是多少
+//    cache[i][j]就等于cache[i+1][j](左下角)与cache[i+1][j+1](右下角)中最小的加上triangle[i][j]的值
+
     Map<String, Integer> map = new HashMap<>();
 
     //递归+记忆化搜索
