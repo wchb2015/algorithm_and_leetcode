@@ -5,9 +5,7 @@ package com.wchb.leetcode;
  */
 public class S416 {
 
-
     // 纯递归 TLE
-
     public boolean canPartition(int[] nums) {
         if (nums.length <= 1) return false;
 

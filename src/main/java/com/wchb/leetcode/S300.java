@@ -7,13 +7,11 @@ import java.util.Arrays;
  */
 public class S300 {
 
-
     //T:O(n^2)
     public int lengthOfLIS(int[] nums) {
 
         int n = nums.length;
         if (n <= 1) return n;
-
 
         // mem[i]表示以nums[i]为结尾的最长上升子序列的长度
         int[] mem = new int[n];
