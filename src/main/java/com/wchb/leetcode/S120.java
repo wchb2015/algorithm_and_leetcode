@@ -36,22 +36,22 @@ public class S120 {
     /************************************************************/
 
     public int minimumTotalV2(List<List<Integer>> triangle) {
-
         int rows = triangle.size();
+        int[][] dp = new int[rows][rows];
         for (int i = rows - 1; i >= 0; i--) {
             List<Integer> cols = triangle.get(i);
             if (i == rows - 1) {
                 for (int j = 0; j < cols.size(); j++) {
-                    map.put(i + "," + j, cols.get(j));
+                    dp[rows - 1][j] = cols.get(j);
                 }
             } else {
                 for (int j = 0; j < cols.size(); j++) {
-                    map.put(i + "," + j, Math.min(map.get((i + 1) + "," + j), map.get((i + 1) + "," + (j + 1))) + cols.get(j));
+                    dp[i][j] = Math.min(dp[i + 1][j], dp[i + 1][j + 1]) + cols.get(j);
                 }
             }
         }
 
-        return map.get("0,0");
+        return dp[0][0];
     }
 
     /************************************************************/

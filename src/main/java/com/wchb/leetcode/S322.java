@@ -55,22 +55,21 @@ public class S322 {
         for (int i = 1; i <= amount; i++) {
             for (int j = 0; j < coins.length; j++) {
                 if (coins[j] > i) continue;
-
                 dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
             }
         }
 
-        // or
-
-        for (int coin : coins) {
-            for (int i = amount - coin; i >= 0; i--) {
-                if (dp[i] != max) {
-                    for (int k = 1; k * coin + i <= amount; k++) {
-                        dp[i + k * coin] = Math.min(dp[i + k * coin], dp[i] + k);
-                    }
-                }
-            }
-        }
-        return dp[amount] > amount ? -1 : dp[amount];
+//        // or
+//
+//        for (int coin : coins) {
+//            for (int i = amount - coin; i >= 0; i--) {
+//                if (dp[i] != max) {
+//                    for (int k = 1; k * coin + i <= amount; k++) {
+//                        dp[i + k * coin] = Math.min(dp[i + k * coin], dp[i] + k);
+//                    }
+//                }
+//            }
+//        }
+        return dp[amount] == max ? -1 : dp[amount];
     }
 }

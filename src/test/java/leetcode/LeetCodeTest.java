@@ -15,6 +15,13 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test5() {
+        System.out.println(new S5().longestPalindromeV3("abbbccd"));
+        System.out.println(new S5().longestPalindromeV3("babad"));
+        System.out.println(new S5().longestPalindromeV3("cbbd"));
+    }
+
 
     @Test
     public void test417() {

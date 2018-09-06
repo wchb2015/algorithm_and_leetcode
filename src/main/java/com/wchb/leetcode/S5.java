@@ -49,4 +49,42 @@ public class S5 {
         }
         return res;
     }
+
+    /************************************************************/
+    // 中心发散
+    public String longestPalindromeV3(String s) {
+        int max = -1;
+        String ans = "";
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            int l = i - 1;
+            int len = 1;
+            while (i + 1 < n && s.charAt(i) == s.charAt(i + 1)) {
+                len++;
+                i++;
+            }
+            if (len > max) {
+                max = len;
+                ans = s.substring(l + 1, i + 1);
+            }
+            int r = i + 1;
+
+            while (l >= 0 && r < n) {
+                if (s.charAt(l) == s.charAt(r)) {
+                    if (r - l + 1 > max) {
+                        max = r - l + 1;
+                        ans = s.substring(l, r + 1);
+                    }
+                    r++;
+                    l--;
+                } else {
+                    break;
+                }
+            }
+        }
+
+
+        return ans;
+    }
+
 }
