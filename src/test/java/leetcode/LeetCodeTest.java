@@ -16,6 +16,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test72() {
+        new S72().minDistanceV2("horse", "ros");
+    }
+
+    @Test
     public void test5() {
         System.out.println(new S5().longestPalindromeV3("abbbccd"));
         System.out.println(new S5().longestPalindromeV3("babad"));

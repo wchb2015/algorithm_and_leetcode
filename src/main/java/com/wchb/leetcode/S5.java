@@ -69,17 +69,14 @@ public class S5 {
             }
             int r = i + 1;
 
-            while (l >= 0 && r < n) {
-                if (s.charAt(l) == s.charAt(r)) {
-                    if (r - l + 1 > max) {
-                        max = r - l + 1;
-                        ans = s.substring(l, r + 1);
-                    }
-                    r++;
-                    l--;
-                } else {
-                    break;
+            while (l >= 0 && r < n && s.charAt(l) == s.charAt(r)) {
+                int len2 = r - l + 1;
+                if (len2 > max) {
+                    max = len2;
+                    ans = s.substring(l, r + 1);
                 }
+                r++;
+                l--;
             }
         }
 
