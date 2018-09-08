@@ -172,7 +172,7 @@ public class LeetCodeTest {
 
     @Test
     public void test516() {
-        new S516().longestPalindromeSubseq("abcde");
+        new S516().longestPalindromeSubseq("bbbab");
     }
 
     @Test

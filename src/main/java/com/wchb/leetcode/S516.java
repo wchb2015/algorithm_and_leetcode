@@ -8,25 +8,19 @@ public class S516 {
 
     public int longestPalindromeSubseq(String s) {
 
-        int len = s.length();
-
         int[][] dp = new int[s.length()][s.length()];
 
-        for (int i = 0; i < len; i++) {
+        for (int i = s.length() - 1; i >= 0; i--) {
             dp[i][i] = 1;
-        }
-
-        //for each interval length
-        for (int l = 2; l <= len; l++) {
-            //for each interval with the same length
-            for (int st = 0; st <= len - l; st++) {
-                int ed = st + l - 1;
-                System.out.println(l + " --- " + st + " --- " + ed);
-                //if left end equals to right end or not
-                dp[st][ed] = s.charAt(st) == s.charAt(ed) ?
-                        dp[st + 1][ed - 1] + 2 : Math.max(dp[st + 1][ed], dp[st][ed - 1]);
+            for (int j = i + 1; j < s.length(); j++) {
+                System.out.println(i + " --- " + j);
+                if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                } else {
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+                }
             }
         }
-        return dp[0][len - 1];
+        return dp[0][s.length() - 1];
     }
 }
