@@ -75,19 +75,40 @@ public class S279 {
     }
 
     /************************************************************/
-    //https://leetcode.com/problems/perfect-squares/discuss/71495/an-easy-understanding-dp-solution-in-java
+
+    /**
+     * 1. Definition:
+     * - dp[i]: The least number of perfect square numbers of given integer i
+     * <p>
+     * 2. Answer:
+     * - dp[n]
+     * <p>
+     * 3. State transfer equation
+     * dp[i+j*j]  = min(dp[i]+1,dp[i+j*j]
+     * 4. Initialization
+     * dp[i*i] = 1;
+     *
+     * @param n
+     * @return
+     */
+
     public int numSquaresV3(int n) {
         int[] dp = new int[n + 1];
-        dp[0] = 0;
-        for (int i = 1; i <= n; ++i) {
-            int min = Integer.MAX_VALUE;
-            int j = 1;
-            while (i - j * j >= 0) {
-                min = Math.min(min, dp[i - j * j] + 1);
-                ++j;
-            }
-            dp[i] = min;
+        Arrays.fill(dp, Integer.MAX_VALUE);
+
+        for (int i = 1; i <= n; i++) {
+            if (i * i > n) break;
+            dp[i * i] = 1;
         }
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                if (i + j * j > n) break;
+
+                dp[i + j * j] = Math.min(dp[i] + 1, dp[i + j * j]);
+            }
+        }
+
         return dp[n];
     }
 }

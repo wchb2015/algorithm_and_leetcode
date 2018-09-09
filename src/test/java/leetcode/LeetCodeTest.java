@@ -16,6 +16,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test159() {
+        new S159().lengthOfLongestSubstringTwoDistinct("eceba");
+    }
+
+    @Test
     public void test72() {
         new S72().minDistanceV2("horse", "ros");
     }
@@ -705,7 +710,8 @@ public class LeetCodeTest {
 
     @Test
     public void test279() {
-        new S279().numSquares(4);
+        new S279().numSquaresV3(1);
+        new S279().numSquaresV3(12);
     }
 
     @Test
