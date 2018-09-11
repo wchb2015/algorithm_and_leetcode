@@ -16,6 +16,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test674() {
+        new S674().findLengthOfLCIS(new int[]{1, 3, 5, 4, 2, 3, 4, 5});
+    }
+
+    @Test
     public void test159() {
         new S159().lengthOfLongestSubstringTwoDistinct("eceba");
     }
@@ -679,7 +684,7 @@ public class LeetCodeTest {
 
     @Test
     public void test128() {
-        System.out.println(new S128().longestConsecutiveV2(new int[]{1, 2, 0, 1}));
+        System.out.println(new S128().longestConsecutive(new int[]{1, 2, 0, 1}));
     }
 
     @Test

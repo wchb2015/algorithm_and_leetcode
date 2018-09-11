@@ -1,6 +1,6 @@
 package com.wchb.leetcode;
 
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -8,34 +8,28 @@ import java.util.List;
  */
 public class S139 {
 
-
-    private HashMap<String, Boolean> mem = new HashMap<>();
+    // 0 un compute
+    // 1 true;
+    // -1 false;
+    int[] mem;
 
     public boolean wordBreak(String s, List<String> wordDict) {
+        mem = new int[s.length()];
+        return helper(s, new HashSet<>(wordDict), 0);
+    }
 
-        //In memory, directly return
-        if (mem.containsKey(s)) return mem.get(s);
-        // Whole String is a word, memorize and return
-        if (wordDict.contains(s)) {
-            mem.put(s, true);
-            return true;
-        }
+    private boolean helper(String s, HashSet<String> strings, int i) {
+        if (i == s.length()) return true;
 
-        // Try every break point.
-        for (int j = 1; j < s.length(); j++) {
-            String left = s.substring(0, j);
-            String right = s.substring(j, s.length());
-            //Find the solution for s.
+        if (mem[i] != 0) return mem[i] == 1;
 
-            if (wordDict.contains(left) && wordBreak(right, wordDict)) {
-                mem.put(s, true);
+        for (int end = i + 1; end <= s.length(); end++) {
+            if (strings.contains(s.substring(i, end)) && helper(s, strings, end)) {
+                mem[i] = 1;
                 return true;
             }
-
         }
-
-        //No solution for s, memorize and return
-        mem.put(s, false);
+        mem[i] = -1;
         return false;
     }
 }

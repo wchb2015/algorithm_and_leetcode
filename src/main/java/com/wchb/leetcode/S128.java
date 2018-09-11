@@ -1,13 +1,56 @@
 package com.wchb.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * @date 6/23/18 3:54 PM
  */
 public class S128 {
+
+    /************************************************************/
+
+    public int longestConsecutive(int[] nums) {
+
+        int ans = 0;
+
+        Set<Integer> unvisited = new HashSet<>();
+        for (int n : nums) unvisited.add(n);
+
+        for (int n : nums) {
+
+            if (unvisited.isEmpty()) {
+                break;
+            }
+
+            if (!unvisited.contains(n)) {
+                continue;
+            }
+
+            unvisited.remove(n);
+            int len = 1;
+            int leftOffset = -1;
+            int rightOffset = 1;
+
+            while (unvisited.remove(n + leftOffset)) {
+                leftOffset--;
+                len++;
+            }
+
+            while (unvisited.remove(n + rightOffset)) {
+                rightOffset++;
+                len++;
+            }
+
+            ans = Math.max(len, ans);
+
+        }
+        return ans;
+    }
+
+    /************************************************************/
 
     //并查集;
     public int longestConsecutiveV2(int[] nums) {
@@ -87,55 +130,38 @@ public class S128 {
             }
         }
 
-
     }
 
     /************************************************************/
 
-    public int longestConsecutive(int[] nums) {
+    //  滑动窗口
+    public int longestConsecutiveV3(int[] nums) {
+        Arrays.sort(nums);
+        return findLength(nums);
+    }
 
-        int ret = 0;
+    public int findLength(int[] nums) {
+        int n = nums.length;
+        if (n == 0) return 0;
+        int ans = 1;
+        int anchor = 0;
 
-        Set<Integer> unvisited = getSet(nums);
-
-        for (int n : nums) {
-
-            if (unvisited.isEmpty()) {
-                break;
-            }
-
-            if (!unvisited.contains(n)) {
+        int dup = 0;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == nums[i - 1]) {
+                dup++;
                 continue;
             }
-
-            unvisited.remove(n);
-            int len = 1;
-            int leftOffset = -1;
-            int rightOffset = 1;
-
-            while (unvisited.remove(n + leftOffset--)) {
-                len++;
+            if (nums[i] != (nums[i - 1] + 1)) {
+                dup = 0;
+                anchor = i;
             }
 
-            while (unvisited.remove(n + rightOffset++)) {
-                len++;
-            }
-
-            ret = Math.max(len, ret);
-
+            ans = Math.max(ans, i - anchor + 1 - dup);
         }
-        return ret;
+
+        return ans;
     }
 
 
-    private Set<Integer> getSet(int[] nums) {
-
-        Set<Integer> set = new TreeSet<>();
-
-        for (int n : nums) {
-            set.add(n);
-        }
-
-        return set;
-    }
 }

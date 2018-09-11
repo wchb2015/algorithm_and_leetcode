@@ -7,8 +7,40 @@ import java.util.Arrays;
  */
 public class S300 {
 
-    //T:O(n^2)
+
+    //递归+记忆
+    int[] memo;
+
     public int lengthOfLIS(int[] nums) {
+
+        memo = new int[nums.length];
+
+        int n = nums.length;
+        if (n <= 1) return n;
+
+        int ans = 1;
+        for (int i = 1; i < nums.length; i++) {
+            ans = Math.max(ans, getMaxLength(nums, i));
+        }
+        return ans;
+    }
+
+    private int getMaxLength(int[] nums, int start) {
+        if (memo[start] != 0) return memo[start];
+        int ans = 1;
+        for (int i = 0; i <= start - 1; i++) {
+            if (nums[i] < nums[start]) {
+                ans = Math.max(ans, 1 + getMaxLength(nums, i));
+            }
+        }
+        memo[start] = ans;
+        return ans;
+    }
+
+    /************************************************************/
+    //DP
+    //T:O(n^2)
+    public int lengthOfLISV2(int[] nums) {
 
         int n = nums.length;
         if (n <= 1) return n;
@@ -24,8 +56,6 @@ public class S300 {
                 }
             }
         }
-
-        System.out.println(Arrays.toString(mem));
 
         Arrays.sort(mem);
         return mem[n - 1];
