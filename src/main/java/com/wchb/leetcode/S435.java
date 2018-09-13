@@ -18,6 +18,7 @@ public class S435 {
         int[] mem = new int[n];
         Arrays.fill(mem, 1);
 
+
         for (int i = 1; i < n; i++) {
             for (int j = i - 1; j >= 0; j--) {
                 if (isNonOverlapping(intervals[j], intervals[i])) {

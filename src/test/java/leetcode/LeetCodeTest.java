@@ -16,6 +16,17 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test712() {
+        System.out.println(new S712().minimumDeleteSum("a", "at"));
+        System.out.println(new S712().minimumDeleteSum("sea", "eat"));
+    }
+
+    @Test
+    public void test134() {
+        new S134().canCompleteCircuit(new int[]{3, 3, 4}, new int[]{3, 4, 4});
+    }
+
+    @Test
     public void test674() {
         new S674().findLengthOfLCIS(new int[]{1, 3, 5, 4, 2, 3, 4, 5});
     }
@@ -341,10 +352,10 @@ public class LeetCodeTest {
 
     @Test
     public void test678() {
-        System.out.println(new S678().checkValidStringV2("(*)"));//true
-        System.out.println(new S678().checkValidStringV2("(**)"));//true
-        System.out.println(new S678().checkValidStringV2("(((******))"));//true
-        System.out.println(new S678().checkValidStringV2("(())((())()()(*)(*()(())())())()()((()())((()))(*"));//false
+        System.out.println(new S678().checkValidString("(*)"));//true
+        System.out.println(new S678().checkValidString("(**)"));//true
+        System.out.println(new S678().checkValidString("(((******))"));//true
+        System.out.println(new S678().checkValidString("(())((())()()(*)(*()(())())())()()((()())((()))(*"));//false
     }
 
     @Test
