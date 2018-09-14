@@ -1,65 +1,51 @@
 package com.wchb.leetcode;
 
-import com.wchb.course1.chapter2.Array;
-
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 /**
  * @date 7/18/18 10:50 AM
  */
 public class S210 {
 
-    // 0 unvisited 1 visiting 2 visited
-    int[] visted;
-    List<Integer>[] g;
 
-    List<Integer> ans;
-
+    // [0,1]:to take course 0 you have to first take course 1
+    // edge[0] in
+    // edge[1] out
     public int[] findOrder(int numCourses, int[][] prerequisites) {
 
-        init(numCourses, prerequisites);
-
-        for (int i = 0; i < numCourses; i++) {
-            if (dfs(i)) return new int[]{};
-        }
-
-        int[] ret = new int[ans.size()];
-
-        int i = 0;
-        for (int j = ans.size() - 1; j >= 0; j--) {
-            ret[i++] = ans.get(j);
-        }
-        return ret;
-    }
-
-    private void init(int numCourses, int[][] prerequisites) {
-        visted = new int[numCourses];
-        g = new List[numCourses];
-        ans = new LinkedList<>();
-        for (int i = 0; i < numCourses; i++) {
-            g[i] = new ArrayList<>();
-        }
+        int[] ans = new int[numCourses];
+        int idx = 0;
+        int[] inDegree = new int[numCourses];
+        int res = numCourses;
         for (int[] edge : prerequisites) {
-            g[edge[1]].add(edge[0]);
-        }
-    }
-
-    // true 有环
-    private boolean dfs(int v) {
-
-        if (visted[v] == 1) return true;
-        if (visted[v] == 2) return false;
-
-        visted[v] = 1;
-        for (Integer i : g[v]) {
-            if (dfs(i)) return true;
+            inDegree[edge[0]]++;
         }
 
-        visted[v] = 2;
-        ans.add(v);
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < inDegree.length; i++) {
+            if (inDegree[i] == 0) {
+                ans[idx++] = i;
+                queue.offer(i);
+            }
+        }
 
-        return false;
+        while (!queue.isEmpty()) {
+            int in = queue.poll();
+            res--;
+            for (int[] edge : prerequisites) {
+                // remove that vertex and its outgoing edges
+                // from the graph and repeat with the remaining graph.
+                if (edge[1] == in) {
+                    inDegree[edge[0]]--;
+                    if (inDegree[edge[0]] == 0) {
+                        ans[idx++] = edge[0];
+                        queue.offer(edge[0]);
+                    }
+                }
+            }
+        }
+        return res == 0 ? ans : new int[]{};
     }
+
 }

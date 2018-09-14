@@ -16,6 +16,18 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test332() {
+        new S332().findItineraryV2(new String[][]{{"MUC", "LHR"},
+                {"JFK", "MUC"},
+                {"SFO", "SJC"},
+                {"LHR", "SFO"}});
+
+        new S332().findItineraryV2(new String[][]{{"JFK", "KUL"},
+                {"JFK", "NRT"},
+                {"NRT", "JFK"}});
+    }
+
+    @Test
     public void test712() {
         System.out.println(new S712().minimumDeleteSum("a", "at"));
         System.out.println(new S712().minimumDeleteSum("sea", "eat"));
@@ -148,8 +160,8 @@ public class LeetCodeTest {
 
     @Test
     public void test269() {
-        //System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
-        System.out.println(new S269().alienOrder(new String[]{"z", "z"}));
+        System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
+        //System.out.println(new S269().alienOrder(new String[]{"z", "z"}));
     }
 
     @Test
@@ -475,18 +487,34 @@ public class LeetCodeTest {
 
     @Test
     public void test207() {
-        int v1 = 3;
-        int[][] data1 = new int[][]{{0, 1}, {0, 2}, {1, 2}};
-        System.out.println(new S207().canFinish(v1, data1));
+
+        int v4 = 4;
+        int[][] data4 = new int[][]{{1, 0}, {3, 0}, {2, 1}, {2, 3}};
+        System.out.println(new S207().canFinishV2(v4, data4));
         System.out.println("----------");
 
-        int v2 = 4;
-        int[][] data2 = new int[][]{{2, 0}, {1, 0}, {3, 1}, {3, 2}, {1, 3}};
-        System.out.println(new S207().canFinish(v2, data2));
+//        int v1 = 3;
+//        int[][] data1 = new int[][]{{0, 1}, {0, 2}, {1, 2}};
+//        System.out.println(new S207().canFinish(v1, data1));
+//        System.out.println("----------");
+//
+//        int v2 = 4;
+//        int[][] data2 = new int[][]{{2, 0}, {1, 0}, {3, 1}, {3, 2}, {1, 3}};
+//        System.out.println(new S207().canFinish(v2, data2));
+//
+//        int v3 = 4;
+//        int[][] data3 = new int[][]{{0, 1}, {0, 2}, {1, 2}, {2, 3}};
+//        new S207().canFinish(v3, data3);
 
-        int v3 = 4;
-        int[][] data3 = new int[][]{{0, 1}, {0, 2}, {1, 2}, {2, 3}};
-        new S207().canFinish(v3, data3);
+    }
+
+    @Test
+    public void test210() {
+
+        int v1 = 4;
+        int[][] data1 = new int[][]{{1, 0}, {3, 0}, {2, 1}, {2, 3}};
+        System.out.println(Arrays.toString(new S210().findOrder(v1, data1)));
+        System.out.println("----------");
     }
 
 

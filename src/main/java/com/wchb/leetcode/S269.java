@@ -1,85 +1,97 @@
 package com.wchb.leetcode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @date 8/21/18 1:01 PM
  */
 public class S269 {
 
-    private HashMap<Character, Set<Character>> map;
 
-    // 0 unvisited 1 visiting 2 visited
-    int[] visited;
-    StringBuilder ans;
+    // build graph
+    // BFS
+    // Add unvisited character
+    int[] chars;//0 No 1 unvisited  2 visited
+    Map<Character, Set<Character>> g;
+    int[] inDegree;
+    int v;
 
     public String alienOrder(String[] words) {
 
-        if (words == null || words.length == 0) return "";
-        ans = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        chars = new int[26];
+        inDegree = new int[26];
+        g = new HashMap<>();
+        v = 0;
+
         buildGraph(words);
-        if (map.size() == 0) return String.valueOf(words[0].charAt(0));
-        visited = new int[26];
 
-        for (Character c : map.keySet()) {
-            if (dfs(c)) {
-                System.out.println("hehe");
-                return "";
+        if (!bfs(g, sb)) return "";
+
+        return sb.toString();
+    }
+
+    private boolean bfs(Map<Character, Set<Character>> g, StringBuilder sb) {
+
+        Queue<Character> queue = new LinkedList<>();
+
+        for (int i = 0; i < 26; i++) {
+            if (chars[i] == 2) v++;
+
+            if (chars[i] == 2 && inDegree[i] == 0) {
+                sb.append((char) ('a' + i));
+                queue.add((char) ('a' + i));
             }
         }
 
-        return ans.reverse().toString();
-    }
 
-    // true 有环
-    private boolean dfs(char v) {
-
-        if (visited[v - 'a'] == 1) return true;
-        if (visited[v - 'a'] == 2) return false;
-
-        visited[v - 'a'] = 1;
-        if (map.get(v) != null) {
-            for (Character adj : map.get(v)) {
-                if (dfs(adj)) return true;
+        while (!queue.isEmpty()) {
+            char to = queue.poll();
+            v--;
+            Set<Character> neis = g.get(to);
+            for (Character nei : neis) {
+                // remove that vertex and its outgoing edges
+                // from the graph and repeat with the remaining graph.
+                if (nei == to) {
+                    inDegree[to - 'a']--;
+                    if (inDegree[to - 'a'] == 0) {
+                        sb.append(to);
+                        queue.offer(to);
+                    }
+                }
             }
         }
+        return v == 0 ? true : false;
 
-        visited[v - 'a'] = 2;
-        ans.append(v);
-
-        return false;
     }
+
 
     private void buildGraph(String[] words) {
-        map = new HashMap<>();
-        int[] degree = new int[26];
-
-        for (String word : words) {
-            for (char c : word.toCharArray()) {
-                if (degree[c - 'a'] == 0) {
-                    degree[c - 'a'] = 1;
-                }
+        for (String s : words) {
+            for (Character c : s.toCharArray()) {
+                chars[c - 'a'] = 1;
             }
         }
 
         for (int i = 0; i < words.length - 1; i++) {
-            char[] cur = words[i].toCharArray();
-            char[] next = words[i + 1].toCharArray();
-            int len = Math.min(cur.length, next.length);
+            String word1 = words[i];
+            String word2 = words[i + 1];
+            int len = Math.min(word1.length(), word2.length());
+
             for (int j = 0; j < len; j++) {
-                if (cur[j] != next[j]) {
-                    if (!map.containsKey(cur[j])) {
-                        map.put(cur[j], new HashSet<>());
-                    }
-                    if (map.get(cur[j]).add(next[j])) {
-                        degree[next[j] - 'a']++;
-                    }
-                    break;
-                }
+                if (word1.charAt(j) == word2.charAt(j)) continue;
+
+                char from = word1.charAt(j);
+                char to = word2.charAt(j);
+                chars[from - 'a'] = 2;
+                chars[to - 'a'] = 2;
+                inDegree[to - 'a']++;
+                if (!g.containsKey(from)) g.put(from, new HashSet<>());
+                g.get(from).add(to);
+                break;
             }
         }
-
     }
+
+
 }
