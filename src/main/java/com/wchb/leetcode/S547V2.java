@@ -1,52 +1,53 @@
 package com.wchb.leetcode;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @date 6/7/18 3:29 PM
  */
 public class S547V2 {
 
-    int tree[] = new int[200];
-
-    private static final Logger logger = LoggerFactory.getLogger(S547V2.class);
-
+    int[] parent;
 
     public int findCircleNum(int[][] M) {
-        int len = M[0].length;
-        for (int i = 0; i < len; i++) {
-            tree[i] = -1;
-        }
-        for (int i = 0; i < len; i++) {
-            for (int j = 0; j < i; j++) {
-                if (M[i][j] == 1) {
-                    int aRoot = findRoot(i);
-                    int bRoot = findRoot(j);
-                    if (aRoot != bRoot) {
-                        logger.info("aRoot:{},bRoot:{}", aRoot, bRoot);
-                        tree[aRoot] = bRoot;
-                    }
+        int m = M.length;
+        int n = M[0].length;
+        Set<Integer> ans = new HashSet<>();
+        parent = new int[m];
+
+        Arrays.fill(parent, -1);
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (M[i][j] == 1 && i != j) {
+                    union(i, j);
                 }
             }
         }
-        int ans = 0;
-        for (int i = 0; i < len; i++) {
-            if (tree[i] == -1) {
-                ans++;
-            }
-        }
-        return ans;
+
+        for (int i = 0; i < m; i++) ans.add(find(i));
+
+        return ans.size();
     }
 
-    public int findRoot(int x) {
-        logger.info("x:{},tree[x]:{}", x, tree[x]);
-        if (tree[x] == -1) {
-            return x;
-        } else {
-            int temp = findRoot(tree[x]);
-            tree[x] = temp;
-            return temp;
+    private void union(int p, int q) {
+        int pId = find(p);
+        int qId = find(q);
+        if (pId == qId) {
+            return;
         }
+
+        for (int i = 0; i < parent.length; i++) {
+            if (find(i) == pId) {
+                parent[i] = qId;
+            }
+        }
+    }
+
+
+    private int find(int i) {
+        return parent[i] == -1 ? i : parent[i];
     }
 }

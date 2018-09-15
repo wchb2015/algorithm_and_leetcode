@@ -1,62 +1,53 @@
 package com.wchb.leetcode;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
- * @date 7/20/18 12:31 PM
+ * @date 9/14/18 2:31 PM
  */
 public class S685 {
-    int[] parent;
-    int[] roots;
-
+    List<Integer>[] g;
+    Set<Integer> visited = new HashSet();
 
     public int[] findRedundantDirectedConnection(int[][] edges) {
-
-        parent = new int[edges.length + 1];
-
-        for (int i = 0; i < parent.length; i++) {
-            //Initially, all slots of parent array are initialized to -1
-            // means there is only one item in every subset.
-            parent[i] = -1;
+        g = new List[edges.length + 1];
+        for (int i = 1; i < edges.length + 1; i++) {
+            g[i] = new ArrayList<>();
         }
 
         for (int[] edge : edges) {
-            if (find(edge[0]) == find(edge[1])) {
+            visited.clear();
+
+            int from = edge[0];
+            int to = edge[1];
+            if (!g[from].isEmpty() && !g[to].isEmpty() && hasPath(from, to)) {
                 return edge;
             }
-            union(edge[0], edge[1]);
+
+            g[edge[0]].add(edge[1]);
         }
 
-        return findDuplicate(edges);
-    }
-
-    private int[] findDuplicate(int[][] edges) {
-        roots = new int[edges.length + 1];
-
-        for (int[] edge : edges) {
-            if (roots[edge[1]] > 0) {
-                return edge;
-            }
-            roots[edge[1]] = edge[0];
-        }
         return null;
     }
 
-    private int find(int v) {
-        return parent[v] == -1 ? v : parent[v];
-    }
+    private boolean hasPath(int from, int to) {
 
-    private void union(int v1, int v2) {
+        visited.add(from);
 
-        int pId1 = find(v1);
-        int pId2 = find(v2);
-
-        if (pId1 == pId2) {
-            return;
-        }
-
-        for (int i = 0; i < parent.length; i++) {
-            if (find(i) == pId1) {
-                parent[i] = pId2;
+        for (int nei : g[from]) {
+            if (visited.contains(nei)) {
+                continue;
+            }
+            if (nei == to) {
+                return true;
+            }
+            if (hasPath(nei, to)) {
+                return true;
             }
         }
+        return false;
     }
 }

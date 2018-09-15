@@ -81,7 +81,7 @@ public class S207 {
     /************************************************************/
     // BFS
     // 1-------------->0
-    // [0,1]:to take course 0 you have to first take course 1
+    // [0,1][to,from]:to take course 0 you have to first take course 1
     // edge[0] in
     // edge[1] out
     public boolean canFinishV2(int numCourses, int[][] prerequisites) {
@@ -100,10 +100,10 @@ public class S207 {
         }
 
         while (!queue.isEmpty()) {
-            int in = queue.poll();
+            int from = queue.poll();
             res--;
             for (int[] edge : prerequisites) {
-                if (edge[1] == in) {
+                if (edge[1] == from) {
                     inDegree[edge[0]]--;
                     if (inDegree[edge[0]] == 0) {
                         System.out.println("Order: " + edge[0]);
@@ -113,6 +113,52 @@ public class S207 {
             }
         }
         return res == 0;
+    }
+
+    /************************************************************/
+    //DFS
+    List<Integer>[] g;
+
+    public boolean canFinishV3(int numCourses, int[][] prerequisites) {
+        boolean[] visited = new boolean[numCourses];
+        boolean[] recStack = new boolean[numCourses];
+
+        g = (List<Integer>[]) new List[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            g[i] = new ArrayList<>();
+        }
+
+        for (int[] edge : prerequisites) {
+            g[edge[1]].add(edge[0]);
+        }
+
+        for (int i = 0; i < numCourses; i++)
+            if (isCyclic(i, visited, recStack)) return false;
+
+        return true;
+    }
+
+    private boolean isCyclic(int i, boolean[] visited, boolean[] recStack) {
+
+        // Mark the current node as visited and
+        // part of recursion stack
+        if (recStack[i]) return true;
+
+        if (visited[i]) return false;
+
+
+        visited[i] = true;
+        recStack[i] = true;
+
+        List<Integer> children = g[i];
+
+        for (Integer c : children)
+            if (isCyclic(c, visited, recStack))
+                return true;
+
+        recStack[i] = false;
+
+        return false;
     }
 
 }

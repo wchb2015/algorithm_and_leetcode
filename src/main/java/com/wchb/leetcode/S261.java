@@ -1,15 +1,17 @@
 package com.wchb.leetcode;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
  * @date 7/18/18 2:10 PM
  */
 
-//Union Find
+
 public class S261 {
 
+    //Union Find
     int[] parent;
 
     public boolean validTree(int n, int[][] edges) {
@@ -55,4 +57,10 @@ public class S261 {
             }
         }
     }
+
+    /************************************************************/
+    public boolean validTreeV2(int n, int[][] edges) {
+        return false;
+    }
+
 }

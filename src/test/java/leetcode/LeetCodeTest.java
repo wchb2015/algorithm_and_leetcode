@@ -160,8 +160,10 @@ public class LeetCodeTest {
 
     @Test
     public void test269() {
-        System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
+        System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt", "te"}));
+        //System.out.println(new S269().alienOrder(new String[]{"za", "zb", "ca", "cb"}));
         //System.out.println(new S269().alienOrder(new String[]{"z", "z"}));
+        //System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
     }
 
     @Test
@@ -420,12 +422,17 @@ public class LeetCodeTest {
 
     @Test
     public void test685() {
-        System.out.println(Arrays.toString(new S685().//4,1
+
+
+        System.out.println(Arrays.toString(new S685().
+                findRedundantDirectedConnection(new int[][]{{1, 2}, {1, 3}, {2, 3}})));
+
+        System.out.println(Arrays.toString(new S685UF().//4,1
                 findRedundantDirectedConnection(new int[][]{{1, 2}, {2, 3}, {3, 4}, {4, 1}, {1, 5}})));
 
         System.out.println("-------");
 
-        System.out.println(Arrays.toString(new S685().//2,3
+        System.out.println(Arrays.toString(new S685UF().//2,3
                 findRedundantDirectedConnection(new int[][]{{1, 2}, {1, 3}, {2, 3}})));
     }
 
@@ -477,6 +484,14 @@ public class LeetCodeTest {
 
     @Test
     public void test261() {
+
+
+        System.out.println(new S261DFS().validTree(5, new int[][]{{0, 1}, {0, 2}, {1, 2}, {2, 3}, {2, 4}}));
+
+        System.out.println(new S261DFS().validTree(5, new int[][]{{0, 1}, {0, 2}, {0, 3}, {1, 4}}));
+
+        System.out.println(new S261().validTreeV2(5, new int[][]{{0, 1}, {1, 2}, {2, 3}, {1, 3}, {1, 4}}));
+
         System.out.println(new S261().validTree(4, new int[][]{{0, 1}, {1, 2}, {2, 3}}));//true
 
         System.out.println(new S261().validTree(4, new int[][]{{0, 1}, {2, 3}}));//false
@@ -864,10 +879,10 @@ public class LeetCodeTest {
 
     @Test
     public void test547() {
-        new S547().findCircleNumV3(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}});
         System.out.println(
-                //  new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}})
+                new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}})
         );
+
         System.out.println(
 //                new S547V2().findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 1}, {0, 1, 1}})
         );

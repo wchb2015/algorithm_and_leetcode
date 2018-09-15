@@ -1,6 +1,7 @@
 package com.wchb.leetcode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,18 +13,12 @@ public class S261DFS {
     List<Integer>[] list;
     int count = 0;
 
-
     public boolean validTree(int n, int[][] edges) {
         init(n, edges);
 
         for (int v = 0; v < n; v++) {
-            if (visited[v] == 1) {
-                continue;
-            }
-            boolean flag = hasCycle(v, null);
-            if (flag) {
-                return false;
-            }
+            if (visited[v] == 1) continue;
+            if (hasCycle(v, null)) return false;
             count++;
         }
 
@@ -32,13 +27,11 @@ public class S261DFS {
 
     private boolean hasCycle(int v, Integer parent) {
         visited[v] = 1;
+
         for (Integer adj : list[v]) {
             if (adj.equals(parent)) continue;
             if (visited[adj] == 1) return true;
-            boolean hasCycle = hasCycle(adj, v);
-            if (hasCycle) {
-                return true;
-            }
+            if (hasCycle(adj, v)) return true;
         }
         return false;
     }

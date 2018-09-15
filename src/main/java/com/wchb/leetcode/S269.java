@@ -36,6 +36,7 @@ public class S269 {
         Queue<Character> queue = new LinkedList<>();
 
         for (int i = 0; i < 26; i++) {
+            if (chars[i] == 1) sb.append((char) ('a' + i));
             if (chars[i] == 2) v++;
 
             if (chars[i] == 2 && inDegree[i] == 0) {
@@ -46,23 +47,21 @@ public class S269 {
 
 
         while (!queue.isEmpty()) {
-            char to = queue.poll();
+            char from = queue.poll();
             v--;
-            Set<Character> neis = g.get(to);
+            Set<Character> neis = g.get(from);
+            if (neis == null) continue;
             for (Character nei : neis) {
                 // remove that vertex and its outgoing edges
                 // from the graph and repeat with the remaining graph.
-                if (nei == to) {
-                    inDegree[to - 'a']--;
-                    if (inDegree[to - 'a'] == 0) {
-                        sb.append(to);
-                        queue.offer(to);
-                    }
+                inDegree[nei - 'a']--;
+                if (inDegree[nei - 'a'] == 0) {
+                    sb.append(nei);
+                    queue.offer(nei);
                 }
             }
         }
         return v == 0 ? true : false;
-
     }
 
 
@@ -83,6 +82,9 @@ public class S269 {
 
                 char from = word1.charAt(j);
                 char to = word2.charAt(j);
+
+                if (g.containsKey(from) && g.get(from).contains(to)) break;
+
                 chars[from - 'a'] = 2;
                 chars[to - 'a'] = 2;
                 inDegree[to - 'a']++;
@@ -92,6 +94,5 @@ public class S269 {
             }
         }
     }
-
 
 }
