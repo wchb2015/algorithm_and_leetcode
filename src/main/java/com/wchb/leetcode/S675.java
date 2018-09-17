@@ -20,19 +20,17 @@ public class S675 {
         m = forest.size();
         n = forest.get(0).size();
 
-
         LinkedList<Tree> trees = new LinkedList<>();
 
         for (int x = 0; x < m; x++) {
             for (int y = 0; y < n; y++) {
-                if (forest.get(x).get(y) > 1) {
-                    trees.add(new Tree(x, y, forest.get(x).get(y)));
-                }
+                int h = forest.get(x).get(y);
+                if (h == 0) continue;
+                trees.add(new Tree(x, y, h));
             }
         }
 
         Collections.sort(trees, (t1, t2) -> t1.height - t2.height);
-
 
         int sx = 0;
         int sy = 0;
@@ -57,9 +55,8 @@ public class S675 {
     // min steps from startPoint(sx,sy) to EndPoint(tx,ty)
     // return -1 if unreachable
     private int bfs(List<List<Integer>> forest, int sx, int sy, int tx, int ty) {
-        int[][] directions = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         boolean[][] visited = new boolean[m][n];
-
+        int[][] directions = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
         Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
         queue.add(new Pair(sx, sy));

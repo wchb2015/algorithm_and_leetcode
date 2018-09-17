@@ -15,6 +15,15 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test130() {
+        new S130().solve(new char[][]{{'X', 'X', 'X', 'X'},
+                {'X', 'O', 'O', 'X'},
+                {'X', 'X', 'O', 'X'},
+                {'X', 'O', 'X', 'X'}});
+    }
+
     @Test
     public void test332() {
         new S332().findItineraryV2(new String[][]{{"MUC", "LHR"},
