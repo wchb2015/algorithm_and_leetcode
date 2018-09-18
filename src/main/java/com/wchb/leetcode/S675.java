@@ -20,6 +20,7 @@ public class S675 {
         m = forest.size();
         n = forest.get(0).size();
 
+
         LinkedList<Tree> trees = new LinkedList<>();
 
         for (int x = 0; x < m; x++) {
@@ -50,7 +51,6 @@ public class S675 {
 
         return ans;
     }
-
 
     // min steps from startPoint(sx,sy) to EndPoint(tx,ty)
     // return -1 if unreachable
