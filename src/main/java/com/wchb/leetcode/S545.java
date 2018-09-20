@@ -2,68 +2,48 @@ package com.wchb.leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * @date 8/11/18 12:09 PM
  */
 public class S545 {
 
+    List<Integer> ans = new ArrayList<>(1000);
+
     public List<Integer> boundaryOfBinaryTree(TreeNode root) {
-        ArrayList<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-        if (!isLeaf(root)) {
-            res.add(root.val);
-        }
-        TreeNode t = root.left;
-        while (t != null) {
-            if (!isLeaf(t)) {
-                res.add(t.val);
-            }
-            if (t.left != null) {
-                t = t.left;
-            } else {
-                t = t.right;
-            }
-        }
 
-        addLeaves(res, root);
+        if (root == null) return ans;
 
-        Stack<Integer> s = new Stack<>();
+        ans.add(root.val);
+        leftBoundary(root.left);
+        leaves(root.left);
+        leaves(root.right);
+        rightBoundary(root.right);
 
-        t = root.right;
-        while (t != null) {
-            if (!isLeaf(t)) {
-                s.push(t.val);
-            }
-            if (t.right != null) {
-                t = t.right;
-            } else {
-                t = t.left;
-            }
-        }
-        while (!s.empty()) {
-            res.add(s.pop());
-        }
-        return res;
+        return ans;
     }
 
-    public boolean isLeaf(TreeNode t) {
-        return t.left == null && t.right == null;
+    public void leftBoundary(TreeNode root) {
+        if (root == null || (root.left == null && root.right == null)) return;
+        ans.add(root.val);
+        if (root.left == null) leftBoundary(root.right);
+        else leftBoundary(root.left);
     }
 
-    public void addLeaves(List<Integer> res, TreeNode root) {
-        if (isLeaf(root)) {
-            res.add(root.val);
-        } else {
-            if (root.left != null) {
-                addLeaves(res, root.left);
-            }
-            if (root.right != null) {
-                addLeaves(res, root.right);
-            }
+    public void rightBoundary(TreeNode root) {
+        if (root == null || (root.right == null && root.left == null)) return;
+        if (root.right == null) rightBoundary(root.left);
+        else rightBoundary(root.right);
+        ans.add(root.val); // add after child visit(reverse)
+    }
+
+    public void leaves(TreeNode root) {
+        if (root == null) return;
+        if (root.left == null && root.right == null) {
+            ans.add(root.val);
+            return;
         }
+        leaves(root.left);
+        leaves(root.right);
     }
 }
