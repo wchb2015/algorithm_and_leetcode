@@ -17,6 +17,11 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test904() {
+        new S904().totalFruit(new int[]{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4});
+    }
+
+    @Test
     public void test130() {
         new S130().solve(new char[][]{{'X', 'X', 'X', 'X'},
                 {'X', 'O', 'O', 'X'},
