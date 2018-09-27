@@ -15,6 +15,15 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test285() {
+        TreeNode root = new TreeNode(2);
+        TreeNode left = new TreeNode(1);
+        root.left = left;
+
+
+        System.out.println(new S285().inorderSuccessor(root, left));
+    }
 
     @Test
     public void test904() {

@@ -1,65 +1,45 @@
 package com.wchb.leetcode;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * @date 7/13/18 8:56 PM
  */
 public class S285 {
 
+    // find p first
+    // case 1: Node has right subtree
+    // Go deep to leftmost node in right subtree
+    // Or Find min in right subtree
 
-    public static TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-        List<Integer> list = new LinkedList<>();
+    //case 2: No right subtree
+    // Go to the nearest ancestor for which given node would be in left subtree
 
-        inOrder(root, list);
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
 
-        Integer target = null;
-
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) > p.val) {
-                target = list.get(i);
-                break;
-            }
-        }
-
-        return find(root, target);
-    }
-
-    private static TreeNode find(TreeNode root, Integer target) {
-        if (target == null || root == null) {
-            return null;
-        }
-
-        if (root.val == target) {
-            return root;
-        }
-
-        if (root.val > target) {
-            return find(root.left, target);
+        if (p.right != null) {
+            return findMin(p.right);
         } else {
-            return find(root.right, target);
+            TreeNode ans = null;
+            TreeNode ancestor = root;
+            while (ancestor != p) {
+                if (p.val < ancestor.val) {
+                    ans = ancestor;
+                    ancestor = ancestor.left;
+                } else {
+                    ancestor = ancestor.right;
+                }
+            }
+            return ans;
         }
     }
 
-    private static void inOrder(TreeNode root, List<Integer> list) {
+    private TreeNode findMin(TreeNode node) {
+        if (node == null) return null;
 
-        if (root == null) {
-            return;
+        while (node.left != null) {
+            node = node.left;
         }
-        inOrder(root.left, list);
-        list.add(root.val);
-        inOrder(root.right, list);
+        return node;
     }
 
-
-    public static void main(String[] args) {
-        TreeNode node = new TreeNode(2);
-
-        node.left = new TreeNode(1);
-
-        S285.inorderSuccessor(node, new TreeNode(1));
-
-    }
 
 }
