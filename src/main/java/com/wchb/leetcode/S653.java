@@ -8,6 +8,14 @@ import java.util.Set;
  */
 public class S653 {
 
+    //If the sum of two elements x+y = k,and we already know that x exists in the given tree,
+    //we only need to check if an element y exists in the given tree,such that
+    //y=k-x.
+
+    // We keep a track of the elements which have been found so far during the tree
+    // traversal , by putting them into a set.
+
+    // For every current node with a value of p,we check if k-p already exists in the array.
 
     Set<Integer> data;
 
