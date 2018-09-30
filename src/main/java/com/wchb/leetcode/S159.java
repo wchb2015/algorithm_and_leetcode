@@ -1,6 +1,8 @@
 package com.wchb.leetcode;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -37,5 +39,38 @@ public class S159 {
         }
 
         return ret;
+    }
+
+    /************************************************************/
+    public int lengthOfLongestSubstringTwoDistinctV2(String s) {
+        int n = s.length();
+        if (n <= 2) return n;
+
+        Map<Character, Integer> map = new HashMap<>();
+        int ans = 0;
+        int start = 0;
+        int end = 0;
+
+        for (; end < n; end++) {
+            if (!map.containsKey(s.charAt(end))) {
+                map.put(s.charAt(end), 1);
+            } else {
+                int temp = map.get(s.charAt(end));
+                map.put(s.charAt(end), ++temp);
+            }
+            while (map.size() == 3) {
+                int temp = map.get(s.charAt(start));
+                map.put(s.charAt(start), --temp);
+                if (map.get(s.charAt(start)) == 0) map.remove(s.charAt(start));
+                start++;
+            }
+
+            if (end - start + 1 > ans) {
+                ans = end - start + 1;
+            }
+        }
+
+
+        return ans;
     }
 }
