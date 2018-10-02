@@ -57,13 +57,8 @@ public class S75 {
                 //此时i不动,继续处理i
                 swap(nums, i, --two);
             } else { // nums[i] == 0
-                assert nums[i] == 0;
                 // zero后的数一定为1
                 zero++;
-                System.out.println("zero huan " + zero);
-                if (zero != i) {
-                    System.out.println("zero " + zero);
-                }
                 swap(nums, zero, i);
                 i++;
             }
