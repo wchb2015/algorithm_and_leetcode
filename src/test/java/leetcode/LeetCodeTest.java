@@ -15,6 +15,19 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test31() {
+        new S31().nextPermutation(new int[]{1, 2});
+        new S31().nextPermutation(new int[]{1, 2, 3});
+    }
+
+
+    @Test
+    public void test33() {
+        new S33().search(new int[]{3, 1}, 3);
+    }
+
     @Test
     public void test285() {
         TreeNode root = new TreeNode(2);
