@@ -49,77 +49,65 @@ public class S76 {
 
         return "";
     }
-//    int ret = nums.length+1;
-//
-//    int l=0,r=-1,sum=0;
-//
-//        while(l<nums.length){
-//
-//        if(r+1<nums.length && sum<s){
-//        sum += nums[++r];
-//        } else{
-//        sum -= nums[l++];
-//        }
-//
-//        if(sum>=s){
-//        ret = Math.min(ret,r-l+1);
-//        }
-//        }
-//        if(ret == nums.length+1){
-//        return 0;
-//        }
-//
-//
-//        return ret;
 
+
+    /**
+     * 1. We start with two pointers, left and right initially pointing to the first element of the string S.
+     * <p>
+     * 2. We use the right pointer to expand the window until we get a desirable window i.e. a window that contains all of the characters of T.
+     * <p>
+     * 3. Once we have a window with all the characters, we can move the left pointer ahead one by one. If the window is still a desirable one we keep on updating the minimum window size.
+     * <p>
+     * If the window is not desirable any more, we repeat step step2 onwards.
+     *
+     * @param s
+     * @param t
+     * @return
+     */
 
     public String minWindowV2(String s, String t) {
+
         if (s.length() < t.length()) return "";
 
-        Map<Character, Integer> wordDict = new HashMap<>();
-
+        Map<Character, Integer> map = new HashMap<>();
         for (Character c : t.toCharArray()) {
-            if (wordDict.containsKey(c)) {
-                wordDict.put(c, wordDict.get(c) + 1);
-            } else {
-                wordDict.put(c, 1);
-            }
+            if (!map.containsKey(c)) map.put(c, 1);
+            else map.put(c, map.get(c) + 1);
         }
 
-        int slow = 0, minLen = Integer.MAX_VALUE, matchCount = 0, index = 0;
-        for (int fast = 0; fast < s.length(); fast++) {
-            char ch = s.charAt(fast);
-            Integer count = wordDict.get(ch);
-            if (Objects.isNull(count)) continue;
+        int matchCount = 0;
+        int minLen = Integer.MAX_VALUE;
+        int sp = 0;
+        int start = 0;
 
-            wordDict.put(ch, count - 1);
+        for (int fp = 0; fp < s.length(); fp++) {
+            char c = s.charAt(fp);
 
-            if (count == 1) {
-                //1-->0;
-                matchCount++;
-            }
+            Integer count = map.get(c);
+            if (count == null) continue;
+            if (count == 1) matchCount++;
+            map.put(c, count - 1);
 
-
-            while (matchCount == wordDict.size()) {
-                //find a valid subString
-                if (fast - slow + 1 < minLen) {
-                    minLen = fast - slow + 1;
-                    index = slow;
+            while (matchCount == map.size()) {
+                if (fp - sp + 1 < minLen) {
+                    minLen = fp - sp + 1;
+                    start = sp;
                 }
 
-                char leftMost = s.charAt(slow++);
-                Integer leftMostCount = wordDict.get(leftMost);
-                if (leftMostCount == null) continue;
-                wordDict.put(leftMost, leftMostCount + 1);
-                if (leftMostCount == 0) {
-                    //0->1
+                char left = s.charAt(sp++);
+                Integer leftCount = map.get(left);
+                if (leftCount == null) continue;
+                map.put(left, leftCount + 1);
+
+                if (leftCount == 0) {
                     matchCount--;
                 }
             }
-
         }
 
-        return minLen == Integer.MAX_VALUE ? "" : s.substring(index, index + minLen);
+
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
+
     }
 
 }

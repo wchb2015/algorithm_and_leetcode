@@ -17,6 +17,12 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test438() {
+        new S438().findAnagrams("cbaebabacd", "abc");
+    }
+
+
+    @Test
     public void test31() {
         new S31().nextPermutation(new int[]{1, 2});
         new S31().nextPermutation(new int[]{1, 2, 3});
