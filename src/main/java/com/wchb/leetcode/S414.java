@@ -8,6 +8,23 @@ import java.util.TreeSet;
  */
 public class S414 {
 
+    public int thirdMax(int[] nums) {
+        PriorityQueue<Integer> q = new PriorityQueue<>();
+        int k = 3;
+        int max = Integer.MIN_VALUE;
+        for (int i : nums) {
+            if (q.contains(i)) continue;
+            max = Math.max(max, i);
+            q.add(i);
+            if (q.size() == k + 1) {
+                q.remove();
+            }
+        }
+
+        return q.size() == k ? q.peek() : max;
+    }
+
+    /************************************************************/
 
     public int thirdMaxV2(int[] nums) {
         return nMax(nums, 3);
@@ -27,32 +44,4 @@ public class S414 {
         return set.size() >= n ? set.first() : set.last();
     }
 
-    public int thirdMax(int[] nums) {
-
-        PriorityQueue<Integer> q = new PriorityQueue<>();
-        int max = nums[0];
-
-        for (int i : nums) {
-            if (q.contains(i)) {
-                continue;
-            }
-            if (q.size() < 3) {
-                q.add(i);
-            } else {
-                if (i > q.peek()) {
-                    q.remove();
-                    q.add(i);
-                }
-            }
-
-            max = Math.max(max, i);
-        }
-
-        if (q.size() < 3) {
-            return max;
-        } else {
-            return q.peek();
-        }
-
-    }
 }

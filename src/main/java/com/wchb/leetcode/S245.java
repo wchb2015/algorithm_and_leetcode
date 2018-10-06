@@ -6,34 +6,31 @@ package com.wchb.leetcode;
 public class S245 {
 
     public int shortestWordDistance(String[] words, String word1, String word2) {
+        int n = words.length;
+        int ans = Integer.MAX_VALUE;
+        int idx1 = -1;
+        int idx2 = -1;
 
-        int res = Integer.MAX_VALUE;
-
-        int index1 = -1, index2 = -1, index = -1;
-        boolean isEqual = word1.equals(word2);
-
-        for (int i = 0; i < words.length; i++) {
-            String word = words[i];
-
-            if (word.equals(word1)) {
-                if (isEqual) {
-                    if (index != -1) res = Math.min(res, i - index);
-                } else {
-                    if (index2 != -1) res = Math.min(res, i - index2);
+        if (!word1.equals(word2)) {
+            for (int i = 0; i < n; i++) {
+                if (words[i].equals(word1)) {
+                    if (idx2 != -1) ans = Math.min(ans, i - idx2);
+                    idx1 = i;
+                } else if (words[i].equals(word2)) {
+                    if (idx1 != -1) ans = Math.min(ans, i - idx1);
+                    idx2 = i;
                 }
-                index1 = i;
-                index = i;
-            } else if (word.equals(word2)) {
-                if (isEqual) {
-                    if (index != -1) res = Math.min(res, i - index);
-                } else {
-                    if (index1 != -1) res = Math.min(res, i - index1);
-                }
-                index2 = i;
-                index = i;
             }
-
+        } else {
+            int idx = -1;
+            for (int i = 0; i < n; i++) {
+                if (words[i].equals(word1)) {
+                    if (idx != -1) ans = Math.min(ans, i - idx);
+                    idx = i;
+                }
+            }
         }
-        return res;
+        return ans;
     }
+
 }

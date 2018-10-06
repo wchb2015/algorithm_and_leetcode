@@ -12,33 +12,26 @@ import java.util.Map;
 public class S763 {
 
     public List<Integer> partitionLabels(String s) {
-        LinkedList<Integer> list = new LinkedList<>();
+        List<Integer> ans = new LinkedList<>();
 
         int len = s.length();
+        int[] last = new int[26];
 
-        if (len <= 1) {
-            list.add(len);
-            return list;
-        }
+        for (int i = 0; i < len; i++) last[s.charAt(i) - 'a'] = i;
 
-        // key: Character in S.
-        // value: index of key where key occurs last
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            map.put(s.charAt(i), i);
-        }
 
         for (int i = 0; i < len; ) {
-            int last = map.get(s.charAt(i));
+            int lastIdx = last[s.charAt(i) - 'a'];
             int j = i + 1;
-            while (j <= last) {
-                last = Math.max(last, map.get(s.charAt(j)));
+
+            while (j <= lastIdx) {
+                lastIdx = Math.max(lastIdx, last[s.charAt(j) - 'a']);
                 j++;
             }
-            list.add(last - i + 1);
-            i = last + 1;
+            ans.add(lastIdx - i + 1);
+            i = lastIdx + 1;
         }
 
-        return list;
+        return ans;
     }
 }
