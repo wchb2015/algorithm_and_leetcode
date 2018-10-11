@@ -27,27 +27,27 @@ public class S271 {
 
     // Decodes a single string to a list of strings.
     public List<String> decode(String s) {
-
         if (s == null) return null;
-        if (s.equals("")) return new LinkedList<>();
+        List<String> ans = new LinkedList<>();
+        if (s.equals("")) return ans;
 
-        List<String> ret = new LinkedList<>();
-
-        int index = 0, start = 0;
+        int numStart = 0;
         while (true) {
-            index = s.indexOf("#", index);
-            if (index == -1) {
-                break;
+            int idx = s.indexOf("#", numStart);
+
+            if (idx == -1) break;
+
+            int len = Integer.parseInt(s.substring(numStart, idx));
+            if (len == 0) {
+                ans.add("");
+            } else {
+                String curStr = s.substring(idx + 1, idx + 1 + len);
+                ans.add(curStr);
             }
-            int length = Integer.parseInt(s.substring(start, index));
 
-            ret.add(length == 0 ? "" : s.substring(index + 1, index + 1 + length));
-
-            index += (length + 1);
-            start = index;
+            numStart = (idx + len + 1);
         }
 
-        return ret;
-
+        return ans;
     }
 }
