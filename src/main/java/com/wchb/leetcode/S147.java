@@ -6,34 +6,24 @@ package com.wchb.leetcode;
 public class S147 {
 
     public ListNode insertionSortList(ListNode head) {
+        if (head == null || head.next == null) return head;
         ListNode dummyHead = new ListNode(-1);
         dummyHead.next = head;
-
-
-        ListNode cur = head;
-        while (cur != null && cur.next != null) {
-            //Compare and Insert
-            if (cur.val > cur.next.val) {
-                //current head;
-                ListNode tmp = cur.next;
+        ListNode curP = head;
+        while (curP != null && curP.next != null) {
+            if (curP.val > curP.next.val) {
+                ListNode next = curP.next;
                 ListNode pre = dummyHead;
-
-                cur.next = tmp.next;
-
-
-                while (pre.next.val <= tmp.val) {
+                curP.next = next.next;
+                while (pre.next.val <= next.val) {
                     pre = pre.next;
                 }
-
-                tmp.next = pre.next;
-                pre.next = tmp;
-
+                next.next = pre.next;
+                pre.next = next;
             } else {
-                cur = cur.next;
+                curP = curP.next;
             }
         }
-
-
         return dummyHead.next;
     }
 
