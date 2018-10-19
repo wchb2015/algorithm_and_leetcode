@@ -17,6 +17,16 @@ public class LeetCodeTest {
 
 
     @Test
+    public void test205() {
+        new S205().isIsomorphic("egg", "add");
+    }
+
+    @Test
+    public void test560() {
+        new S560().subarraySumV2(new int[]{1, 1, 1}, 2);
+    }
+
+    @Test
     public void test438() {
         new S438().findAnagrams("cbaebabacd", "abc");
     }
@@ -513,7 +523,7 @@ public class LeetCodeTest {
 
     @Test
     public void test448() {
-        new S448().findDisappearedNumbers(new int[]{4, 3, 2, 7, 8, 2, 3, 1});
+        new S448().findDisappearedNumbersV1(new int[]{4, 3, 2, 7, 8, 2, 3, 1});
     }
 
 
