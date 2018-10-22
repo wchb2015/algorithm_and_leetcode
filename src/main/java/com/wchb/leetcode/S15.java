@@ -15,39 +15,26 @@ public class S15 {
 
     public List<List<Integer>> threeSum(int[] nums) {
 
-        List<List<Integer>> ret = new LinkedList<>();
         Arrays.sort(nums);
+        List<List<Integer>> res = new LinkedList<>();
 
-        int index = 0;
-
-        while (index < nums.length - 2) {
-            if (nums[index] > 0) break;
-
-            int start = index + 1;
-            int end = nums.length - 1;
-
-            while (start < end) {
-                if (nums[start] + nums[end] == -nums[index]) {
-                    ret.add(Arrays.asList(nums[index], nums[start], nums[end]));
-                    // continue to look for other pairs
-                    while (start < end && nums[start] == nums[start + 1]) start++;
-                    start++;
-                    while (end > start && nums[end] == nums[end - 1]) end--;
-                    end--;
-                } else if (nums[start] + nums[end] < -nums[index]) {
-                    while (start < end && nums[start] == nums[start + 1]) start++;
-                    start++;
-                } else {
-                    while (end > start && nums[end] == nums[end - 1]) end--;
-                    end--;
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i == 0 || (nums[i] > nums[i - 1])) {
+                int lo = i + 1, hi = nums.length - 1, sum = 0 - nums[i];
+                while (lo < hi) {
+                    if (nums[lo] + nums[hi] == sum) {
+                        res.add(Arrays.asList(nums[i], nums[lo], nums[hi]));
+                        while (lo < hi && nums[lo] == nums[lo + 1]) lo++;
+                        while (lo < hi && nums[hi] == nums[hi - 1]) hi--;
+                        lo++;
+                        hi--;
+                    } else if (nums[lo] + nums[hi] < sum) lo++;
+                    else hi--;
                 }
             }
-
-            while (index < nums.length - 2 && nums[index] == nums[index + 1]) index++;
-            index++;
         }
 
-        return ret;
+        return res;
     }
 
 

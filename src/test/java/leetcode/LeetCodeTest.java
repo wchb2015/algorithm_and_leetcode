@@ -346,8 +346,10 @@ public class LeetCodeTest {
 
     @Test
     public void test15() {
+        new S15().threeSum(new int[]{-2, 0, 0, 2, 2});
         new S15().threeSum(new int[]{-1, 0, 1, 2, -1, -4});
         new S15().threeSum(new int[]{0, 0, 0});
+
     }
 
 
