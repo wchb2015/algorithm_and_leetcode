@@ -31,7 +31,7 @@ public class S127 {
 
                 for (int j = 0; j < top.length(); j++) {
                     char[] word = top.toCharArray();
-                    for (char ch = 'a'; ch < 'z'; ch++) {
+                    for (char ch = 'a'; ch <= 'z'; ch++) {
                         word[j] = ch;
                         String check = new String(word);
                         if (set.contains(check)) {
@@ -44,6 +44,26 @@ public class S127 {
         }
 
         return 0;
+    }
+
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> ans = new LinkedList<>();
+
+        LinkedList<String> queue = new LinkedList<>();
+        if (!wordList.contains(endWord)) return ans;
+
+        queue.add(beginWord);
+        wordList.remove(beginWord);
+        int level = 0;
+
+        while (!queue.isEmpty()) {
+            level++;
+
+            
+        }
+
+
+        return ans;
     }
 
 }
