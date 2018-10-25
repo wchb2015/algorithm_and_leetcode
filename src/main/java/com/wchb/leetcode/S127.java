@@ -59,7 +59,7 @@ public class S127 {
         while (!queue.isEmpty()) {
             level++;
 
-            
+
         }
 
 
