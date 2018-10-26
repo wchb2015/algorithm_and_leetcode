@@ -9,31 +9,47 @@ public class S394 {
 
     //递归解法
     public String decodeString(String s) {
-        int i = 0;
-        return decode(s, i);
-    }
 
-    private String decode(String s, int i) {
-        String res = "";
-        int n = s.length();
-        while (i < n && s.charAt(i) != ']') {
-            if (s.charAt(i) < '0' || s.charAt(i) > '9') {
-                res += s.charAt(i++);
+        if (s == null || s.length() == 0) return s;
+        if (!s.contains("[")) return s;
+
+        Stack<Integer> stack1 = new Stack<>();
+        Stack<String> stack2 = new Stack<>();
+
+        char[] arr = s.toCharArray();
+        String num = "";
+        String temp = "";
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= '0' && arr[i] <= '9') {
+                if (temp.length() > 0) {
+                    stack2.push(temp);
+                }
+                temp = "";
+                num += arr[i];
             } else {
-                int cnt = 0;
-                while (i < n && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
-                    cnt = cnt * 10 + s.charAt(i++) - '0';
+                temp += arr[i];
+                if (num.length() > 0) {
+                    stack1.push(Integer.parseInt(num));
                 }
-                ++i;
-                String t = decode(s, i);
-                ++i;
-                while (cnt-- > 0) {
-                    res += t;
-                }
+                num = "";
             }
+        }
+
+
+        String res = "";
+        int firstSquare = s.charAt('[');
+        int lastSquare = s.charAt(']');
+        int freq = Integer.parseInt(s.substring(0, firstSquare));
+
+        //String temp = decodeString(s.substring(firstSquare + 1, lastSquare));
+        while (freq > 0) {
+            res += temp;
+            freq--;
         }
         return res;
     }
+
 
     /************************************************************/
 

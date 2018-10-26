@@ -15,7 +15,6 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
-
     @Test
     public void test205() {
         new S205().isIsomorphic("egg", "add");
@@ -600,6 +599,19 @@ public class LeetCodeTest {
         maxStack.top();
         maxStack.peekMax();
         maxStack.pop();
+        maxStack.top();
+    }
+
+    @Test
+    public void test716V2() {
+        MaxStack716 maxStack = new MaxStack716();
+
+        maxStack.push(5);
+        maxStack.push(1);
+        maxStack.push(-5);
+
+        maxStack.popMax();
+        maxStack.popMax();
         maxStack.top();
     }
 

@@ -1,38 +1,44 @@
 package com.wchb.leetcode;
 
-import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.Stack;
 
 /**
  * @date 7/16/18 7:14 PM
  */
 public class MinStack155 {
-    LinkedList<Integer> list;
-    PriorityQueue<Integer> priorityQueue;
+
+    Stack<Integer> stack1;
+    Stack<Integer> stack2;
 
     /**
      * initialize your data structure here.
      */
     public MinStack155() {
-        list = new LinkedList<>();
-        priorityQueue = new PriorityQueue<>();
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
+        stack2.push(Integer.MAX_VALUE);
     }
 
     public void push(int x) {
-        list.addFirst(x);
-        priorityQueue.add(x);
+        stack1.push(x);
+
+        if (!stack2.isEmpty() && stack2.peek() >= x) {
+            stack2.push(x);
+        }
     }
 
     public void pop() {
-        int i = list.removeFirst();
-        priorityQueue.remove(i);
+        int x = stack1.pop();
+        if (x == stack2.peek()) {
+            stack2.pop();
+        }
     }
 
     public int top() {
-        return list.getFirst();
+        return stack1.peek();
     }
 
     public int getMin() {
-        return priorityQueue.peek();
+        return stack2.peek();
     }
 }
