@@ -6,7 +6,10 @@ package com.wchb.leetcode;
 public class S44 {
 
 
-    public boolean comparison(String str, String pattern) {
+    /************************************************************/
+
+
+    public boolean isMatch(String str, String pattern) {
 
         int s = 0, p = 0, match = 0, starIdx = -1;
         while (s < str.length()) {
@@ -38,63 +41,61 @@ public class S44 {
 
     /************************************************************/
 
-/*
 
-T is a two-dimensional boolean array and t[i][j] is indicating that is the substring in the string from 0 till i
- and the substring in pattern 0 to j are they a match or not.
+// boolean[][] t is a two-dimensional boolean array and t[i][j] is indicating that is the substring in the string
+// from 0 till i and the substring in pattern 0 to j are they a match or not.
+// t[i][j] will take one of these  three values here.
 
-    t[i][j] will take one of these  three values here.
+//    t[i][j]= t[i-1][j-1]  if(s[i]==p[j]||p[j]==‘?’)
+//    t[i][j]= t[i-1][j]||t[i][j-1]  if p[j]==‘*’
+//    t[i][j]= false
+    public boolean isMatchV1(String str, String pattern) {
+        int n = str.length();
+        int m = pattern.length();
 
-    t[i][j]=t[i-1][j-1] if(s[i]==p[j]||p[j]==‘?’)
-    t[i-1][j]||t[i][j-1] if p[j]==‘*’
-    false*/
-    public boolean isMatch(String s, String p) {
+        // empty pattern can only match with empty string
+        if (m == 0) return (n == 0);
 
-        boolean[][] match = new boolean[s.length() + 1][p.length() + 1];
-        match[0][0] = true;
-        for (int j = 0; j < p.length(); j++) {
-            if (p.charAt(j) == '*') {
-                match[s.length()][j] = true;
-                if (j == p.length() - 1) match[s.length()][p.length()] = true;
-            } else {
-                break;
+        // lookup table for storing results of sub problems
+        boolean[][] lookup = new boolean[n + 1][m + 1];
+
+        // initialize lookup table to false
+
+        // empty pattern can match with empty string
+        lookup[0][0] = true;
+
+        // Only '*' can match with empty string
+        for (int j = 1; j <= m; j++)
+            if (pattern.charAt(j - 1) == '*')
+                lookup[0][j] = lookup[0][j - 1];
+
+        // fill the table in bottom-up fashion
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                // Two cases if we see a '*'
+                // a) We ignore '*'' character and move
+                //    to next  character in the pattern,
+                //     i.e., '*' indicates an empty sequence.
+                // b) '*' character matches with ith
+                //     character in input
+                if (pattern.charAt(j - 1) == '*')
+                    lookup[i][j] = lookup[i][j - 1] ||
+                            lookup[i - 1][j];
+
+                    // Current characters are considered as
+                    // matching in two cases
+                    // (a) current character of pattern is '?'
+                    // (b) characters actually match
+                else if (pattern.charAt(j - 1) == '?' ||
+                        str.charAt(i - 1) == pattern.charAt(j - 1))
+                    lookup[i][j] = lookup[i - 1][j - 1];
+
+                    // If characters don't match
+                else lookup[i][j] = false;
             }
         }
-        for (int i = 1; i < s.length(); i++) {
-            for (int j = 1; j < p.length(); j++) {
-                if (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?')
-                    match[i][j] = match[i - 1][j - 1];
-                else if (p.charAt(j) == '*')
-                    match[i][j] = match[i - 1][j] || match[i][j - 1];
-                else
-                    match[i][j] = false;
-            }
-        }
-        return match[s.length()][p.length()];
+
+        return lookup[n][m];
 
     }
-
-    public boolean isMatchV2(String s, String p) {
-        boolean[][] match = new boolean[s.length() + 1][p.length() + 1];
-        match[s.length()][p.length()] = true;
-        for (int i = p.length() - 1; i >= 0; i--) {
-            if (p.charAt(i) != '*')
-                break;
-            else
-                match[s.length()][i] = true;
-        }
-        for (int i = s.length() - 1; i >= 0; i--) {
-            for (int j = p.length() - 1; j >= 0; j--) {
-                if (s.charAt(i) == p.charAt(j) || p.charAt(j) == '?')
-                    match[i][j] = match[i + 1][j + 1];
-                else if (p.charAt(j) == '*')
-                    match[i][j] = match[i + 1][j] || match[i][j + 1];
-                else
-                    match[i][j] = false;
-            }
-        }
-        return match[0][0];
-    }
-
-
 }
