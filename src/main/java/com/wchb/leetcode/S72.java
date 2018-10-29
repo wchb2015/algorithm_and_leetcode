@@ -35,6 +35,9 @@ public class S72 {
         return ans;
     }
 
+
+    //https://leetcode.com/problems/edit-distance/discuss/25849/Java-DP-solution-O(nm)/192017
+
     /************************************************************/
     public int minDistanceV2(String word1, String word2) {
         int len1 = word1.length();
