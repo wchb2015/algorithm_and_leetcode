@@ -1,8 +1,6 @@
 package com.wchb.leetcode;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @date 7/23/18 4:51 PM
@@ -28,7 +26,8 @@ public class S120 {
 
         if (x == triangle.size() - 1) return triangle.get(x).get(y);
 
-        int ret = Math.min(minimum(x + 1, y, triangle), minimum(x + 1, y + 1, triangle)) + row.get(y);
+        int ret = Math.min(minimum(x + 1, y, triangle),
+                minimum(x + 1, y + 1, triangle)) + row.get(y);
         map.put(x + "," + y, ret);
         return ret;
     }
@@ -72,6 +71,31 @@ public class S120 {
         }
 
         return sum[0];
+    }
+
+    /************************************************************/
+
+    public int minimumTotalV4(List<List<Integer>> triangle) {
+        if (triangle.isEmpty()) return 0;
+        //As we iterate, prevRow stores the minimum path sum to each entry in triangle.get(i-1)
+
+        List<Integer> prevRow = new ArrayList<>(triangle.get(0));
+        for (int i = 1; i < triangle.size(); i++) {
+            // Stores the minimum path sum to each entry in triangle.get(i)
+            List<Integer> currRow = new ArrayList<>(triangle.get(i));
+            // For the first element
+            currRow.set(0, currRow.get(0) + prevRow.get(0));
+            for (int j = 1; j < currRow.size() - 1; j++) {
+                currRow.set(j, currRow.get(j) + Math.min(prevRow.get(j - 1), prevRow.get(j)));
+            }
+
+            // For the last element
+            currRow.set(currRow.size() - 1, currRow.get((currRow.size() - 1)) + prevRow.get((prevRow.size() - 1)));
+
+            prevRow = currRow;
+        }
+
+        return Collections.min(prevRow);
     }
 
 }
