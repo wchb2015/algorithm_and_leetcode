@@ -1,4 +1,4 @@
-package com.wchb.geeks4geeks.graph;
+package com.wchb.geeks4geeks;
 
 import java.util.Iterator;
 import java.util.LinkedList;

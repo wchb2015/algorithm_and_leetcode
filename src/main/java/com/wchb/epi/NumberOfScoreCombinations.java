@@ -3,7 +3,7 @@ package com.wchb.epi;
 /**
  * @date 10/28/18 4:13 PM
  */
-public class Epi171 {
+public class NumberOfScoreCombinations {
 
 
     //tc : O(sn)
