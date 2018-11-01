@@ -17,6 +17,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test800() {
+        new S800().similarRGB("#09f166");
+    }
+
+    @Test
     public void test44() {
         new S44().isMatch("aa", "*");
     }
