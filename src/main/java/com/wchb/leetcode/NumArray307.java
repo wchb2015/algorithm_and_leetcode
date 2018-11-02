@@ -17,7 +17,7 @@ public class NumArray307 {
                 data[i] = nums[i];
             }
 
-            segmentTree = new SegmentTree<>(data, (a, b) -> a + b);
+            segmentTree = new SegmentTree<>(data, (a, b) -> Math.min(a, b));
         }
 
     }
