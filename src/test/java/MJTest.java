@@ -1,7 +1,7 @@
 import com.wchb.course2.chapter8.AcmeSubstring;
-import com.wchb.course2.chapter8.AcmeSubstring;
 import com.wchb.leetcode.SplittingPixels;
-import com.wchb.mj.*;
+import com.wchb.mj.coursera.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -50,6 +50,7 @@ public class MJTest {
     public void test06() {
         System.out.println(new AcmeSubstring().firstOccurrence("xcattatcatta", "cat*a"));
         System.out.println(new AcmeSubstring().firstOccurrence("thisthisthisthis", "this"));
+        System.out.println(new AcmeSubstring().firstOccurrence("juliasamanthant", "ant"));
     }
 
     @Test
@@ -57,5 +58,64 @@ public class MJTest {
         System.out.println(new TaskMaster().solution(7,
                 new int[]{1, 2, 3, 4, 6, 5},
                 new int[]{7, 6, 4, 1, 2, 1}));
+    }
+
+
+    @Test
+    public void test08() {
+        System.out.println(new PackingMelons().solution(
+                new int[]{5, 1, 4, 3, 2},
+                new int[]{6, 2, 7, 5, 1}));
+
+
+        System.out.println(new PackingMelons().solution(
+                new int[]{5, 1, 4, 3, 2},
+                new int[]{1, 1, 1, 3, 1}));
+    }
+
+
+    @Test
+    public void test09() {
+        System.out.println(new Triplets().solution(new int[]{5, 1, 4, 3, 2}, 10));
+        System.out.println("-----------------------------------------------------");
+        System.out.println(new Triplets().solution(new int[]{5, 1, 4, 3, 2}, 20));
+    }
+
+
+    @Test
+    public void test10() {
+        //1770
+        System.out.println(new CuttingMetalSurplus().solution(1, 10, new int[]{26, 103, 59}));
+        System.out.println("-----------------------------------------------------");
+        //1230
+        System.out.println(new CuttingMetalSurplus().solution(100, 10, new int[]{
+                3, 26, 103, 59
+        }));
+        //10
+        System.out.println(new CuttingMetalSurplus().solution(1000, 1, new int[]{
+                6, 5, 5
+        }));
+
+    }
+
+    @Test
+    public void test11() {
+        System.out.println(new ApproximateMatching().solution2("nothing", "bruno", "ingenious"));
+        System.out.println(new ApproximateMatching().solution2("ab", "b", "a"));
+        System.out.println(new ApproximateMatching().solution2("ba", "c", "d"));
+        System.out.println(new ApproximateMatching().solution2("engine", "raven", "ginkngo"));
+    }
+
+
+    @Test
+    public void test12() {
+        Assert.assertEquals("!!!", "1100", new MagicBinaryString().solution("1100"));
+        Assert.assertEquals("!!!", "11100100", new MagicBinaryString().solution("11011000"));
+
+        Assert.assertEquals("!!!", "1101001100", new MagicBinaryString().solution("1101001100"));
+        Assert.assertEquals("!!!", "1110010010", new MagicBinaryString().solution("1101100010"));
+        Assert.assertEquals("!!!", "1100101100", new MagicBinaryString().solution("1011001100"));
+
+
     }
 }

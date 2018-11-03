@@ -1,4 +1,4 @@
-package com.wchb.mj;
+package com.wchb.mj.coursera;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

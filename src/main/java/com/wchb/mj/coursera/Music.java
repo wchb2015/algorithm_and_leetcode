@@ -1,4 +1,4 @@
-package com.wchb.mj;
+package com.wchb.mj.coursera;
 
 /**
  * @date 11/1/18 7:36 AM
