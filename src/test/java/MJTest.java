@@ -4,7 +4,9 @@ import com.wchb.mj.coursera.*;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * @date 10/31/18 11:44 AM
@@ -58,6 +60,8 @@ public class MJTest {
         System.out.println(new TaskMaster().solution(7,
                 new int[]{1, 2, 3, 4, 6, 5},
                 new int[]{7, 6, 4, 1, 2, 1}));
+        System.out.println(new TaskMaster().solution(2, new int[]{1, 2}, new int[]{2, 1}));
+        System.out.println(new TaskMaster().solution(2, new int[]{}, new int[]{}));
     }
 
 
@@ -115,6 +119,25 @@ public class MJTest {
         Assert.assertEquals("!!!", "1101001100", new MagicBinaryString().solution("1101001100"));
         Assert.assertEquals("!!!", "1110010010", new MagicBinaryString().solution("1101100010"));
         Assert.assertEquals("!!!", "1100101100", new MagicBinaryString().solution("1011001100"));
+
+
+    }
+
+
+    @Test
+    public void test13() {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+
+        arrayList.add(2);
+        arrayList.add(6);
+
+        arrayList.add(1);
+
+        Collections.sort(arrayList);
+        System.out.println(arrayList);
+
+
+        System.out.println(arrayList.get(arrayList.size() - 1));
 
 
     }

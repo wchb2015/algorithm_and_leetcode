@@ -17,7 +17,7 @@ public class CuttingMetalSurplus {
         for (int i = max; i >= 1; i--) {
             int temp = helper(i, curCost, unitPrice, lengths);
             if (temp <= 0) {
-                return ans > 0 ? ans : getNoCutProfit(curCost, unitPrice, lengths);
+                return ans > 0 ? ans : getNoCutProfit(unitPrice, lengths);
             }
             ans = Math.max(ans, temp);
         }
@@ -26,7 +26,7 @@ public class CuttingMetalSurplus {
         return ans;
     }
 
-    private int getNoCutProfit(int curCost, int unitPrice, int[] lengths) {
+    private int getNoCutProfit( int unitPrice, int[] lengths) {
         int length = lengths[0];
         int totalUniformRods = 0;
 

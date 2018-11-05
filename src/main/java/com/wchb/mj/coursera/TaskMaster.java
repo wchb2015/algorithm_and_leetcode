@@ -36,7 +36,12 @@ public class TaskMaster {
     public void dfs(Graph graph, Integer vertex, HashSet<Integer> visited, HashSet<Integer> candidates) {
 
         candidates.add(vertex);
-        if (graph.adj(vertex) == null) return;
+        if (graph.adj(vertex) == null) {
+            candidates.remove(vertex);
+            visited.add(vertex);
+            return;
+        }
+
         for (Integer adj : graph.adj(vertex)) {
 
             if (candidates.contains(adj)) {
@@ -55,17 +60,17 @@ public class TaskMaster {
 
     private class Graph {
         private Map<Integer, List<Integer>> g; // 图的具体数据
-        private HashSet<Integer> vertexs;
+        private HashSet<Integer> vertices;
 
 
         public Graph() {
             g = new HashMap<>();
-            vertexs = new HashSet<>();
+            vertices = new HashSet<>();
         }
 
         public void addEdge(int from, int to) {
-            vertexs.add(from);
-            vertexs.add(to);
+            vertices.add(from);
+            vertices.add(to);
             if (!g.containsKey(from)) {
                 g.put(from, new LinkedList<>());
             }
@@ -78,7 +83,7 @@ public class TaskMaster {
         }
 
         public HashSet<Integer> vertexs() {
-            return vertexs;
+            return vertices;
         }
     }
 
