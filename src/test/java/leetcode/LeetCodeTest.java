@@ -17,6 +17,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test340() {
+        System.out.println(new S340().lengthOfLongestSubstringKDistinct("abaccc", 2));
+    }
+
+    @Test
     public void test800() {
         new S800().similarRGB("#09f166");
     }
