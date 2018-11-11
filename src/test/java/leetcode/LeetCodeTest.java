@@ -3,7 +3,6 @@ package leetcode;
 import com.wchb.course3.chapter5.ListNode;
 import com.wchb.leetcode.*;
 import com.wchb.model.Point;
-import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +14,11 @@ import java.util.List;
 public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
+
+    @Test
+    public void test424() {
+        new S424().characterReplacement("AABABBA", 1);
+    }
 
     @Test
     public void test340() {

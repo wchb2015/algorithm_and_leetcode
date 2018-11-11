@@ -1,33 +1,28 @@
 package com.wchb.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * @date 11/6/18 7:50 PM
  */
 public class S340 {
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
-        int n = s.length();
-        int ans = 0;
+        int[] count = new int[256];
+        int distinct = 0, l = 0, ans = 0;
 
-        int l = 0;
-        int r = 0;
+        for (int r = 0; r < s.length(); r++) {
+            if (count[s.charAt(r)] == 0) distinct++;
+            count[s.charAt(r)]++;
 
-        Set<Character> set = new HashSet<>();
+            //if there are more distinct char. Start removing from left until distinct Chars == k
+            while (distinct > k) {
+                count[s.charAt(l)]--;
 
-        while (l < n && r < n) {
-            set.add(s.charAt(r));
-            if (set.size() > k) {
-                set.remove(s.charAt(l++));
-            } else {
-                ans = Math.max(ans, r - l + 1);
-                r++;
+                if (count[s.charAt(l)] == 0) distinct--;
+
+                l++;
             }
+            ans = Math.max(ans, r - l + 1);
 
         }
-
-
         return ans;
     }
 }
