@@ -6,33 +6,30 @@ package com.wchb.leetcode;
 public class S443 {
     public int compress(char[] chars) {
 
-        int len = chars.length;
-        if (len == 1) return len;
+        int count = 1;
+        int ans = 0;
+        int n = chars.length;
+        if (n == 1) return 1;
 
-        int i = 0, j = 0, count;
-
-        while (j < len) {
-
-            char curChar = chars[j];
-            count = 0;
-
-            while (j + 1 < len && chars[j + 1] == curChar) {
-                count++;
-                j++;
-            }
-
-            chars[i++] = curChar;
-            if (count > 1) {
-                for (char c : String.valueOf(count).toCharArray()) {
-                    chars[i++] = c;
+        for (int i = 1; i <= n; i++) {
+            if (i == n || chars[i] != chars[i - 1]) {
+                //Found new characters so write the count   of previous character
+                chars[ans++] = chars[i - 1];
+                if (count > 1) {
+                    for (int k = 0; k < String.valueOf(count).length(); k++) {
+                        chars[ans++] = String.valueOf(count).charAt(k);
+                    }
                 }
+
+                count = 1;
+            } else {
+                //chars[i]==chars[i-1]
+                count++;
+
             }
-
-            j++;
-
         }
 
 
-        return i + 1;
+        return ans;
     }
 }
