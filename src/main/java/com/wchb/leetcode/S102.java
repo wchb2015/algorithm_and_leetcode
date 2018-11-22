@@ -13,36 +13,25 @@ public class S102 {
 
 
     public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ans = new LinkedList<>();
+        createLevelLinkedList(root, ans, 0);
+        return ans;
+    }
 
-        Queue<Pair<TreeNode, Integer>> q = new LinkedList<>();
-        List<List<Integer>> ret = new LinkedList<>();
 
-        if (root == null) {
-            return ret;
+    private void createLevelLinkedList(TreeNode root, List<List<Integer>> lists, int level) {
+        if (root == null) return;//base case;
+        List<Integer> list;
+        if (lists.size() == level) {
+            list = new LinkedList<>();
+            lists.add(list);
+        } else {
+            list = lists.get(level);
         }
 
-        q.add(new Pair<>(root, 0));
-        while (!q.isEmpty()) {
-
-            Pair<TreeNode, Integer> pair = q.remove();
-
-            TreeNode node = pair.getKey();
-            int level = pair.getValue();
-
-            if (level == ret.size()) {
-                ret.add(new LinkedList<>());
-            }
-
-            ret.get(level).add(node.val);
-
-            if (node.left != null) {
-                q.add(new Pair<>(node.left, level + 1));
-            }
-            if (node.right != null) {
-                q.add(new Pair<>(node.right, level + 1));
-            }
-        }
-        return ret;
+        list.add(root.val);
+        createLevelLinkedList(root.left, lists, level + 1);
+        createLevelLinkedList(root.right, lists, level + 1);
     }
 
 
@@ -57,20 +46,3 @@ public class S102 {
     }
 
 }
-
-//    // 二分搜索树的层序遍历
-//    public void levelOrder() {
-//        // 我们使用LinkedList来作为我们的队列
-//        Queue<Node> q = new LinkedList<>();
-//        q.add(root);
-//        while (!q.isEmpty()) {
-//            Node node = q.remove();
-//            System.out.println(node.key);
-//            if (node.left != null) {
-//                q.add(node.left);
-//            }
-//            if (node.right != null) {
-//                q.add(node.right);
-//            }
-//        }
-//    }
