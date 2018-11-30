@@ -138,7 +138,8 @@ public class MJTest {
 
 
         System.out.println(arrayList.get(arrayList.size() - 1));
-
-
     }
+
+
+
 }
