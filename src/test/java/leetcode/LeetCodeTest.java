@@ -16,6 +16,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test792() {
+        new S792().numMatchingSubseq("abcde", new String[]{"a", "bb", "acd", "ace"});
+    }
+
+    @Test
     public void test443() {
         new S443().compress(new char[]{'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'});
     }
