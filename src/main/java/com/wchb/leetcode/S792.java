@@ -33,19 +33,21 @@ public class S792 {
     private boolean isMatch(String word, Map<Character, ArrayList> map) {
 
         int lastIndex = -1;
-        for (int i = 0; i < word.length(); i++) {
+        int i = 0;
+        for (; i < word.length(); i++) {
             ArrayList<Integer> indexs = map.get(word.charAt(i));
             if (indexs.size() == 0) return false;
-
+            boolean find = false;
             for (int j = 0; j < indexs.size(); j++) {
                 if (indexs.get(j) <= lastIndex) continue;
                 lastIndex = indexs.get(j);
+                find = true;
                 break;
             }
-            if (lastIndex >= word.length()) return false;
+            if (!find) return false;
         }
 
 
-        return lastIndex == word.length() - 1;
+        return i == word.length();
     }
 }

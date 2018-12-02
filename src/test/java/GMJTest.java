@@ -1,4 +1,7 @@
 import com.wchb.mj.dreamG.Email;
+import com.wchb.mj.dreamG.MatrixOfWords;
+import com.wchb.mj.dreamG.NumberOfSubstringsWithoutUsingAllAlphabets;
+import com.wchb.mj.dreamG.StringOrder;
 import org.junit.Test;
 
 /**
@@ -17,5 +20,28 @@ public class GMJTest {
                 "d.u.p.l.i.c.a.t.e@example.com", "ab+work@example.com"
         }));
 
+    }
+
+
+    @Test
+    public void testMatrixOfWords() {
+        boolean res = new MatrixOfWords().solution(new String[][]{
+                {"cat", "dog", "tail"}, {"target", "tag", "goal"}
+        }, "cat", "goal");
+
+        System.out.println(res);
+    }
+
+    @Test
+    public void testNumberOfSubstringsWithoutUsingAllAlphabets() {
+        System.out.println(new NumberOfSubstringsWithoutUsingAllAlphabets().solution(
+                "abbacaaaa", new char[]{'a', 'b', 'c'}
+        ));
+    }
+
+    @Test
+    public void testStringOrder() {
+        System.out.println(new StringOrder().solution("google", "gole"));//false
+        System.out.println(new StringOrder().solution("google", "gle"));//true
     }
 }
