@@ -16,6 +16,11 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void testS857() {
+        new S857().mincostToHireWorkers(new int[]{10, 20, 5}, new int[]{70, 50, 30}, 2);
+    }
+
+    @Test
     public void test792() {
         new S792().numMatchingSubseq("abcde", new String[]{"a", "bb", "acd", "ace"});
     }
