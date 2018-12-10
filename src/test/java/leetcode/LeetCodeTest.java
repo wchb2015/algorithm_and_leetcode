@@ -16,6 +16,15 @@ public class LeetCodeTest {
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
     @Test
+    public void test954() {
+        System.out.println(new S954().canReorderDoubled(new int[]{3, 1, 3, 6}));//false
+        System.out.println(new S954().canReorderDoubled(new int[]{2, 1, 2, 1, 1, 1, 2, 2}));//true
+        System.out.println(new S954().canReorderDoubled(new int[]{-62, 86, 96, -18, 43, -24, -76, 13, -31, -26, -88, -13, 96, -44, 9, -20, -42, 100, -44, -24, -36, 28, -32, 58, -72, 20, 48, -36, -45, 14, 24, -64, -90, -44, -16, 86, -33, 48, 26, 29, -84, 10, 46, 50, -66, -8, -38, 92, -19,
+                43, 48, -38, -22, 18, -32, -48, -64, -10, -22, -48}));//true
+
+    }
+
+    @Test
     public void testS857() {
         new S857().mincostToHireWorkers(new int[]{10, 20, 5}, new int[]{70, 50, 30}, 2);
     }
@@ -593,21 +602,20 @@ public class LeetCodeTest {
 
         int v4 = 4;
         int[][] data4 = new int[][]{{1, 0}, {3, 0}, {2, 1}, {2, 3}};
-        System.out.println(new S207().canFinishV2(v4, data4));
-        System.out.println("----------");
+
 
 //        int v1 = 3;
 //        int[][] data1 = new int[][]{{0, 1}, {0, 2}, {1, 2}};
-//        System.out.println(new S207().canFinish(v1, data1));
+//        System.out.println(new S207DFS().canFinish(v1, data1));
 //        System.out.println("----------");
 //
 //        int v2 = 4;
 //        int[][] data2 = new int[][]{{2, 0}, {1, 0}, {3, 1}, {3, 2}, {1, 3}};
-//        System.out.println(new S207().canFinish(v2, data2));
+//        System.out.println(new S207DFS().canFinish(v2, data2));
 //
 //        int v3 = 4;
 //        int[][] data3 = new int[][]{{0, 1}, {0, 2}, {1, 2}, {2, 3}};
-//        new S207().canFinish(v3, data3);
+//        new S207DFS().canFinish(v3, data3);
 
     }
 
