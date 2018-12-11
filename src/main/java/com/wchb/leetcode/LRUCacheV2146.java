@@ -31,70 +31,84 @@ import java.util.HashMap;
  * Insert the entry to the front of the cache and update mapping
  */
 public class LRUCacheV2146 {
-    private int capacity;
-    private int size;
+
     //a hash table that keeps track of the keys and its values in the doubly linked list.
     private HashMap<Integer, Node> map;
-
-    private Node head;
+    private int size;
+    private int capacity;
     private Node tail;
+    private Node head;
 
-    private class Node {
-        int key;
-        int value;
+    class Node {
+        public Node prev;
+        public Node next;
+        public int val;
+        public int key;
 
-        Node next;
-        Node prev;
-
-        public Node(int key, int value) {
+        public Node(int key, int val) {
             this.key = key;
-            this.value = value;
+            this.val = val;
         }
     }
 
     public LRUCacheV2146(int capacity) {
+        tail = null;
+        head = null;
+        this.size = 0;
         this.capacity = capacity;
         map = new HashMap<>();
-        this.head = null;
-        this.tail = null;
     }
 
     public int get(int key) {
         Node node = map.get(key);
         if (node == null) return -1;
         move2Head(node);
-        return node.value;
+
+        return node.val;
     }
 
     public void put(int key, int value) {
         Node node = map.get(key);
+        // key already exists
         if (node != null) {
-            node.value = value;
+            node.val = value;
             move2Head(node);
         } else {
+            node = new Node(key, value);
+            map.put(key, node);
             if (size == capacity) {
-                Node del = removeLast();
-                map.remove(del.key);
-                size--;
+                removeLast();
             }
-
-            Node newNode = new Node(key, value);
-            map.put(key, newNode);
-            addFirst(newNode);
-            size++;
+            addFirst(node);
         }
     }
 
+    // 1(map size)
+    private void addFirst(Node node) {
+        map.put(node.key, node);
+        if (tail == null) {
+            head = node;
+            tail = node;
+        } else {
+            node.next = head;
+            head.prev = node;
+            head = head.prev;
+            head.prev = null;
+        }
+        size++;
+    }
+
+    // 2
     private void move2Head(Node node) {
         if (node == head) return;
-        removeNode(node);
+        remove(node);
         addFirst(node);
     }
 
-    private Node removeLast() {
-
-        Node node = tail;
-
+    // 3 (map size)
+    private void removeLast() {
+        if (size == 0) return;
+        map.remove(tail.key);
         if (tail.prev != null) {
             tail.prev.next = null;
             tail = tail.prev;
@@ -102,39 +116,33 @@ public class LRUCacheV2146 {
             head = null;
             tail = null;
         }
-
-        return node;
+        size--;
     }
 
-    private Node removeNode(Node node) {
+    // 4 (map size)
+    private void remove(Node node) {
+        if (size == 0) return;
+        if (node.next == null) {
+            removeLast();
+        } else if (node.prev == null) {
+            head = head.next;
+            head.prev = null;
 
-        if (node == null) return node;
-
-        if (node.prev != null) {
-            node.prev.next = node.next;
-        }
-        if (node.next != null) {
-            node.next.prev = node.prev;
+            size--;
+            map.remove(node.key);
         } else {
-            tail = tail.prev;
+            Node prev = node.prev;
+
+            prev.next = node.next;
+            node.next.prev = node.prev;
+
+            node.next = null;
+            node.prev = null;
+
+            size--;
+            map.remove(node.key);
         }
 
-        node.prev = null;
-        node.next = null;
-        return node;
-    }
-
-    private void addFirst(Node newNode) {
-        if (head == null) {
-            head = newNode;
-            tail = newNode;
-            return;
-        }
-
-        head.prev = newNode;
-        newNode.next = head;
-        newNode.prev = null;
-        head = newNode;
     }
 
 }

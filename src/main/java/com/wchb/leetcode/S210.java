@@ -8,44 +8,39 @@ import java.util.Queue;
  */
 public class S210 {
 
-
-    // [0,1]:to take course 0 you have to first take course 1
-    // edge[0] in
-    // edge[1] out
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-
+        int[] inDegree = new int[numCourses];
         int[] ans = new int[numCourses];
         int idx = 0;
-        int[] inDegree = new int[numCourses];
-        int res = numCourses;
         for (int[] edge : prerequisites) {
             inDegree[edge[0]]++;
         }
+        Queue<Integer> q = new LinkedList<>();
 
-        Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < inDegree.length; i++) {
             if (inDegree[i] == 0) {
+                q.offer(i);
                 ans[idx++] = i;
-                queue.offer(i);
             }
         }
 
-        while (!queue.isEmpty()) {
-            int in = queue.poll();
-            res--;
+        while (!q.isEmpty()) {
+
+            int in = q.poll();
             for (int[] edge : prerequisites) {
-                // remove that vertex and its outgoing edges
-                // from the graph and repeat with the remaining graph.
                 if (edge[1] == in) {
                     inDegree[edge[0]]--;
                     if (inDegree[edge[0]] == 0) {
+                        q.offer(edge[0]);
                         ans[idx++] = edge[0];
-                        queue.offer(edge[0]);
                     }
                 }
+
             }
         }
-        return res == 0 ? ans : new int[]{};
-    }
 
+
+        return idx == numCourses ? ans : new int[]{};
+
+    }
 }
