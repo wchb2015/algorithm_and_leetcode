@@ -6,7 +6,6 @@ package com.wchb.course1.chapter11;
 //基于size的优化
 public class UnionFind3 implements IUF {
 
-
     private int[] parent; // parent[i]表示第i个元素所指向的父节点
     private int[] sz;     // sz[i]表示以i为根的集合中元素个数
 

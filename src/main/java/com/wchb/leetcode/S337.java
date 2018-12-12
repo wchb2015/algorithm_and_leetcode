@@ -1,26 +1,38 @@
 package com.wchb.leetcode;
 
+import java.util.HashMap;
+
 /**
  * @date 9/9/18 1:31 PM
  */
 public class S337 {
-    //https://www.jianshu.com/p/daf2774c03ed
     public int rob(TreeNode root) {
-        int[] res = robSub(root);
-        return Math.max(res[0], res[1]);
+        return helper(root, new HashMap<>());
     }
 
-    private int[] robSub(TreeNode root) {
-        if (root == null) return new int[2];
+    private int helper(TreeNode root, HashMap<TreeNode, Integer> dp) {
+        if (root == null) return 0;
+        if (dp.containsKey(root)) return dp.get(root);
 
-        int[] left = robSub(root.left);
-        int[] right = robSub(root.right);
-        int[] res = new int[2];
+        int withRoot = root.val;
+        int withoutRoot = 0;
 
-        res[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
-        res[1] = root.val + left[0] + right[0];
+        if (root.left != null) {
+            withRoot += helper(root.left.left, dp);
+            withRoot += helper(root.left.right, dp);
+        }
 
-        return res;
+        if (root.right != null) {
+            withRoot += helper(root.right.left, dp);
+            withRoot += helper(root.right.right, dp);
+        }
+
+        withoutRoot = helper(root.left, dp) + helper(root.right, dp);
+
+
+        int ans = Math.max(withRoot, withoutRoot);
+        dp.put(root, ans);
+        return ans;
     }
 
 }

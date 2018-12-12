@@ -11,9 +11,7 @@ public class UnionFind1 implements IUF {
     private int[] id;
 
     public UnionFind1(int size) {
-
         id = new int[size];
-
         for (int i = 0; i < id.length; i++) {
             id[i] = i;//每一个元素都属于不同的集合
         }

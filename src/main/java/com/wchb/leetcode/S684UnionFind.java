@@ -12,7 +12,7 @@ public class S684UnionFind {
 
         parent = new int[edges.length + 1];
 
-        //Initially, all slots of parent array are initialized to -1
+        // Initially, all slots of parent array are initialized to -1
         // means there is only one item in every subset.
         Arrays.fill(parent, -1);
 
