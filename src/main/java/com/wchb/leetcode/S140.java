@@ -6,13 +6,14 @@ import java.util.*;
  * @date 10/26/18 6:40 PM
  */
 public class S140 {
+
     public List<String> wordBreak(String s, List<String> wordDict) {
         return word_Break(s, new HashSet<>(wordDict), 0);
     }
 
     HashMap<Integer, List<String>> map = new HashMap<>();
 
-    public List<String> word_Break(String s, Set<String> wordDict, int start) {
+    private List<String> word_Break(String s, Set<String> wordDict, int start) {
         if (map.containsKey(start)) {
             return map.get(start);
         }
@@ -21,10 +22,11 @@ public class S140 {
             res.add("");
         }
         for (int end = start + 1; end <= s.length(); end++) {
-            if (wordDict.contains(s.substring(start, end))) {
+            String subString = s.substring(start, end);
+            if (wordDict.contains(subString)) {
                 List<String> list = word_Break(s, wordDict, end);
-                for (String l : list) {
-                    res.add(s.substring(start, end) + (l.equals("") ? "" : " ") + l);
+                for (String L : list) {
+                    res.add(subString + (L.equals("") ? "" : " ") + L);
                 }
             }
         }

@@ -15,6 +15,12 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+
+    @Test
+    public void test140() {
+        new S140().wordBreak("catsanddog", Arrays.asList("cat", "cats", "and", "sand", "dog"));
+    }
+
     @Test
     public void test954() {
         System.out.println(new S954().canReorderDoubled(new int[]{3, 1, 3, 6}));//false

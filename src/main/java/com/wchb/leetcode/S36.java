@@ -1,8 +1,6 @@
 package com.wchb.leetcode;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -12,45 +10,30 @@ public class S36 {
 
     public boolean isValidSudoku(char[][] board) {
 
-        for (int i = 0; i < board.length; i++) {
-            Set<Character> rows = new HashSet<>();
-            Set<Character> cols = new HashSet<>();
-            Set<Character> cube = new HashSet<>();
+        Set<Character>[] cubes = new Set[9];
+        Set<Character>[] rows = new Set[9];
+        Set<Character>[] cols = new Set[9];
 
-            for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] != '.' && !rows.add(board[i][j])) return false;
-                if (board[j][i] != '.' && !cols.add(board[j][i])) return false;
-
-
-                int rowIndex = 3 * (i / 3);
-                int colIndex = 3 * (i % 3);
-
-                if (board[rowIndex + j / 3][colIndex + j % 3] != '.'
-                        && !cube.add(board[rowIndex + j / 3][colIndex + j % 3]))
-                    return false;
-            }
-        }
-
-
-        return true;
-    }
-
-    public boolean isValidSudokuV2(char[][] board) {
-
-        Map<Integer, Set<Character>> map = new HashMap<>();
         for (int i = 0; i < 9; i++) {
-            Set<Character> cube = new HashSet<>();
-            map.put(i, cube);
+            cubes[i] = new HashSet<>();
+            rows[i] = new HashSet<>();
+            cols[i] = new HashSet<>();
         }
 
-        for (int i = 0; i < board.length; i++) {
-            Set<Character> rows = new HashSet<>();
-            Set<Character> cols = new HashSet<>();
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                char cur = board[row][col];
+                int key = 3 * (row / 3) + col / 3;
+                if (cur == '.') continue;
+                if (rows[row].contains(cur) ||
+                        cols[col].contains(cur) ||
+                        cubes[key].contains(cur))
+                    return false;
 
-            for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] != '.' && !rows.add(board[i][j])) return false;
-                if (board[j][i] != '.' && !cols.add(board[j][i])) return false;
-                if (board[i][j] != '.' && !map.get(3 * (i / 3) + j / 3).add(board[i][j])) return false;
+                // update rows,cols,map for future iteration
+                rows[row].add(cur);
+                cols[col].add(cur);
+                cubes[key].add(cur);
             }
         }
 
