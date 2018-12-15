@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * @date 8/21/18 1:01 PM
  */
-public class S269 {
+public class S269BFS {
 
 
     // build graph

@@ -261,10 +261,10 @@ public class LeetCodeTest {
 
     @Test
     public void test269() {
-        System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt", "te"}));
-        //System.out.println(new S269().alienOrder(new String[]{"za", "zb", "ca", "cb"}));
-        //System.out.println(new S269().alienOrder(new String[]{"z", "z"}));
-        //System.out.println(new S269().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
+        System.out.println(new S269BFS().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt", "te"}));
+        //System.out.println(new S269BFS().alienOrder(new String[]{"za", "zb", "ca", "cb"}));
+        //System.out.println(new S269BFS().alienOrder(new String[]{"z", "z"}));
+        //System.out.println(new S269BFS().alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
     }
 
     @Test
@@ -451,7 +451,7 @@ public class LeetCodeTest {
     @Test
     public void test322() {
         //System.out.println(new S322().coinChange(new int[]{1, 2, 5}, 11));
-        System.out.println(new S322().coinChangeV2(new int[]{1, 2, 5}, 11));
+        System.out.println(new S322().coinChange(new int[]{1, 2, 5}, 11));
 
     }
 
