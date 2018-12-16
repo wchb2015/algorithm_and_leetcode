@@ -1,7 +1,4 @@
-import com.wchb.mj.dreamG.Email;
-import com.wchb.mj.dreamG.MatrixOfWords;
-import com.wchb.mj.dreamG.NumberOfSubstringsWithoutUsingAllAlphabets;
-import com.wchb.mj.dreamG.StringOrder;
+import com.wchb.mj.dreamG.*;
 import org.junit.Test;
 
 /**
@@ -9,6 +6,14 @@ import org.junit.Test;
  */
 // 狗家面经测试
 public class GMJTest {
+
+
+    @Test
+    public void testBoggle() {
+        System.out.println(new BoggleV3().findWords(new char[][]{{'G', 'I', 'Z'},
+                {'U', 'E', 'K'},
+                {'Q', 'S', 'E'}}, new String[]{"GEEKS", "FOR", "QUIZ", "GEE"}));
+    }
 
     @Test
     public void testEmail() {
