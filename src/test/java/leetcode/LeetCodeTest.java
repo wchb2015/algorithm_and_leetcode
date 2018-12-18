@@ -15,6 +15,13 @@ public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    @Test
+    public void test41() {
+        System.out.println(new S41().firstMissingPositive(new int[]{1}));
+        System.out.println(new S41().firstMissingPositive(new int[]{1, 0}));
+        System.out.println(new S41().firstMissingPositive(new int[]{0, 2, 2, 1, 1}));
+    }
+
 
     @Test
     public void test140() {
