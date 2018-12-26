@@ -9,6 +9,20 @@ public class GMJTest {
 
 
     @Test
+    public void testConnectedCells() {
+        new ConnectedCells().getBiggestRegionV2(new int[][]{
+                {0, 1, 1, 0},
+                {0, 1, 1, 0},
+                {0, 1, 0, 0},
+                {0, 0, 0, 0},
+                {0, 1, 1, 1},
+                {0, 1, 1, 1},
+                {0, 1, 1, 1}
+        });
+    }
+
+
+    @Test
     public void testBoggle() {
         System.out.println(new BoggleV3().findWords(new char[][]{{'G', 'I', 'Z'},
                 {'U', 'E', 'K'},
