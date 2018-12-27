@@ -7,6 +7,13 @@ import org.junit.Test;
 // 狗家面经测试
 public class GMJTest {
 
+    @Test
+    public void testNextGreatSteps() {
+        new NextGreatSteps().solution(new int[]{5, 3, 1, 2, 4});
+        new NextGreatSteps().solution(new int[]{1, 2, 3, 4, 5});
+        new NextGreatSteps().solution(new int[]{5, 4, 3, 2, 1});
+    }
+
 
     @Test
     public void testConnectedCells() {
