@@ -458,6 +458,7 @@ public class LeetCodeTest {
     @Test
     public void test322() {
         //System.out.println(new S322().coinChange(new int[]{1, 2, 5}, 11));
+        System.out.println(new S322().coinChange(new int[]{2}, 3));
         System.out.println(new S322().coinChange(new int[]{1, 2, 5}, 11));
 
     }

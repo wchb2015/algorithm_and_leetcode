@@ -11,7 +11,7 @@ public class S322 {
     //DP
     public int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
-        int max = Integer.MAX_VALUE - 1;
+        int max = Integer.MAX_VALUE;
         Arrays.fill(dp, max);
 
         dp[0] = 0;
@@ -19,7 +19,7 @@ public class S322 {
         for (int i = 1; i < dp.length; i++) {
             for (int coin : coins) {
                 if (i >= coin) {
-                    dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+                    dp[i] = Math.min(dp[i], dp[i - coin] == Integer.MAX_VALUE ? Integer.MAX_VALUE : 1 + dp[i - coin]);
                 }
             }
         }
