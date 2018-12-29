@@ -7,7 +7,6 @@ import java.util.*;
  */
 public class S269BFS {
 
-
     // build graph
     // BFS
     // Add unvisited character
