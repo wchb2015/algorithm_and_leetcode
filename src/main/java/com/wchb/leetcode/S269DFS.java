@@ -19,7 +19,6 @@ public class S269DFS {
 
         int n = words.length;
         if (n == 0) return "";
-        if (n == 1) return new StringBuilder(words[0]).reverse().toString();
 
         g = new HashMap<>();
         visited = new int[26];
@@ -28,9 +27,8 @@ public class S269DFS {
         buildGraph(words);
 
         for (int i = 0; i < 26; i++) {
-            if (visited[i] == 0) {
-                if (!dfs(i)) return "";
-            }
+            if (visited[i] != 0) continue;
+            if (dfs(i)) return "";
         }
 
         return sb.reverse().toString();
@@ -38,28 +36,27 @@ public class S269DFS {
 
     // return false if has cycle.
     private boolean dfs(int v) {
-        visited[v] = 1;
 
+        visited[v] = 1;
         char key = (char) (v + 'a');
 
         if (g.get(key) == null || g.get(key).size() == 0) {
             visited[v] = 2;
             sb.append(key);
-            return true;
+            return false;
         }
 
-
         for (Character adj : g.get(key)) {
-            if (visited[adj - 'a'] == 1) return false;
+            if (visited[adj - 'a'] == 1) return true;
             if (visited[adj - 'a'] == 0) {
-                if (!dfs(adj - 'a')) return false;
+                if (dfs(adj - 'a')) return true;
             }
         }
 
         visited[v] = 2;
-        sb.append((char) (v + 'a'));
+        sb.append(key);
 
-        return true;
+        return false;
     }
 
 
