@@ -7,88 +7,77 @@ import java.util.*;
  */
 public class S269BFS {
 
-    // build graph
-    // BFS
-    // Add unvisited character
-    int[] chars;//0 No 1 unvisited  2 visited
-    Map<Character, Set<Character>> g;
+    int[] charArr;
     int[] inDegree;
     int v;
+    Map<Character, LinkedList<Character>> g;
 
     public String alienOrder(String[] words) {
-
         StringBuilder sb = new StringBuilder();
-        chars = new int[26];
+        charArr = new int[26];
         inDegree = new int[26];
         g = new HashMap<>();
         v = 0;
+        Arrays.fill(charArr, -1);
+        Arrays.fill(inDegree, -1);
+        // build graph (including inDegree)
+        build(words);
+        // bfs graph
+        Queue<Character> q = new LinkedList<>();
 
-        buildGraph(words);
-
-        if (!bfs(g, sb)) return "";
-
-        return sb.toString();
-    }
-
-    private boolean bfs(Map<Character, Set<Character>> g, StringBuilder sb) {
-
-        Queue<Character> queue = new LinkedList<>();
-
-        for (int i = 0; i < 26; i++) {
-            if (chars[i] == 1) sb.append((char) ('a' + i));
-            if (chars[i] == 2) v++;
-
-            if (chars[i] == 2 && inDegree[i] == 0) {
-                sb.append((char) ('a' + i));
-                queue.add((char) ('a' + i));
+        for (int i = 0; i < inDegree.length; i++) {
+            if (inDegree[i] == 0) {
+                q.add((char) (i + 'a'));
+                sb.append((char) (i + 'a'));
             }
         }
+        System.out.println(g);
+        if (q.size() == 0) return "";
 
+        while (!q.isEmpty()) {
+            char cur = q.poll();
 
-        while (!queue.isEmpty()) {
-            char from = queue.poll();
-            v--;
-            Set<Character> neis = g.get(from);
-            if (neis == null) continue;
+            List<Character> neis = g.get(cur);
+            if (neis == null) {
+                continue;
+            }
             for (Character nei : neis) {
-                // remove that vertex and its outgoing edges
-                // from the graph and repeat with the remaining graph.
                 inDegree[nei - 'a']--;
                 if (inDegree[nei - 'a'] == 0) {
+                    q.add(nei);
                     sb.append(nei);
-                    queue.offer(nei);
                 }
             }
         }
-        return v == 0 ? true : false;
+        if (sb.length() != v) return "";
+        return sb.toString();
     }
 
-
-    private void buildGraph(String[] words) {
-        for (String s : words) {
-            for (Character c : s.toCharArray()) {
-                chars[c - 'a'] = 1;
+    private void build(String[] words) {
+        for (String word : words) {
+            for (char c : word.toCharArray()) {
+                if (charArr[c - 'a'] == -1) {
+                    v++;
+                }
+                charArr[c - 'a'] = 0;
+                inDegree[c - 'a'] = 0;
             }
         }
+        for (int i = 1; i < words.length; i++) {
+            String w1 = words[i - 1];
+            String w2 = words[i];
 
-        for (int i = 0; i < words.length - 1; i++) {
-            String word1 = words[i];
-            String word2 = words[i + 1];
-            int len = Math.min(word1.length(), word2.length());
+            int len = Math.min(w1.length(), w2.length());
 
             for (int j = 0; j < len; j++) {
-                if (word1.charAt(j) == word2.charAt(j)) continue;
+                if (w1.charAt(j) == w2.charAt(j)) continue;
+                char from = w1.charAt(j);
+                char to = w2.charAt(j);
 
-                char from = word1.charAt(j);
-                char to = word2.charAt(j);
-
-                if (g.containsKey(from) && g.get(from).contains(to)) break;
-
-                chars[from - 'a'] = 2;
-                chars[to - 'a'] = 2;
-                inDegree[to - 'a']++;
-                if (!g.containsKey(from)) g.put(from, new HashSet<>());
+                if (!g.containsKey(from)) g.put(from, new LinkedList<>());
+                if (g.get(from).contains(to)) break;
                 g.get(from).add(to);
+                inDegree[to - 'a']++;
                 break;
             }
         }
