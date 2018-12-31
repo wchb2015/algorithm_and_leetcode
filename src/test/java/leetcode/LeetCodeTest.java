@@ -17,6 +17,9 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
+        new ST().spellchecker(new String[]{"KiTe", "kite", "hare", "Hare"}, new String[]{
+                "kite", "Kite", "KiTe", "Hare", "HARE", "Hear", "hear", "keti", "keet", "keto"
+        });
     }
 
     @Test
