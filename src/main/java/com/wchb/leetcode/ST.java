@@ -13,7 +13,14 @@ public class ST {
         int[] nums2 = nums.clone();
 
         Arrays.sort(nums2);
+        int l = 0;
+        int r = nums.length - 1;
 
-        return 1;
+        while (l < r && nums2[l] == nums[l] && nums2[r] == nums[r]) {
+            l++;
+            r--;
+        }
+
+        return r - l + 1;
     }
 }
