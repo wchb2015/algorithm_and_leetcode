@@ -17,9 +17,13 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        new ST().spellchecker(new String[]{"KiTe", "kite", "hare", "Hare"}, new String[]{
-                "kite", "Kite", "KiTe", "Hare", "HARE", "Hear", "hear", "keti", "keet", "keto"
-        });
+        new ST().calculateMinimumHP(new int[][]{{0, 0}});
+    }
+
+    @Test
+    public void test659() {
+        //new S659().isPossible(new int[]{1, 2, 3, 3, 4, 4, 5, 5});
+        new S659().isPossible(new int[]{1, 2, 3, 3, 4, 5});
     }
 
     @Test
