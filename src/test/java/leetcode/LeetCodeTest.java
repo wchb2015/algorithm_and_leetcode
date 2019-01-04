@@ -17,7 +17,6 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        new ST().calculateMinimumHP(new int[][]{{0, 0}});
     }
 
     @Test
