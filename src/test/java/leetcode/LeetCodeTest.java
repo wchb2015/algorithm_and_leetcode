@@ -17,7 +17,7 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        new ST().pancakeSort(new int[]{3, 2, 4, 1});
+
     }
 
     @Test

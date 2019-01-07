@@ -1,5 +1,7 @@
 package com.wchb.leetcode;
 
+import java.util.Arrays;
+
 /**
  * @date 8/9/18 2:06 PM
  */
@@ -8,12 +10,15 @@ public class S516 {
 
     public int longestPalindromeSubseq(String s) {
 
-        int[][] dp = new int[s.length()][s.length()];
+        int n = s.length();
 
-        for (int i = s.length() - 1; i >= 0; i--) {
+        int[][] dp = new int[n][n];
+
+        for (int i = n - 1; i >= 0; i--) {
             dp[i][i] = 1;
-            for (int j = i + 1; j < s.length(); j++) {
-                System.out.println(i + " --- " + j);
+
+            for (int j = i + 1; j < n; j++) {
+                System.out.println(i + "----" + j);
                 if (s.charAt(i) == s.charAt(j)) {
                     dp[i][j] = dp[i + 1][j - 1] + 2;
                 } else {
@@ -21,6 +26,11 @@ public class S516 {
                 }
             }
         }
-        return dp[0][s.length() - 1];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println(Arrays.toString(dp[i]));
+        }
+
+        return dp[0][n - 1];
     }
 }
