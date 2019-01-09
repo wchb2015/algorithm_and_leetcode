@@ -163,5 +163,31 @@ public class S128 {
         return ans;
     }
 
+    /************************************************************/
+    public int longestConsecutiveV4(int[] nums) {
+
+        int ans = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums) {
+            if (map.containsKey(num)) continue;
+            Integer left = map.get(num - 1);
+            Integer right = map.get(num + 1);
+
+            int l = left == null ? 0 : left;
+            int r = right == null ? 0 : right;
+
+            int t = l + r + 1;
+            map.put(num, t);
+            map.put(num - l, t);
+            map.put(num + r, t);
+
+            ans = Math.max(ans, t);
+        }
+
+        return ans;
+
+    }
+
 
 }
