@@ -1,72 +1,51 @@
 package com.wchb.leetcode;
 
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * @date 7/14/18 12:21 PM
  */
 public class Codec297 {
 
+    ArrayList<Integer> data = new ArrayList<>();
+    int idx = 0;
+
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-
-        LinkedList<Integer> list = new LinkedList<>();
-        inOrder(root, list);
-        preOrder(root, list);
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            sb.append(list.get(0)).append("#");
-        }
-
-        return sb.toString();
+        helper(root);
+        String str = data.toString();
+        return str.substring(1, str.length() - 1);
     }
+
+    private void helper(TreeNode root) {
+        if (root == null) {
+            data.add(-1);
+            return;
+        }
+        data.add(root.val);
+        helper(root.left);
+        helper(root.right);
+    }
+
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
+        String[] dataArr = data.split(",");
+        return helper(dataArr);
+    }
 
-        if (data.length() == 0) {
+    private TreeNode helper(String[] arr) {
+        if (idx == arr.length || arr[idx].trim().equals("-1")) {
+            idx += 1;
             return null;
         }
 
-        String[] strArr = data.split("#");
+        TreeNode root = new TreeNode(Integer.parseInt(arr[idx].trim()));
+        root.left = helper(arr);
+        root.right = helper(arr);
 
-        int[] inOrder = new int[strArr.length / 2];
-        int[] preOrder = new int[strArr.length / 2];
-
-        for (int i = 0; i < strArr.length; i++) {
-            if (i <= strArr.length / 2) {
-                inOrder[i] = Integer.parseInt(strArr[i]);
-            } else {
-                preOrder[i - strArr.length / 2] = Integer.parseInt(strArr[i]);
-            }
-        }
-
-        System.out.println(Arrays.toString(inOrder));
-        System.out.println(Arrays.toString(preOrder));
-        return null;
+        return root;
     }
-
-
-    private void inOrder(TreeNode root, LinkedList<Integer> list) {
-        if (root == null) {
-            return;
-        }
-        if (root.left != null) inOrder(root.left, list);
-        list.add(root.val);
-        if (root.right != null) inOrder(root.right, list);
-    }
-
-    private void preOrder(TreeNode root, LinkedList<Integer> list) {
-        if (root == null) {
-            return;
-        }
-        list.add(root.val);
-        if (root.left != null) preOrder(root.left, list);
-        if (root.right != null) preOrder(root.right, list);
-    }
-
 
 }
