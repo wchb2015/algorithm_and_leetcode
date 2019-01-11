@@ -33,20 +33,19 @@ public class S675 {
 
         Collections.sort(trees, (t1, t2) -> t1.height - t2.height);
 
-        int sx = 0;
-        int sy = 0;
+        int prevR = 0;
+        int prevC = 0;
         for (int i = 0; i < trees.size(); i++) {
-            int tx = trees.get(i).x;
-            int ty = trees.get(i).y;
+            int curR = trees.get(i).x;
+            int curC = trees.get(i).y;
 
-            int steps = bfs(forest, sx, sy, tx, ty);
+            int steps = bfs(forest, prevR, prevC, curR, curC);
 
             if (steps == -1) return -1;
             ans += steps;
 
-            sx = tx;
-            sy = ty;
-
+            prevR = curR;
+            prevC = curC;
         }
 
         return ans;
