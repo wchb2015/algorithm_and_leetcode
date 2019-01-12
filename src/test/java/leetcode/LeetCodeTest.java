@@ -20,6 +20,11 @@ public class LeetCodeTest {
     }
 
     @Test
+    public void test797() {
+        new S797().allPathsSourceTarget(new int[][]{{1, 2}, {3}, {3}, {}});
+    }
+
+    @Test
     public void test659() {
         //new S659().isPossible(new int[]{1, 2, 3, 3, 4, 4, 5, 5});
         new S659().isPossible(new int[]{1, 2, 3, 3, 4, 5});
