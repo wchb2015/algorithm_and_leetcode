@@ -17,6 +17,9 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
+        System.out.println(new ST().minProduct(7, 8));
+        System.out.println(new ST().minProduct(8, 8));
+        System.out.println(new ST().minProduct(8, 9));
     }
 
     @Test
