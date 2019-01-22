@@ -17,9 +17,9 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        System.out.println(new ST().minProduct(7, 8));
-        System.out.println(new ST().minProduct(8, 8));
-        System.out.println(new ST().minProduct(8, 9));
+        new ST().uniquePathsIII(new int[][]{{1, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 2, -1}});
     }
 
     @Test
