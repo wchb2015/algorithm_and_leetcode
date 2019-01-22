@@ -22,6 +22,22 @@ public class LeetCodeTest {
                 {0, 0, 2, -1}});
     }
 
+
+    @Test
+    public void test317() {
+        new S317().shortestDistance(new int[][]{
+                {1, 0, 2, 0, 1},
+                {0, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0},
+        });
+    }
+
+
+    @Test
+    public void test464() {
+        new S464().canIWin(3, 4);
+    }
+
     @Test
     public void test797() {
         new S797().allPathsSourceTarget(new int[][]{{1, 2}, {3}, {3}, {}});
