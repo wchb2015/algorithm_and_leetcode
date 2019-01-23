@@ -17,11 +17,17 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        new ST().uniquePathsIII(new int[][]{{1, 0, 0, 0},
-                {0, 0, 0, 0},
-                {0, 0, 2, -1}});
+        new ST().palindromePairs(new String[]{"abcd", "dcba", "lls", "s", "sssll"});
     }
 
+    @Test
+    public void testTicTacToe() {
+        TicTacToe ttt = new TicTacToe(2);
+
+        System.out.println(ttt.move(0, 1, 1));
+        System.out.println(ttt.move(1, 1, 2));
+        System.out.println(ttt.move(1, 0, 1));
+    }
 
     @Test
     public void test317() {

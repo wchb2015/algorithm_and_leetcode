@@ -8,7 +8,9 @@ public class Boggle {
     static int N = 3;
 
     public static void main(String[] args) {
+
         String[] dictionary = {"GEEKS", "FOR", "QUIZ", "GO"};
+
         char[][] boggle = {
                 {'G', 'I', 'Z'},
                 {'U', 'E', 'K'},
