@@ -17,7 +17,20 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        new ST().palindromePairs(new String[]{"abcd", "dcba", "lls", "s", "sssll"});
+        new ST().solution(new int[]{2, 7, 100, 1});
+        new ST().solution(new int[]{2, 6, 3, 1});
+
+        new ST().findLadders("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
+    }
+
+    @Test
+    public void testTimeMap() {
+        TimeMap tm = new TimeMap();
+        tm.set("love", "high", 10);
+        tm.set("love", "low", 20);
+        System.out.println(tm.get("love", 5));
+        System.out.println(tm.get("love", 10));
+
     }
 
     @Test
