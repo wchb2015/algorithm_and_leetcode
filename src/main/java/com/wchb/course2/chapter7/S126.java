@@ -9,84 +9,85 @@ public class S126 {
 
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
 
-        List<List<String>> ret = new LinkedList<>();
         Set<String> wordSet = new HashSet<>(wordList);
+        List<List<String>> ans = new LinkedList<>();
+        List<String> path = new LinkedList<>();
+        Map<String, List<String>> g = new HashMap<>();
+        Map<String, Integer> dist = new HashMap<>();
+        if (!wordSet.contains(endWord)) return ans;
 
-        if (!wordSet.contains(endWord)) return ret;
 
+        // it is not necessary, but it is good to add beginWord into the set,
+        // so that we will have a complete graph that contains all nodes
         wordSet.add(beginWord);
 
-        List<String> path = new ArrayList<>();
-        Map<String, List<String>> graph = new HashMap<>();
-        Map<String, Integer> dist = new HashMap<>();
+        bfs(g, dist, beginWord, wordSet);
 
-        bfs(graph, dist, beginWord, wordSet);
-        dfs(ret, path, endWord, beginWord, dist, graph);
+        path.add(beginWord);
+        dfs(ans, path, beginWord, endWord, dist, g);
 
-        return ret;
+        return ans;
     }
 
     // 利用BFS构建一幅图 adjacency list 表示
-    public void bfs(Map<String, List<String>> graph, Map<String, Integer> dist,
+    public void bfs(Map<String, List<String>> g, Map<String, Integer> dist,
                     String beginWord, Set<String> wordSet) {
 
         Queue<String> queue = new LinkedList<>();
         queue.offer(beginWord);
         dist.put(beginWord, 0);
 
-        for (String w : wordSet) {
-            graph.put(w, new ArrayList<>());
-        }
+        for (String w : wordSet) g.put(w, new LinkedList<>());
 
         while (!queue.isEmpty()) {
-            String word = queue.poll();
-            List<String> neighbors = getNeighbors(word, wordSet);
+            String cur = queue.poll();
+            List<String> neighbors = getNeighbors(cur, wordSet);
+
             for (String neighbor : neighbors) {
-                graph.get(neighbor).add(word);
-                if (!dist.containsKey(neighbor)) {
-                    dist.put(neighbor, dist.get(word) + 1);
-                    queue.offer(neighbor);
-                }
+                g.get(cur).add(neighbor);
+
+                if (dist.containsKey(neighbor)) continue;
+                dist.put(neighbor, dist.get(cur) + 1);
+                queue.offer(neighbor);
             }
         }
+
     }
 
-    // 利用深度优先搜多找出所有的最短路径
-    public static void dfs(List<List<String>> res, List<String> path,
-                           String word, String beginWord,
-                           Map<String, Integer> dist, Map<String,
-            List<String>> graph) {
 
-        if (word.equals(beginWord)) {
-            path.add(0, word);
-            res.add(new ArrayList<>(path));
-            path.remove(0);
+    // 利用深度优先搜多找出所有的最短路径
+    public void dfs(List<List<String>> ans, List<String> path,
+                    String beginWord, String endWord,
+                    Map<String, Integer> dist, Map<String, List<String>> graph) {
+
+        if (beginWord.equals(endWord)) {
+            ans.add(new LinkedList<>(path));
             return;
         }
 
-        for (String neighbor : graph.get(word)) {
-            if (dist.containsKey(neighbor) && dist.get(word) == dist.get(neighbor) + 1) {
-                path.add(0, word);
-                dfs(res, path, neighbor, beginWord, dist, graph);
-                path.remove(0);
+        for (String neighbor : graph.get(beginWord)) {
+            if (dist.get(beginWord) + 1 != dist.get(neighbor)) {
+                //System.out.println(beginWord+"----" +neighbor);
+                continue;
             }
-        }
+            path.add(neighbor);
+            dfs(ans, path, neighbor, endWord, dist, graph);
+            path.remove(path.size() - 1);
 
+        }
     }
 
-
-    private List<String> getNeighbors(String word, Set<String> wordSet) {
-        List<String> res = new ArrayList<>();
+    static List<String> getNeighbors(String word, Set<String> wordSet) {
+        List<String> res = new LinkedList<>();
         for (int i = 0; i < word.length(); i++) {
+            char[] chs = word.toCharArray();
+            char old = chs[i];
             for (char ch = 'a'; ch < 'z' + 1; ch++) {
-                char[] chs = word.toCharArray();
-                if (ch != chs[i]) {
-                    chs[i] = ch;
-                    String next = new String(chs);
-                    //System.out.println(next);
-                    if (wordSet.contains(next)) {
-                        res.add(next);
-                    }
+                if (old == ch) continue;
+                chs[i] = ch;
+                String next = new String(chs);
+                if (wordSet.contains(next)) {
+                    res.add(next);
                 }
             }
         }

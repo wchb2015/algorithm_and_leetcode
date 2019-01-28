@@ -17,10 +17,7 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        new ST().solution(new int[]{2, 7, 100, 1});
-        new ST().solution(new int[]{2, 6, 3, 1});
-
-        new ST().findLadders("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
+       
     }
 
     @Test
