@@ -7,78 +7,80 @@ import java.util.*;
  */
 public class S269BFS {
 
-    int[] charArr;
-    int[] inDegree;
-    int v;
-    Map<Character, LinkedList<Character>> g;
-
     public String alienOrder(String[] words) {
+
+        Map<Character, List<Character>> g = new HashMap<>();
+        int n = words.length;
+        int[] in = new int[26];
+        Arrays.fill(in, -1);
+        // build graph
+        init(in, words);
+        for (int i = 1; i < n; i++) {
+            build(words[i - 1], words[i], g, in);
+        }
+
+        int v = 0;
+        for (int i : in) if (i != -1) v++;
+
+        //System.out.println(g+"---"+v);
+        // check cycle and build ans by using dfs
         StringBuilder sb = new StringBuilder();
-        charArr = new int[26];
-        inDegree = new int[26];
-        g = new HashMap<>();
-        v = 0;
-        Arrays.fill(charArr, -1);
-        Arrays.fill(inDegree, -1);
-        // build graph (including inDegree)
-        build(words);
-        // bfs graph
-        Queue<Character> q = new LinkedList<>();
-
-        for (int i = 0; i < inDegree.length; i++) {
-            if (inDegree[i] == 0) {
-                q.add((char) (i + 'a'));
-                sb.append((char) (i + 'a'));
-            }
-        }
-        System.out.println(g);
-        if (q.size() == 0) return "";
-
-        while (!q.isEmpty()) {
-            char cur = q.poll();
-
-            List<Character> neis = g.get(cur);
-            if (neis == null) {
-                continue;
-            }
-            for (Character nei : neis) {
-                inDegree[nei - 'a']--;
-                if (inDegree[nei - 'a'] == 0) {
-                    q.add(nei);
-                    sb.append(nei);
-                }
-            }
-        }
-        if (sb.length() != v) return "";
-        return sb.toString();
+        return helper(g, sb, in, v);
     }
 
-    private void build(String[] words) {
-        for (String word : words) {
-            for (char c : word.toCharArray()) {
-                if (charArr[c - 'a'] == -1) {
-                    v++;
-                }
-                charArr[c - 'a'] = 0;
-                inDegree[c - 'a'] = 0;
+    private void build(String from, String to, Map<Character, List<Character>> g, int[] in) {
+        for (int i = 0; i < Math.min(from.length(), to.length()); i++) {
+            if (from.charAt(i) == to.charAt(i)) {
+                continue;
+            }
+
+            char f = from.charAt(i);
+            char t = to.charAt(i);
+
+            if (!g.containsKey(f)) g.put(f, new LinkedList<>());
+            in[t - 'a']++;
+            g.get(f).add(t);
+            break;
+        }
+    }
+
+    private String helper(Map<Character, List<Character>> g, StringBuilder path, int[] in, int v) {
+
+        Queue<Character> q = new LinkedList<>();
+
+        for (int i = 0; i < in.length; i++) {
+            if (in[i] == -1) continue;
+            if (in[i] == 0) {
+                v--;
+                path.append((char) (i + 'a'));
+                q.add((char) (i + 'a'));
             }
         }
-        for (int i = 1; i < words.length; i++) {
-            String w1 = words[i - 1];
-            String w2 = words[i];
 
-            int len = Math.min(w1.length(), w2.length());
+        while (!q.isEmpty()) {
+            char cur = q.remove();
 
-            for (int j = 0; j < len; j++) {
-                if (w1.charAt(j) == w2.charAt(j)) continue;
-                char from = w1.charAt(j);
-                char to = w2.charAt(j);
+            List<Character> neis = g.get(cur);
+            if (neis == null || neis.size() == 0) continue;
 
-                if (!g.containsKey(from)) g.put(from, new LinkedList<>());
-                if (g.get(from).contains(to)) break;
-                g.get(from).add(to);
-                inDegree[to - 'a']++;
-                break;
+            for (Character nei : neis) {
+                in[nei - 'a']--;
+                if (in[nei - 'a'] == 0) {
+                    q.offer(nei);
+                    path.append(nei);
+                    v--;
+                }
+            }
+        }
+
+        if (v == 0) return path.toString();
+        return "";
+    }
+
+    private void init(int[] in, String[] words) {
+        for (String w : words) {
+            for (int i = 0; i < w.length(); i++) {
+                in[w.charAt(i) - 'a'] = 0;
             }
         }
     }
