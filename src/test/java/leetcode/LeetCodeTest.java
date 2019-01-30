@@ -20,6 +20,16 @@ public class LeetCodeTest {
 
     }
 
+
+    @Test
+    public void test212() {
+        new S212().findWords(new char[][]{{'o', 'a', 'a', 'n'},
+                        {'e', 't', 'a', 'e'},
+                        {'i', 'h', 'k', 'r'},
+                        {'i', 'f', 'l', 'v'}},
+                new String[]{"oath", "pea", "eat", "rain"});
+    }
+
     @Test
     public void testTimeMap() {
         TimeMap tm = new TimeMap();
