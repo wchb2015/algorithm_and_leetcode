@@ -20,6 +20,14 @@ public class LeetCodeTest {
 
     }
 
+    @Test
+    public void test301() {
+        new S301().findMinHeightTrees(4, new int[][]{
+                {0, 1}, {1, 2}, {1, 3}});
+        new S301().findMinHeightTrees(6, new int[][]{
+                {0, 1}, {0, 2}, {0, 3}, {3, 4}, {4, 5}});
+    }
+
 
     @Test
     public void test212() {

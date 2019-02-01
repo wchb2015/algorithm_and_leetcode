@@ -41,4 +41,34 @@ public class S712 {
         }
         return sum;
     }
+
+    public int minimumDeleteSumV2(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
+        int[][] dp = new int[m + 1][n + 1];
+
+        // base case
+        int temp = 0;
+        for (int i = 1; i <= n; i++) {
+            temp += word2.charAt(i - 1);
+            dp[0][i] = temp;
+        }
+
+        temp = 0;
+        for (int i = 1; i <= m; i++) {
+            temp += word1.charAt(i - 1);
+            dp[i][0] = temp;
+        }
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];// do nothing
+                } else {
+                    dp[i][j] = Math.min(word1.charAt(i - 1) + dp[i - 1][j], word2.charAt(j - 1) + dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[m][n];
+    }
 }
