@@ -9,36 +9,38 @@ import java.util.List;
 public class S486 {
     public boolean PredictTheWinner(int[] nums) {
 
-        if (nums.length == 1) return true;
+        //dp[i][j]表示玩家1从i到j的能选到的最大值之和
+        int n = nums.length;
+
+        int[][] dp = new int[n][n];
+        if (n < 3) return true;
 
         int sum = 0;
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
-            list.add(nums[i]);
+        for (int a : nums) sum += a;
+
+        for (int i = 0; i < n - 1; i++) {
+            //len = 1的情况
+            dp[i][i] = nums[i];
+            //len = 2的情况
+            dp[i][i + 1] = Math.max(nums[i], nums[i + 1]);
+        }
+        dp[n - 1][n - 1] = nums[n - 1];
+
+        //从len = 3开始枚举
+        for (int len = 3; len <= n; len++) {
+            for (int i = 0; i + len <= n; i++) {
+                int j = i + len - 1;
+                dp[i][j] = Math.max(
+                        nums[i] + Math.min(dp[i + 1][j - 1], dp[i + 2][j]),
+                        nums[j] + Math.min(dp[i + 1][j - 1], dp[i][j - 2]));
+            }
         }
 
-        int a = pickUpCoins(list);
-        int b = sum - a;
+        //若玩家1选的值之和大于等于全部和的一半，则胜出（或平局），sum + 1是为了处理sum为基数的情况，如：[1,3,1]
+        if (dp[0][n - 1] >= (sum + 1) / 2)
+            return true;
+        else return false;
 
-        return a >= b;
-    }
 
-
-    public static int pickUpCoins(List<Integer> coins) {
-        return helper(coins, 0, coins.size() - 1, new int[coins.size()][coins.size()]);
-    }
-
-    private static int helper(List<Integer> coins, int a, int b, int[][] dp) {
-        // No coins left.
-        if (a > b) return 0;
-        if (dp[a][b] == 0) {
-            int rA = coins.get(a) + Math.min(helper(coins, a + 2, b, dp),
-                    helper(coins, a + 1, b - 1, dp));
-            int rB = coins.get(b) + Math.min(helper(coins, a + 1, b - 1, dp),
-                    helper(coins, a, b - 2, dp));
-            dp[a][b] = Math.max(rA, rB);
-        }
-        return dp[a][b];
     }
 }
