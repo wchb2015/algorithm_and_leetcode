@@ -17,14 +17,8 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        ST st = new ST(1);
-        st.put(2, 1);
-
-        System.out.println(st.get(2));
-        st.put(3, 2);
-        System.out.println(st.get(2));
-        System.out.println(st.get(3));
-
+        ST st = new ST();
+        System.out.println(st.minCutRecur("aab"));
 
     }
 
