@@ -18,8 +18,6 @@ public class LeetCodeTest {
     @Test
     public void test() {
         ST st = new ST();
-        System.out.println(st.minCutRecur("aab"));
-
     }
 
     @Test
