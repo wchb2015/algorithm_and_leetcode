@@ -18,6 +18,7 @@ public class LeetCodeTest {
     @Test
     public void test() {
         ST st = new ST();
+        st.validTree(5, new int[][]{{0, 1}, {0, 2}, {0, 3}, {1, 4}});
     }
 
     @Test
