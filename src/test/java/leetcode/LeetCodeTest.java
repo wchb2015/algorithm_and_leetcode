@@ -19,8 +19,9 @@ public class LeetCodeTest {
     public void test() {
         ST st = new ST();
 
-        System.out.println(st.minTotalDistance(new int[][]{{1, 0, 0, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}}));
-        System.out.println(st.minTotalDistance(new int[][]{{1}, {1}}));
+        // System.out.println(st.minTotalDistance(new int[][]{{1, 0, 0, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}}));
+        // System.out.println(st.findNumberOfLIS(new int[]{1, 1, 1, 1, 1}));
+        System.out.println(st.findNumberOfLIS(new int[]{1, 3, 5, 4, 7}));
         //System.out.println(st.subarraysWithKDistinct(new int[]{1, 2, 1, 2, 3}, 2));
         //System.out.println(st.subarraysWithKDistinct(new int[]{1, 2, 1, 3, 4}, 3));
 
