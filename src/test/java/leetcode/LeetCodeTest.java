@@ -17,18 +17,7 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        ST st = new ST();
-
-        // System.out.println(st.minTotalDistance(new int[][]{{1, 0, 0, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}}));
-        // System.out.println(st.findNumberOfLIS(new int[]{1, 1, 1, 1, 1}));
-        System.out.println(st.findNumberOfLIS(new int[]{1, 3, 5, 4, 7}));
-        //System.out.println(st.subarraysWithKDistinct(new int[]{1, 2, 1, 2, 3}, 2));
-        //System.out.println(st.subarraysWithKDistinct(new int[]{1, 2, 1, 3, 4}, 3));
-
-        //st.fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
-
-        //System.out.println(st.addToArrayForm(new int[]{1, 2, 0, 0}, 34));
-
+        ST.wordCountEngine("Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. ");
     }
 
     @Test
