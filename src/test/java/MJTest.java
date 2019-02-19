@@ -1,5 +1,6 @@
 import com.wchb.course2.chapter8.AcmeSubstring;
 import com.wchb.leetcode.SplittingPixels;
+import com.wchb.mj.any.TTT;
 import com.wchb.mj.coursera.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -7,11 +8,33 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Scanner;
 
 /**
  * @date 10/31/18 11:44 AM
  */
 public class MJTest {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        TTT t = new TTT();
+        t.initializeBoard();
+
+
+        do {
+
+            System.out.println(" input row(0-2): ");
+            int row = scanner.nextInt();
+            System.out.println(" input column(0-2): ");
+            int column = scanner.nextInt();
+
+            t.setBoard(row, column, 'X');
+            t.printBoard();
+
+        } while (true);
+    }
+
 
     @Test
     public void test01() {
@@ -139,7 +162,6 @@ public class MJTest {
 
         System.out.println(arrayList.get(arrayList.size() - 1));
     }
-
 
 
 }

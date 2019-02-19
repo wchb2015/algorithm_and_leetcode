@@ -17,7 +17,13 @@ public class LeetCodeTest {
 
     @Test
     public void test() {
-        ST.wordCountEngine("Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. ");
+
+        ST st = new ST();
+        st.test();
+
+        System.out.println("");
+
+
     }
 
     @Test
