@@ -7,24 +7,49 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class LeetCodeTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
 
+    public int maxProfit(int[] prices) {
+        PriorityQueue<Integer> q = new PriorityQueue<>();
+        int ans = 0;
+        if (prices.length == 0) return ans;
+        for (int i = 1; i < prices.length; i++) {
+            int dif = prices[i] - prices[i - 1];
+            if (dif < 0) continue;
+
+            if (q.size() == 2) {
+                if (q.peek() < dif) {
+                    q.remove();
+                    q.offer(dif);
+                }
+            } else {
+                q.offer(dif);
+            }
+        }
+        if (q.size() == 0) return ans;
+        if (q.size() == 0) return q.peek();
+        return q.remove() + q.remove();
+
+    }
+
     @Test
     public void test() {
 
         ST st = new ST();
-        st.test();
 
-        System.out.println("");
+        System.out.println("abc".substring(0, 2));
 
 
     }
+
+    public static void main(String[] args) {
+
+    }
+
 
     @Test
     public void test301() {
