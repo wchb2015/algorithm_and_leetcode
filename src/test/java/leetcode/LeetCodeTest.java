@@ -44,11 +44,6 @@ public class LeetCodeTest {
 
         ST st = new ST();
 
-        boolean b1 = st.isBipartite(new int[][]{{1, 3}, {0, 2}, {1, 3}, {0, 2}});
-        System.out.println(b1);
-        boolean b2 = st.isBipartite(new int[][]{{1, 2, 3}, {0, 2}, {0, 1, 3}, {0, 2}});
-        System.out.println(b2);
-
 
     }
 

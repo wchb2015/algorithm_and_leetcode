@@ -2,6 +2,7 @@ import com.wchb.course2.chapter8.AcmeSubstring;
 import com.wchb.leetcode.SplittingPixels;
 import com.wchb.mj.any.TTT;
 import com.wchb.mj.coursera.*;
+import com.wchb.mj.dreamA.A01;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -164,4 +165,8 @@ public class MJTest {
     }
 
 
+    @Test
+    public void test14() {
+        System.out.println(new A01().mergeFiles(new int[]{2, 6, 1, 8}));
+    }
 }
