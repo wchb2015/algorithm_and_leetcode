@@ -45,6 +45,10 @@ public class LeetCodeTest {
         ST st = new ST();
 
 
+        st.networkDelayTime(new int[][]{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2);
+        st.networkDelayTime(new int[][]{{1, 2, 1}}, 2, 2);
+        st.networkDelayTime(new int[][]{{1, 2, 1}, {2, 3, 2}, {1, 3, 4}}, 3, 1);
+
     }
 
     public static void main(String[] args) {
