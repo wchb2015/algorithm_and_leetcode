@@ -6,10 +6,7 @@ import com.wchb.mj.dreamA.A01;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @date 10/31/18 11:44 AM
@@ -168,5 +165,42 @@ public class MJTest {
     @Test
     public void test14() {
         System.out.println(new A01().mergeFiles(new int[]{2, 6, 1, 8}));
+    }
+
+    @Test
+    public void test15() {
+
+        int capacity = 10000;
+        List<int[]> f = new LinkedList<>();
+        List<int[]> b = new LinkedList<>();
+
+        f.add(new int[]{1, 2000});
+        b.add(new int[]{1, 8000});
+        b.add(new int[]{2, 8000});
+        new A01().approximateMemUsage(f, b, capacity);
+    }
+
+
+    @Test
+    public void test16() {
+        int numTotalAvailableCities = 6;
+        int numTotalAvailRoads = 3;
+        List<int[]> roadsAvailable = new LinkedList<>();
+        roadsAvailable.add(new int[]{1, 4});
+        roadsAvailable.add(new int[]{4, 5});
+        roadsAvailable.add(new int[]{2, 3});
+
+        int numNewRoadsConstruct = 4;
+        List<int[]> numNewRoadsConstructCost = new LinkedList<>();
+        numNewRoadsConstructCost.add(new int[]{1, 2, 5});
+        numNewRoadsConstructCost.add(new int[]{1, 3, 10});
+        numNewRoadsConstructCost.add(new int[]{1, 6, 2});
+        numNewRoadsConstructCost.add(new int[]{5, 6, 5});
+
+        new A01().mst(numTotalAvailableCities,
+                numTotalAvailRoads,
+                roadsAvailable,
+                numNewRoadsConstruct,
+                numNewRoadsConstructCost);
     }
 }
