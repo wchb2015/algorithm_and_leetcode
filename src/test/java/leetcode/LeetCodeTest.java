@@ -44,9 +44,21 @@ public class LeetCodeTest {
 
         ST st = new ST();
 
+        String s = "#12";
+        String s2 = "12#";
+        String s3 = "#12#";
 
-        st.maxSlidingWindow();
-//        st.networkDelayTime(new int[][]{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2);
+        st.push(5);
+        st.push(1);
+        st.popMax();
+        st.peekMax();
+
+        System.out.println(Arrays.toString(s.split("#")));
+        System.out.println(Arrays.toString(s2.split("#")));
+        System.out.println(Arrays.toString(s3.split("#")));
+
+
+        //        st.networkDelayTime(new int[][]{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2);
 //        st.networkDelayTime(new int[][]{{1, 2, 1}}, 2, 2);
 //        st.networkDelayTime(new int[][]{{1, 2, 1}, {2, 3, 2}, {1, 3, 4}}, 3, 1);
 
