@@ -48,10 +48,6 @@ public class LeetCodeTest {
         String s2 = "12#";
         String s3 = "#12#";
 
-        st.push(5);
-        st.push(1);
-        st.popMax();
-        st.peekMax();
 
         System.out.println(Arrays.toString(s.split("#")));
         System.out.println(Arrays.toString(s2.split("#")));
@@ -332,24 +328,7 @@ public class LeetCodeTest {
         System.out.println(new S4().findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4}));
         new S4().findMedianSortedArrays(new int[]{1, 3}, new int[]{2});
     }
-
-    @Test
-    public void test295() {
-        MedianFinder295V2 m = new MedianFinder295V2();
-
-        m.addNum(1);
-        m.addNum(2);
-        m.addNum(3);
-        m.addNum(4);
-        m.addNum(5);
-        m.addNum(6);
-
-
-        System.out.println(m.findMedian());
-
-    }
-
-
+    
     @Test
     public void test227() {
         System.out.println(new S227().calculate("0-2147483647"));//-2147483647
