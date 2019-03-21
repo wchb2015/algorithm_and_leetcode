@@ -3,101 +3,92 @@ package com.wchb.leetcode;
 /**
  * @date 6/6/18 4:33 PM
  */
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Your WordDictionary object will be instantiated and called as such:
- * WordDictionary obj = new WordDictionary();
- * obj.addWord(word);
- * boolean param_2 = obj.search(word);
- */
 public class WordDictionary211 {
 
-    private static final Logger logger = LoggerFactory.getLogger(WordDictionary211.class);
+    Trie t;
 
-    private class Node {
-
-        public boolean isWord;
-
-        public TreeMap<Character, Node> next;
-
-        public Node(boolean isWord) {
-            this.isWord = isWord;
-            next = new TreeMap<>();
-        }
-
-        public Node() {
-            this(false);
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append("Node { isWord: ").append(isWord).append(", next: ");
-            sb.append(next);
-            return sb.toString();
-        }
-    }
-
-    private Node root;
-
-    /**
-     * Initialize your data structure here.
-     */
     public WordDictionary211() {
-        root = new Node();
+        t = new Trie();
     }
 
-    /**
-     * Adds a word into the data structure.
-     */
+
     public void addWord(String word) {
-        Node cur = root;
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            if (cur.next.get(c) == null) {
-                cur.next.put(c, new Node());
-            }
-            cur = cur.next.get(c);
-        }
-        // 避免添加的单词已经存在 更新size错误
-        if (!cur.isWord) {
-            cur.isWord = true;
-        }
+        t.insert(word);
     }
 
-    /**
-     * Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
-     */
     public boolean search(String word) {
-        return match(root, word, 0);
+        return t.search(word);
     }
 
-    private boolean match(Node node, String word, int index) {
-        logger.info("  word: {},index:{}", word, index);
 
-        if (index == word.length()) {
-            return node.isWord;
+    class Trie {
+
+        class Node {
+            boolean isEndOfWord;
+            Map<Character, Node> next;
+
+            public Node(boolean isEndOfWord) {
+                this.isEndOfWord = isEndOfWord;
+                next = new HashMap<>();
+            }
         }
 
-        char c = word.charAt(index);
+        private Node root;
 
-        if (c != '.') {
-            if (node.next.get(c) == null) {
-                return false;
-            }
-            return match(node.next.get(c), word, index + 1);
-        } else {
-            for (char nextChar : node.next.keySet()) {
-                logger.info(" keySet:{}", node.next.keySet());
-                if (match(node.next.get(nextChar), word, index + 1)) {
-                    return true;
+        public Trie() {
+            root = new Node(false);
+        }
+
+        public void insert(String word) {
+            Node p = root;
+            for (int i = 0; i < word.length(); i++) {
+                char c = word.charAt(i);
+                if (!p.next.containsKey(c)) {
+                    p.next.put(c, new Node(false));
                 }
+                p = p.next.get(c);
             }
-            return false;
+            p.isEndOfWord = true;
+        }
+
+        public boolean search(String word) {
+            Node p = root;
+             return helper(word, 0, p);
+//            Node p = root;
+////            for (int i = 0; i < word.length(); i++) {
+////                if (word.charAt(i) == '.') {
+////
+////                } else {
+////                    if (!p.next.containsKey(word.charAt(i))) return false;
+////                    p = p.next.get(word.charAt(i));
+////                }
+////            }
+////
+////            return p.isEndOfWord;
+        }
+
+        private boolean helper(String word, int idx, Node p) {
+            if (idx == word.length()) return p.isEndOfWord;
+            char cur = word.charAt(idx);
+
+            if (cur == '.') {
+                for (Node next : p.next.values()) {
+                    if (helper(word, idx + 1, next)) return true;
+                }
+                return false;
+            } else {
+                if (!p.next.containsKey(cur)) return false;
+                return helper(word, idx + 1, p.next.get(cur));
+            }
+
         }
     }
 }

@@ -60,10 +60,49 @@ public class LeetCodeTest {
 
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test642() {
+        AutocompleteSystem as = new AutocompleteSystem(new String[]{
+                "i love you", "island", "iroman", "i love leetcode"
+        }, new int[]{5, 3, 2, 2});
 
+        System.out.println(as.input('i'));
+        System.out.println(as.input(' '));
+        System.out.println(as.input('a'));
+        System.out.println(as.input('#'));
+
+
+        System.out.println(as.input('i'));
+        System.out.println(as.input(' '));
+        System.out.println(as.input('a'));
+        System.out.println(as.input('#'));
+        System.out.println(as.input('i'));
+        System.out.println(as.input(' '));
+        System.out.println(as.input('a'));
+        System.out.println(as.input('#'));
+
+
+        System.out.println("-----");
+        AutocompleteSystem as2 = new AutocompleteSystem(new String[]{
+                "abc", "abbc", "a"}, new int[]{3, 3, 3});
+
+        System.out.println(as2.input('b'));
+        System.out.println(as2.input('c'));
+        System.out.println(as2.input('#'));
+        System.out.println(as2.input('b'));
+        System.out.println(as2.input('c'));
+        System.out.println(as2.input('#'));
+
+        System.out.println(as2.input('a'));
+        System.out.println(as2.input('b'));
+        System.out.println(as2.input('c'));
+        System.out.println(as2.input('#'));
+
+        System.out.println(as2.input('a'));
+        System.out.println(as2.input('b'));
+        System.out.println(as2.input('c'));
+        System.out.println(as2.input('#'));
     }
-
 
     @Test
     public void test301() {
@@ -328,7 +367,7 @@ public class LeetCodeTest {
         System.out.println(new S4().findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4}));
         new S4().findMedianSortedArrays(new int[]{1, 3}, new int[]{2});
     }
-    
+
     @Test
     public void test227() {
         System.out.println(new S227().calculate("0-2147483647"));//-2147483647
