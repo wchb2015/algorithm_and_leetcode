@@ -44,7 +44,18 @@ public class LeetCodeTest {
 
         ST st = new ST();
 
+        // "vmokgggqzp"
+        //[3,5,1]
+        //["kg","ggq","mo"]
+        //["s","so","bfr"]
+        String stt = st.findReplaceString("vmokgggqzp", new int[]{3, 5, 1}, new String[]{"kg", "ggq", "mo"},
+                new String[]{"s", "so", "bfr"});
+        System.out.println(stt);
+
+
         String s = "#12";
+
+        System.out.println(s.substring(0, 0));
         String s2 = "12#";
         String s3 = "#12#";
 
@@ -58,6 +69,13 @@ public class LeetCodeTest {
 //        st.networkDelayTime(new int[][]{{1, 2, 1}}, 2, 2);
 //        st.networkDelayTime(new int[][]{{1, 2, 1}, {2, 3, 2}, {1, 3, 4}}, 3, 1);
 
+    }
+
+
+    @Test
+    public void test864() {
+        new S864().shortestPathAllKeys(new String[]{"@.a.#", "###.#", "b.A.B"});
+        new S864().shortestPathAllKeys(new String[]{"@...a", ".###A", "b.BCc"});
     }
 
     @Test

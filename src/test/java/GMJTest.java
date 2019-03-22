@@ -1,11 +1,33 @@
 import com.wchb.mj.dreamG.*;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @date 11/29/18 8:53 AM
  */
 // 狗家面经测试
 public class GMJTest {
+
+    General g = new General();
+
+    @Test
+    public void testS1() {
+        List<List<String>> list1 = new LinkedList<>();
+        list1.add(Arrays.asList("aa"));
+
+
+        list1.add(Arrays.asList("b", "c"));
+        list1.add(Arrays.asList("dd"));
+        List<List<String>> list2 = new LinkedList<>();
+        list2.add(Arrays.asList("aa", "b"));
+        list2.add(Arrays.asList("c", "dd"));
+        list2.add(Arrays.asList("e", "g"));
+        System.out.println(g.solution1(list1));
+        System.out.println(g.solution1(list2));
+    }
 
     @Test
     public void testNextGreatSteps() {
