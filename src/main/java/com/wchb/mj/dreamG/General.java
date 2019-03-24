@@ -27,4 +27,33 @@ public class General {
             dfs(list, idx + 1, s + cur, ans);
         }
     }
+
+
+    //A:abc，B：ababc = True，A：abc， B：acbdc = False.
+
+    public boolean oneAdd(String from, String to) {
+
+        String left = "";
+        String right = "";
+        int l = 0;
+
+        int r = 0;
+
+        while (l < from.length() && from.charAt(l) == to.charAt(l)) {
+            l++;
+        }
+        if (l == from.length()) return true;
+
+        while (r < from.length() && from.charAt(from.length() - 1 - r) == to.charAt(to.length() - 1 - r)) {
+            r++;
+        }
+        if (r == from.length()) return true;
+
+        left = to.substring(0, l + 1);
+        right = to.substring(to.length() - r, to.length());
+
+
+        return (left + right).equals(from);
+    }
+
 }

@@ -40,34 +40,13 @@ public class LeetCodeTest {
     public void test() {
 
 
-        System.out.println("KADOBECODEBANCDDDEI".length());
+        System.out.println("abc".substring(1));
+
 
         ST st = new ST();
 
-        // "vmokgggqzp"
-        //[3,5,1]
-        //["kg","ggq","mo"]
-        //["s","so","bfr"]
-        String stt = st.findReplaceString("vmokgggqzp", new int[]{3, 5, 1}, new String[]{"kg", "ggq", "mo"},
-                new String[]{"s", "so", "bfr"});
-        System.out.println(stt);
+        st.crackSafe(3, 2);
 
-
-        String s = "#12";
-
-        System.out.println(s.substring(0, 0));
-        String s2 = "12#";
-        String s3 = "#12#";
-
-
-        System.out.println(Arrays.toString(s.split("#")));
-        System.out.println(Arrays.toString(s2.split("#")));
-        System.out.println(Arrays.toString(s3.split("#")));
-
-
-        //        st.networkDelayTime(new int[][]{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2);
-//        st.networkDelayTime(new int[][]{{1, 2, 1}}, 2, 2);
-//        st.networkDelayTime(new int[][]{{1, 2, 1}, {2, 3, 2}, {1, 3, 4}}, 3, 1);
 
     }
 

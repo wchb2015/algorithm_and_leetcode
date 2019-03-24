@@ -29,6 +29,37 @@ public class GMJTest {
         System.out.println(g.solution1(list2));
     }
 
+
+    @Test
+    public void testOneAdd() {
+        System.out.println(g.oneAdd("abc", "ababc"));//true
+        System.out.println(g.oneAdd("abc", "acbdc"));//false
+    }
+
+    @Test
+    public void testMonarchy() {
+        Monarchy m = new Monarchy();
+
+        m.birth("a1", "root_king");
+        m.birth("a2", "root_king");
+
+
+        m.birth("b1", "a1");
+        m.birth("b2", "a1");
+        m.birth("d1", "b1");
+        m.birth("d2", "b1");
+        m.birth("d3", "b2");
+
+
+        m.birth("c1", "a2");
+        m.birth("c2", "a2");
+
+
+        System.out.println(m.getOrderOfSuccession());
+
+    }
+
+
     @Test
     public void testNextGreatSteps() {
         new NextGreatSteps().solution(new int[]{5, 3, 1, 2, 4});
