@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Monarchy {
 
- 
+
     Set<String> deadSet;
     Map<String, LinkedList<String>> g;
 

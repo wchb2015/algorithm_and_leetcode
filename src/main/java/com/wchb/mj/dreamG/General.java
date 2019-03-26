@@ -1,5 +1,6 @@
 package com.wchb.mj.dreamG;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +31,6 @@ public class General {
 
 
     //A:abc，B：ababc = True，A：abc， B：acbdc = False.
-
     public boolean oneAdd(String from, String to) {
 
         String left = "";
@@ -55,5 +55,109 @@ public class General {
 
         return (left + right).equals(from);
     }
+
+
+    /*
+    iterator to release the number
+    比如[3, 1, 5, 2, 6, 4]，1, 2, 4是element； 3, 5, 6是frequency。
+    3556666
+     */
+
+    public void iterator(int[] arr) {
+        int i = 0;
+        int num = -1;
+
+        for (; i < arr.length; i++) {
+            if (i % 2 == 0) {
+                num = arr[i];
+            } else {
+                int freq = arr[i];
+                while (freq > 0) {
+                    freq--;
+                    System.out.println(num);
+                }
+            }
+        }
+    }
+
+
+    // aaaaabbbbbbbbccc  ->5xa8xb3xc
+    public void encoding(String s) {
+        char c = s.charAt(0);
+        int count = 1;
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                count++;
+            } else {
+                sb.append(count).append(c);
+                count = 1;
+                c = s.charAt(i);
+            }
+        }
+
+        sb.append(count).append(c);
+
+        System.out.println(sb);
+
+        String t = "15a8b3c";
+        sb.setLength(0);
+
+        int numStart = 0;
+        int numEnd = 0;
+        int p = 0;
+        while (numStart < t.length()) {
+            while (Character.isDigit(t.charAt(numEnd))) {
+                numEnd++;
+            }
+
+            int freq = Integer.parseInt(t.substring(numStart, numEnd));
+
+            p = numEnd;
+            while (freq > 0) {
+                freq--;
+                sb.append(t.charAt(p));
+            }
+            numStart = p + 1;
+            numEnd = p + 1;
+        }
+
+
+        System.out.println(sb);
+    }
+
+
+    public int[] find(int[] arr) {
+        HashMap<Integer, Integer> map = new HashMap();
+        int max = 0;
+        int cnt = 0;
+        for (int i = 0; i < arr.length; i++) {
+            //int cnt = 1;
+            int key = arr[i];
+            int value = map.getOrDefault(key - 3, 0) + 1;
+            value = Math.max(map.getOrDefault(key, 0), value);
+            if (value > cnt) {
+                cnt = value;
+                max = key;
+            }
+            map.put(key, value);
+        }
+        int[] ans = new int[cnt];
+        int target = max - (cnt - 1) * 3;
+        int i = 0;
+        for (int n : arr) {
+            if (n == target) {
+                ans[i++] = n;
+                target += 3;
+            }
+        }
+
+
+
+         return ans;
+    }
+
 
 }

@@ -59,6 +59,16 @@ public class GMJTest {
 
     }
 
+    @Test
+    public void testIterator() {
+        g.iterator(new int[]{3, 1, 5, 2, 6, 4});
+    }
+
+    @Test
+    public void testEncoding() {
+        g.encoding("aaaaabbbbbbbbccc");
+    }
+
 
     @Test
     public void testNextGreatSteps() {
