@@ -50,6 +50,12 @@ public class LeetCodeTest {
 
     }
 
+    @Test
+    public void test336() {
+        new S336().palindromePairs(new String[]{"abcd", "dcba", "lls", "s", "sssll"});
+        new S336().palindromePairs(new String[]{"bat", "tab", "cat"});
+    }
+
 
     @Test
     public void test864() {
