@@ -43,9 +43,7 @@ public class LeetCodeTest {
         System.out.println("abc".substring(1));
 
 
-        ST st = new ST();
 
-        st.crackSafe(3, 2);
 
 
     }
