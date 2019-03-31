@@ -42,8 +42,9 @@ public class LeetCodeTest {
 
         System.out.println("abc".substring(1));
 
+        ST st = new ST();
 
-
+        st.wordsAbbreviation(Arrays.asList("like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion"));
 
 
     }
