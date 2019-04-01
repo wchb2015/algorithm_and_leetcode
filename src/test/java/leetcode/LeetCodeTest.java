@@ -44,7 +44,11 @@ public class LeetCodeTest {
 
         ST st = new ST();
 
-        st.wordsAbbreviation(Arrays.asList("like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion"));
+
+        st.numComponents(new int[]{2, 4, 6});//-1
+        st.numComponents(new int[]{2, 4, 6, 7});//3
+        st.numComponents(new int[]{7, 1, 3, 7});//0
+        st.numComponents(new int[]{2, 4, 6, 7, 9, 11});//3
 
 
     }
