@@ -11,41 +11,25 @@ import java.util.*;
 
 public class LeetCodeTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(LeetCodeTest.class);
-
-    public int maxProfit(int[] prices) {
-        PriorityQueue<Integer> q = new PriorityQueue<>();
-        int ans = 0;
-        if (prices.length == 0) return ans;
-        for (int i = 1; i < prices.length; i++) {
-            int dif = prices[i] - prices[i - 1];
-            if (dif < 0) continue;
-
-            if (q.size() == 2) {
-                if (q.peek() < dif) {
-                    q.remove();
-                    q.offer(dif);
-                }
-            } else {
-                q.offer(dif);
-            }
-        }
-        if (q.size() == 0) return ans;
-        if (q.size() == 0) return q.peek();
-        return q.remove() + q.remove();
-
-    }
 
     @Test
     public void test() {
 
 
-        System.out.println("abc".substring(1));
-
         ST st = new ST();
 
+        List<Integer> indexList = new LinkedList<>();
+
+        indexList.add(1);
+        indexList.add(2);
+        indexList.add(3);
 
 
+        // 0 1 2 3 -3-1
+        System.out.println(Collections.binarySearch(indexList, 4));
+
+
+        //st.crackSafe(2, 4);
 
 
     }
@@ -1263,10 +1247,6 @@ public class LeetCodeTest {
         String s1 = "({[]})";
         String s2 = "(){}[]";
         String s3 = "(){}[]{";
-
-        logger.info(" s1 , {}", solution20.isValid(s1));
-        logger.info(" s2 , {}", solution20.isValid(s2));
-        logger.info(" s3 , {}", solution20.isValid(s3));
     }
 
     @Test

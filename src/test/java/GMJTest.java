@@ -133,4 +133,10 @@ public class GMJTest {
         System.out.println(new StringOrder().solution("google", "gole"));//false
         System.out.println(new StringOrder().solution("google", "gle"));//true
     }
+
+    @Test
+    public void testMinCopy() {
+        System.out.println(g.getMinCopies("abc", "abcacb"));
+        System.out.println(g.getMinCopies("abc", "abc"));
+    }
 }

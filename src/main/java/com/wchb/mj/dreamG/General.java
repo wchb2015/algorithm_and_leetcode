@@ -1,8 +1,6 @@
 package com.wchb.mj.dreamG;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @date 3/21/19 9:43 AM
@@ -155,9 +153,45 @@ public class General {
         }
 
 
-
-         return ans;
+        return ans;
     }
 
+
+    // len(source)*log(len(target))
+    // 存每个字母出现的位置 然后用BS 查找 1 找到好说. 更新index . 2 没找到 增加copy 更新index 为最小.
+    public int getMinCopies(String source, String target) {
+        // store source's index list with same value
+        Map<Character, List<Integer>> valueIndexMap = new HashMap<>();
+
+        for (int i = 0; i < source.length(); i++) {
+            char c = source.charAt(i);
+            valueIndexMap.putIfAbsent(c, new LinkedList<>());
+            valueIndexMap.get(c).add(i);
+        }
+
+        int index = 0;
+        int res = 1;
+
+        for (int i = 0; i < target.length(); i++) {
+            char cur = target.charAt(i);
+            if (!valueIndexMap.containsKey(cur)) return -1;
+            List<Integer> indexList = valueIndexMap.get(cur);
+
+            int id = Collections.binarySearch(indexList, index);
+
+            if (id < 0) {
+                id = -id - 1;
+            }
+            if (id == indexList.size()) {
+                res += 1;
+                index = indexList.get(0) + 1;
+            } else {
+                index = indexList.get(id) + 1;
+            }
+        }
+
+
+        return res;
+    }
 
 }
