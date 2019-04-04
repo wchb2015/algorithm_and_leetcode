@@ -18,18 +18,9 @@ public class LeetCodeTest {
 
         ST st = new ST();
 
-        List<Integer> indexList = new LinkedList<>();
-
-        indexList.add(1);
-        indexList.add(2);
-        indexList.add(3);
 
 
-        // 0 1 2 3 -3-1
-        System.out.println(Collections.binarySearch(indexList, 4));
-
-
-        //st.crackSafe(2, 4);
+        st.crackSafe(3, 4);
 
 
     }

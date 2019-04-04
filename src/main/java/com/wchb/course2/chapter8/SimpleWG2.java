@@ -32,7 +32,7 @@ public class SimpleWG2 {
     }
 
 
-    private void krusk() {
+    private void kruskal() {
         while (!pq.isEmpty()) {
 
             Edge e = pq.poll();
@@ -65,15 +65,6 @@ public class SimpleWG2 {
             this.to = to;
             this.weight = weight;
         }
-
-        @Override
-        public String toString() {
-            return "Edge{" +
-                    "from=" + from +
-                    ", to=" + to +
-                    ", weight=" + weight +
-                    '}' + System.lineSeparator();
-        }
     }
 
 
@@ -98,7 +89,7 @@ public class SimpleWG2 {
         }, 8);
 
 
-        wg.krusk();
+        wg.kruskal();
     }
 
 
