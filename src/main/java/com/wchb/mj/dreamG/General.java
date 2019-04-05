@@ -169,7 +169,7 @@ public class General {
             valueIndexMap.get(c).add(i);
         }
 
-        int indexOfSouce = 0;
+        int indexOfSource = 0;
         int res = 1;
 
         for (int i = 0; i < target.length(); i++) {
@@ -177,13 +177,11 @@ public class General {
             if (!valueIndexMap.containsKey(cur)) return -1;
             TreeSet<Integer> set = valueIndexMap.get(cur);
 
-            Integer id = set.floor(indexOfSouce);
-
-            if (id == set.size()) {
-                res += 1;
-                indexOfSouce = set.first() + 1;
-            } else {
-                indexOfSouce = set.floor(id) + 1;
+            indexOfSource = set.ceiling(indexOfSource);
+            indexOfSource++;
+            if (indexOfSource == source.length()) {
+                res++;
+                indexOfSource = 0;
             }
         }
 

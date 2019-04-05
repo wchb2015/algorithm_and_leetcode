@@ -136,6 +136,7 @@ public class GMJTest {
 
     @Test
     public void testMinCopy() {
+        System.out.println(g.getMinCopies("abca", "abcaaaacab"));
         System.out.println(g.getMinCopies("abc", "abcacb"));
         System.out.println(g.getMinCopies("abc", "abc"));
     }
