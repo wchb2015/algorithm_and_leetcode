@@ -19,10 +19,7 @@ public class LeetCodeTest {
         ST st = new ST();
 
 
-
-        st.crackSafe(3, 4);
-
-
+        //st.crackSafe(3, 4);
     }
 
     @Test

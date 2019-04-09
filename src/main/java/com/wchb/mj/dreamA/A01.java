@@ -1,15 +1,33 @@
 package com.wchb.mj.dreamA;
 
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @date 3/12/19 4:49 PM
  */
 public class A01 {
+
+    // https://gist.github.com/sdpatil/b938d57a860f823376c1bead245fe8c8
+    public double findSalaryCap2(double targetPayroll, List<Double> currentSalaries) {
+        //First sort the current salaries
+        Collections.sort(currentSalaries);
+        double unAdjustedSalariesSum = 0;
+        // Now imagine if current salary is the cap then take sum of all the salaries that are lower than current salary
+        // plus current salary * no. of employees left, if that sum is more than cap then take
+        // total cap - money left and divide that by number of employees left
+        for (int i = 0; i < currentSalaries.size(); i++) {
+            final double adjustedSalaraySum = currentSalaries.get(i) * (currentSalaries.size() - i);
+            if (unAdjustedSalariesSum + adjustedSalaraySum >= targetPayroll) {
+                return (targetPayroll - unAdjustedSalariesSum) / (currentSalaries.size() - i);
+            }
+            unAdjustedSalariesSum = unAdjustedSalariesSum + currentSalaries.get(i);
+        }
+        return -1.0;
+        // System.out.println(st.findSalaryCap2(210d, Arrays.asList(20d, 30d, 40d, 90d, 100d)));// 60
+        // System.out.println(st.findSalaryCap2(515d, Arrays.asList(80d, 60d, 150d, 170d, 125d))); // 125
+        // System.out.println(st.findSalaryCap2(520d, Arrays.asList(80d, 60d, 150d, 170d, 125d))); // 127.5
+    }
 
     /*
     merge N files to 1 file, can only merge two files at one time,
