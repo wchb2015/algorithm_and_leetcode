@@ -176,7 +176,7 @@ public class LeetCodeTest {
 
     @Test
     public void test443() {
-        new S443().compress(new char[]{'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'});
+        new S443().compress(new char[]{'a', 'a', 'b', 'b'});
     }
 
     @Test

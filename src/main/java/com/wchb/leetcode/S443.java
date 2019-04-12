@@ -1,35 +1,52 @@
 package com.wchb.leetcode;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * @date 8/1/18 3:17 PM
  */
 public class S443 {
     public int compress(char[] chars) {
-
-        int count = 1;
-        int ans = 0;
         int n = chars.length;
-        if (n == 1) return 1;
+        if (n < 3) return n;
 
-        for (int i = 1; i <= n; i++) {
-            if (i == n || chars[i] != chars[i - 1]) {
-                //Found new characters so write the count   of previous character
-                chars[ans++] = chars[i - 1];
-                if (count > 1) {
-                    for (int k = 0; k < String.valueOf(count).length(); k++) {
-                        chars[ans++] = String.valueOf(count).charAt(k);
+        char prev = chars[0];
+        int freq = 1;
+
+        int readIdx = 1;
+        int writeIdx = 0;
+        // ["a","a","b","b","c","c","c"]
+        while (readIdx < n) {
+            char cur = chars[readIdx++];
+            // case1 equal
+            if (cur == prev) {
+                freq++;
+            } else {
+                chars[writeIdx++] = prev;
+                if (freq > 1) {
+                    String f = String.valueOf(freq);
+                    for (int i = 0; i < f.length(); i++) {
+                        chars[writeIdx++] = f.charAt(i);
                     }
                 }
-
-                count = 1;
-            } else {
-                //chars[i]==chars[i-1]
-                count++;
-
+                prev = cur;
+                freq = 1;
             }
         }
 
+        if (freq == 1) {
+            chars[writeIdx++] = prev;
+        } else {
+            chars[writeIdx++] = prev;
+            String f = String.valueOf(freq);
+            for (int i = 0; i < f.length(); i++) {
+                chars[writeIdx++] = f.charAt(i);
+            }
+        }
 
-        return ans;
+        System.out.println(writeIdx);
+        System.out.println(Arrays.toString(chars));
+        return writeIdx;
     }
 }

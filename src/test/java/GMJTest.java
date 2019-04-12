@@ -15,6 +15,11 @@ public class GMJTest {
 
     @Test
     public void testS1() {
+
+        String s = "a,b,c,";
+
+        System.out.println(Arrays.toString(s.split(",")));
+
         List<List<String>> list1 = new LinkedList<>();
         list1.add(Arrays.asList("aa"));
 
