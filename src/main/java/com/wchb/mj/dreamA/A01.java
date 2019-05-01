@@ -97,7 +97,6 @@ public class A01 {
      * List<int[]> numNewRoadsConstruct eg:[1,3,10] to construct a road between cities 1 and 3, the cost would be 10.
      */
 
-
     /**
      *  numTotalAvailableCities: 6
      *  numTotalAvailRoads: 3
